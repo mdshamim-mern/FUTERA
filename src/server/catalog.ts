@@ -53,3 +53,9 @@ export async function getProducts(slugs: string[]) {
   const products = await Promise.all(slugs.map(getProduct));
   return products.filter((p): p is Product => p !== null);
 }
+/** Bounded builder picker inventory; production pagination can replace this contract. */
+export async function getBuilderCatalog(): Promise<Product[]> {
+  if (env.CATALOG_SOURCE === "sample") return sampleProducts;
+  await connectDatabase();
+  return (await ProductModel.find({ active: true }).sort({ category: 1, priceMinor: 1 }).limit(1000).maxTimeMS(5000).lean()).map(productDto);
+}
