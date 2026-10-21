@@ -15,7 +15,7 @@ export async function ownerKey(create=false){
   return guestHash(token);
 }
 export async function readCart(){const key=await ownerKey();return key?parseReferences((await CartModel.findById(key))?.refs.map(r=>({id:r.id,quantity:r.quantity}))):[];}
-export function mergeReferences(a:BuildReference[],b:BuildReference[]){const map=new Map(a.map(r=>[r.id,r.quantity]));for(const r of b)map.set(r.id,Math.min(8,(map.get(r.id)??0)+r.quantity));if(map.size>24)throw Error("Cart holds at most 24 different products.");return [...map].map(([id,quantity])=>({id,quantity}));}
+export function mergeReferences(a:BuildReference[],b:BuildReference[]){const map=new Map(a.map(r=>[r.id,r.quantity]));for(const r of b){const quantity=(map.get(r.id)??0)+r.quantity;if(quantity>8)throw Error("Cart allows up to 8 units per product. Reduce quantity before merging.");map.set(r.id,quantity);}if(map.size>24)throw Error("Cart holds at most 24 different products.");return [...map].map(([id,quantity])=>({id,quantity}));}
 export async function writeCart(refs:BuildReference[]){const key=await ownerKey(true);await CartModel.findOneAndUpdate({_id:key},{$set:{refs,expiresAt:key?.startsWith("guest:")?new Date(Date.now()+2592000000):null}},{upsert:true});}
 export async function mergeGuestCart(userId:string){
   const token=(await cookies()).get("futera-guest")?.value;if(!token||!/^[a-f0-9]{64}$/.test(token))return;
