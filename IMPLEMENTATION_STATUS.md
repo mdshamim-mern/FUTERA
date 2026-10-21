@@ -1,6 +1,69 @@
 # Implementation status
 
-## Current state — Phase 4 complete (2026-10-21)
+## Current state — Phase 5 complete (2026-10-21)
+
+Implemented audited administration at `/admin`, using the existing MongoDB commerce
+configuration. AGENTS.md and existing history are preserved. No push, deployment,
+production account provisioning, real payment or real fulfillment was performed.
+
+### Implemented in Phase 5
+
+- Next.js 16 Node proxy/middleware rejects customers with 403 and redirects anonymous
+  requests. Admin layout/page, Server Action and transaction repository separately check
+  the current enabled user/role. Unauthorized direct actions redirect to login.
+- Product creation, category-specific forms for all 14 categories, edit conflict detection,
+  reversible archive, bulk archive (up to 50 IDs) and audited inventory adjustments.
+- Required reasons, confirmation dialogs, pending/success/error states, paginated tables,
+  product search, order status filtering, details and validated sequential status history.
+- Protected user role changes, no self-role change, session revocation and serialized
+  reauthorization. Concurrent mutual demotion cannot remove the last enabled admin.
+- Coupon management/deactivation without resetting used counts; shipping settings feed
+  checkout revalidation; additive compatibility warnings/errors feed quotes and pickers.
+- Dashboard distinguishes SAMPLE/live booked COD value from collected revenue. Low-stock
+  and pending counts include sample records. Append-only application audit viewer records
+  actor, reason, target and before/after values without account secrets.
+- Image storage proposal documented in README/DECISIONS: S3-compatible presigned uploads,
+  validated raster processing and CDN. Existing original neutral placeholders remain;
+  provider/region/CDN are not selected and no upload endpoint or hardcoded key exists.
+
+### Verification
+
+- `npm run lint`: exit 0, no findings.
+- `npm run typecheck`: exit 0, route generation and strict TypeScript passed.
+- `npm run test`: 144 tests / 10 files passed, 20.65s. Includes all eight admin mutation
+  types through both action and repository, anonymous/customer/disabled denial, product
+  creation/edit/archive, stale updates, atomic inventory audit, coupon constraints,
+  shipping quote invalidation and concurrent role demotion protection.
+- `npm run build`: exit 0; compilation 18.2s, TypeScript 15.2s; `/admin` and Proxy
+  (Middleware) included in production output.
+- `npm run test:e2e -- --output=test-results/storefront --reporter=list`: 20 passed,
+  1.7m; home/catalog/builder regressions at 360/768/1024/1440.
+- `npm run test:e2e:commerce`: 8 passed, 1.9m; four COD/account flows and four admin
+  edit-to-storefront flows with real sessions and isolated MongoDB. Each admin view and
+  product editor has no document horizontal overflow at all four viewport widths.
+  Customer `/admin` and `/api/admin/*` requests returned 403, anonymous admin navigation
+  redirected to login. Public-route action replay produced Next's empty `{}` transport
+  response after internal proxy denial, with no mutation result; direct action guards
+  are independently verified by the unit/integration authorization matrix.
+- Mobile and desktop product editor screenshots visually reviewed. An initial cold-login
+  test timed out at 5s, and exact audit-cell text matching failed because of child details
+  content; the final run uses a 15s login wait and semantic cell matching. Earlier replay
+  status assumptions were corrected to assert the observed empty denial response.
+- `git diff --check` passed. Only `.env.example` is tracked among env files. No package
+  added, no real credentials committed. Test reports/screenshots/PDFs remain ignored.
+
+### Boundaries / not verified
+
+No live Atlas deployment, production TLS, storage provider upload/CDN, real-device,
+cross-browser or screen-reader certification. No Lighthouse run for Phase 5. Test data
+uses isolated ephemeral MongoDB replica sets, original SAMPLE products and example.test
+accounts. First production admin still needs deliberate private DB-operator provisioning.
+The global transaction lock favors correctness at initial scale; benchmark/partition it
+before high write throughput. Audit immutability is enforced by application surface,
+not WORM storage against privileged database operators. No cancellation/refund/collected
+payment workflow was added. Private env configuration remains required for commerce.
+
+## Preserved Phase 4 completion (2026-10-21)
 
 Accounts, saved builds, cart/wishlist and transactional COD checkout are implemented.
 AGENTS.md is unchanged. No deployment, push, real customer record, real payment or

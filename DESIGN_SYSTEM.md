@@ -61,3 +61,14 @@ confirmation never says paid. Public build quotes show original FUTERA branding,
 server-derived line prices, date, subtotal, share QR and a browser Print / Save as PDF
 control. Print removes navigation/actions and turns the wordmark black for white paper.
 All commerce routes have loading/error boundaries; empty cart/account sections are explicit.
+
+
+## Phase 5 administration
+
+The admin shell keeps the existing typography, focus rings and restrained cyan. Solid
+bordered tables and forms avoid excess glass; confirmation dialogs reuse the existing
+modal primitive. Navigation wraps and each wide table scrolls inside its own focusable
+container. Category-specific spec fields adapt to nullable strings, numbers, booleans,
+enums and comma-separated arrays; blank means unknown. Every change asks for an audit
+reason, shows a confirmation dialog, pending state and server success/error message.
+Archive is the reversible bulk action. No optimistic stock, role or order updates occur.

@@ -1,6 +1,7 @@
 # FUTERA
 
-Premium PC hardware storefront for Bangladesh. Phase 4 adds accounts and transactional
+Premium PC hardware storefront for Bangladesh. Phase 5 adds audited administration.
+Phase 4 added accounts and transactional
 COD checkout; Phase 3 added a compatibility-first
 PC builder to the **SAMPLE catalog**: 140 fictional components, URL-driven browsing,
 comparison, preview selections and locally saved builds.
@@ -129,3 +130,35 @@ Address data provenance/license is in src/features/checkout/data: 8 divisions,
 coverage before launch. Account recovery, email verification, MFA, live tax policy,
 inventory cancellation/reconciliation and online payment integration remain launch work.
 No additional tax is calculated in this phase; confirm the real pricing policy.
+
+
+## Phase 5 administration
+
+With commerce configured, `/admin` requires a current, enabled admin account. Next.js
+16 `src/proxy.ts` is the middleware boundary; the layout, page, Server Action and
+transaction repository independently enforce authorization. Public registration never
+assigns admin. Provision the first administrator through an authenticated database
+operator after verifying the intended registered user; no public bootstrap endpoint or
+default production password exists. Subsequent role changes use the audited admin UI.
+Run `npm run db:indexes` before traffic to include the admin audit indexes.
+
+Administration provides product creation/editing/archive, category-specific specs,
+stock adjustments, bulk archive, order history and sequential fulfillment, role changes,
+coupons, shipping, compatibility data, and paginated audit records. Every mutation needs
+a reason and confirmation. Monetary inputs are integer poisha (100 = BDT 1); coupon
+timestamps are Unix milliseconds. Shipping settings in MongoDB override the explicit
+initial environment fees. Checkout always re-reads them; changed fees invalidate quotes.
+Product slugs are stable, stock edits use adjustments, and archive retains order history.
+
+Image strategy: use an S3-compatible private upload bucket with server-issued, short-lived
+presigned uploads and a separate public CDN for approved derivatives. Generate object
+keys on the server; store key, MIME type, dimensions and alt text, not credentials or
+expiring signed URLs. Validate size, file signatures and dimensions, strip metadata,
+reject SVG/active content, and publish only processed images. Provider, region, retention
+and CDN domain remain owner decisions. This phase uses the two existing original neutral
+placeholders; no upload endpoint or speculative storage secrets have been added.
+
+`npm run test:e2e:commerce` includes real Auth.js/MongoDB admin editing and storefront
+reflection, denial of customer admin requests, and unauthorized Server Action replay
+against a public route. Its seeded `example.test` administrator exists only inside the
+isolated temporary sample database. Never use test credentials in deployment.

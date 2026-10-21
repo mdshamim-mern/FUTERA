@@ -83,3 +83,20 @@ occurs automatically. Products.stock is the authoritative transactional quantity
 phase; a separate inventory ledger/reservation lifecycle is future work. Confirmed COD
 orders allocate stock immediately. Cancellation/restock/refund flows are not implemented.
 Sample orders retain isSample=true and must never be fulfilled as real commerce.
+
+
+## Phase 5 administration collections
+
+AdminAudit (`adminaudits`): actorId, action, target, reason, before/after snapshots,
+createdAt/updatedAt. Indexes createdAt descending and target+createdAt. App mutations
+only insert; changes and audit insert share one transaction. Inventory adjustments record
+old/new stock. Order transitions record old/new status and preserve the order timeline.
+Role audits contain roles only, never password hashes or session tokens.
+
+AdminSetting (`adminsettings`): string _id, revision, validated Mixed value, timestamps.
+`shipping` contains homeMinor, pickupMinor, pickupAddress. `compatibility` contains sockets,
+formFactors, and at most 100 additive overrides (2-4 part IDs, warning/error, message).
+`mutation-lock` is a singleton transaction serialization record with no secrets.
+Product.stock remains the source of stock truth; this adds adjustment audit history, not
+warehouse reservations or a financial ledger. Admin order listing filters status; the
+existing order indexes are retained. Add workload-specific status indexes when scaling.

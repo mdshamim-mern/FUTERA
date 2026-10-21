@@ -91,3 +91,26 @@ Phase 4 dependency note: Auth.js is next-auth 5.0.0-beta.32, pinned by package-l
 review upstream stability/security updates before launch. The final production-only
 npm audit reported zero advisories. The previously reported five development ESLint
 chain findings remain separate; no force downgrade was applied.
+
+
+## Phase 5 decisions
+
+- Next.js 16 names middleware `proxy.ts`; use its Node runtime and keep authorization
+  at every server entry point. JWT roles never authorize administration.
+- Product delete means archive (`active=false`), preserving historical order snapshots.
+  Slugs cannot be renamed; stock changes have a separate audited adjustment form.
+- Inventory remains authoritative on Product.stock. Audit records capture administrator,
+  reason and before/after values; automatic COD allocation remains in order transactions.
+- Audit data has no application edit/delete interface. Database operators retain technical
+  privileges; use least-privilege credentials/backups or external WORM retention if needed.
+- No self role change. Role edits serialize with all admin operations and revoke target
+  sessions. First admin provisioning is a private database-operator procedure.
+- Coupon deletion means deactivation. Redeemed use counts cannot be reset in the UI.
+- Shipping database configuration overrides env initialization, with fees revalidated at
+  final order creation. One global lock is appropriate for this initial store scale.
+- Compatibility overrides may add warning/error only. They cannot declare a conflicting
+  or unknown combination safe. Reference vocabularies do not rewrite existing specs.
+- Sales cards display booked COD order value, separating SAMPLE and live orders; they do
+  not claim collected revenue. All currently supported orders remain unpaid.
+- Image storage proposal is S3-compatible presigned upload + validated raster derivatives
+  + CDN. Until provider/region/CDN are selected, only original neutral placeholders are used.

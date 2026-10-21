@@ -11,9 +11,9 @@ and Git 2.54.0.windows.1 are available. No tool blocker identified.
 
 - `src/app`: App Router pages, layouts, loading/error boundaries and HTTP routes.
 - `src/components`: shared shell, identity, state components and shadcn primitives.
-- `src/features/<feature>`: future products, builder, cart, checkout, account and admin.
+- `src/features/<feature>`: products, builder, cart, checkout, account and admin.
 - `src/features/builder/compatibility`: implemented pure TypeScript rules; no UI/DB imports.
-- `src/server`: future server-only business operations and repositories.
+- `src/server`: server-only business operations and repositories.
 - `src/lib`: environment validation, database connection and shared utilities.
 - `src/types`: future shared domain contracts.
 
@@ -157,3 +157,34 @@ orders query ownerKey. Public share tokens are random/revocable and expose produ
 only. QR quotes re-resolve current catalog values; they are not price locks or invoices.
 Order status changes are admin-guarded sequential updates; customer-facing statuses are
 not driven by client claims. COD remains unpaid. Online providers have no enabled adapter.
+
+
+## Phase 5 admin boundaries
+
+`src/proxy.ts` uses Next.js 16's Node proxy/middleware convention and matches `/admin`
+and `/api/admin` descendants. Anonymous requests redirect to login; disabled/customer
+requests receive 403. The admin layout and Server Component page also check the current
+DB role. `features/admin/actions.ts` checks it again and redirects unauthorized replay,
+even when posted to a public route outside the proxy matcher. There are no admin Route
+Handlers or upload endpoints. `server/admin.ts` rechecks authorization before parsing
+and inside the Mongo transaction, including disabled state and session version.
+
+A discriminated strict Zod union defines eight mutation types. Product writes also pass
+category-specific Zod and Mongoose validators. A shared Mongo singleton write serializes
+admin mutations with final checkout validation, preventing simultaneous configuration
+changes from escaping review checks. This intentionally favors correctness over high
+write throughput; partition locks/optimistic configuration revisions before scaling.
+All admin writes and audit inserts commit together. Product editing requires its last
+updatedAt value; inventory adjustment requires its current stock. Role changes forbid
+self-change and revoke the target's sessions. Serial reauthorization prevents two admins
+from concurrently demoting each other and leaving no administrator.
+
+Admin reads stay in Server Components. Interactive field editors and confirmation dialogs
+are Client Components; they never import database/auth secrets. No optimistic writes:
+only successful server responses report success. Revalidation updates storefront,
+builder, account, order, quote and admin views. Tables scroll within their containers.
+
+Compatibility overrides are additive exact-product combination warnings/errors. The
+pure `checkOverrides` helper is shared by server quotes and client picker previews.
+Unknown and base safety results are preserved. Sockets/form factors are maintained as
+reference vocabulary shown in category-specific product forms, not an exhaustive whitelist.

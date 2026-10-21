@@ -83,3 +83,13 @@ then re-resolves stock/prices server-side. Checkout revalidates inventory and pr
 it does not convert an engine pass into a manufacturer guarantee. Saved account builds
 store references, and restore/public quote views resolve fresh catalog values. Public
 quotes may contain incomplete builds and are explicitly indicative, not purchase promises.
+
+
+## Phase 5 managed data and overrides
+
+Administrators can maintain socket/form-factor reference vocabularies and exact-product
+combination overrides. These do not replace manufacturer specifications. An override
+requires all listed part IDs to be present and can only append warning or error. It cannot
+remove a base check, supply missing specs, or turn unknown into ok. `checkOverrides` stays
+pure TypeScript and runs in both server build resolution and component picker previews.
+MongoDB settings are Zod-validated and changes are audited. SAMPLE mode has no overrides.
