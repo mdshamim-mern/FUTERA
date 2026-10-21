@@ -18,7 +18,7 @@ export default function Home() {
             <p className="mt-7 max-w-[440px] text-base leading-7 text-muted-foreground">Your ambition. Your components. One seamless build. Meet FUTERA — a new era of PC hardware and compatibility-first builds for Bangladesh.</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg"><Link href="/products">Explore components <ArrowRight aria-hidden="true"/></Link></Button>
-              <Button asChild size="lg" variant="outline"><Link href="/selection?mode=build">Your build shortlist <ArrowUpRight aria-hidden="true"/></Link></Button>
+              <Button asChild size="lg" variant="outline"><Link href="/pc-builder">Build your PC <ArrowUpRight aria-hidden="true"/></Link></Button>
             </div>
             <p className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><span className="size-1.5 rounded-full bg-warning"/>SAMPLE catalog · No live purchase offers</p>
           </div>
