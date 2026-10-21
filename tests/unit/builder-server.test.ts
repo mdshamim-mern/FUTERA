@@ -1,5 +1,6 @@
 import { expect, it, vi } from "vitest";
 vi.mock("server-only",()=>({}));
+vi.mock("@/server/settings",()=>({compatibilitySettings:async()=>({overrides:[]})}));
 vi.mock("@/server/catalog",async()=>{
   const {sampleProducts}=await import("@/features/products/sample-data");
   return {getProducts:async(ids:string[])=>sampleProducts.filter(p=>ids.includes(p.slug))};
