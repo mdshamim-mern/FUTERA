@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
-const links = [{ href: "/#foundation", label: "Build your PC" }, { href: "/#approach", label: "Our approach" }];
+const links = [{ href: "/products", label: "Components" }, { href: "/selection?mode=build", label: "Build shortlist" }, { href: "/compare", label: "Compare" }];
 
 export function Navbar() {
   return (
@@ -21,11 +21,11 @@ export function Navbar() {
           <span className="hidden items-center gap-2 text-xs text-muted-foreground lg:inline-flex"><span className="size-1.5 rounded-full bg-primary" />A new era begins</span>
           <Dialog>
             <DialogTrigger asChild><Button variant="ghost" size="icon" aria-label="Cart information"><ShoppingBag className="size-5" aria-hidden="true"/></Button></DialogTrigger>
-            <DialogContent className="glass"><DialogHeader><DialogTitle>Your next build starts here</DialogTitle><DialogDescription>Shopping and checkout are not available in this foundation preview.</DialogDescription></DialogHeader><p className="text-sm leading-6 text-muted-foreground">We’re setting the foundation for FUTERA. Product selection, your cart and secure checkout will arrive in later phases.</p></DialogContent>
+            <DialogContent className="glass"><DialogHeader><DialogTitle>Your next build starts here</DialogTitle><DialogDescription>Checkout is not available. Explore your saved cart preview.</DialogDescription></DialogHeader><p className="text-sm leading-6 text-muted-foreground">SAMPLE products, prices and stock are fictional. Your saved selections do not reserve inventory.</p><Button asChild><Link href="/selection?mode=cart">View cart preview</Link></Button></DialogContent>
           </Dialog>
           <Sheet>
             <SheetTrigger asChild><Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu"><Menu className="size-5" aria-hidden="true"/></Button></SheetTrigger>
-            <SheetContent className="glass"><SheetHeader><SheetTitle>Explore FUTERA</SheetTitle><SheetDescription>Build the future of your desk.</SheetDescription></SheetHeader><nav aria-label="Mobile navigation" className="flex flex-col gap-2 px-4">{links.map((link) => <SheetClose asChild key={link.href}><Link href={link.href} className="flex min-h-12 items-center justify-between rounded-lg px-3 text-sm hover:bg-secondary">{link.label}<ArrowUpRight className="size-4" aria-hidden="true"/></Link></SheetClose>)}</nav><p className="px-7 pt-6 text-xs text-muted-foreground">Foundation preview · Bangladesh</p></SheetContent>
+            <SheetContent className="glass"><SheetHeader><SheetTitle>Explore FUTERA</SheetTitle><SheetDescription>Build the future of your desk.</SheetDescription></SheetHeader><nav aria-label="Mobile navigation" className="flex flex-col gap-2 px-4">{links.map((link) => <SheetClose asChild key={link.href}><Link href={link.href} className="flex min-h-12 items-center justify-between rounded-lg px-3 text-sm hover:bg-secondary">{link.label}<ArrowUpRight className="size-4" aria-hidden="true"/></Link></SheetClose>)}</nav><p className="px-7 pt-6 text-xs text-muted-foreground">SAMPLE storefront · Bangladesh</p></SheetContent>
           </Sheet>
         </div>
       </div>
