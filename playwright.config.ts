@@ -14,6 +14,7 @@ export default defineConfig({
     { name: "desktop-1440", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 1000 } } },
   ],
   webServer: {
+    env: { CATALOG_SOURCE: "sample" },
     command: "npm run start -- --hostname 127.0.0.1",
     url: "http://127.0.0.1:3000",
     reuseExistingServer: false,

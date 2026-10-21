@@ -25,7 +25,7 @@ test("foundation is responsive, keyboard accessible and honest about availabilit
   const close = await page.getByRole("button", { name: "Close", exact: true }).boundingBox();
   expect(close?.width).toBeGreaterThanOrEqual(44);
   expect(close?.height).toBeGreaterThanOrEqual(44);
-  await expect(page.getByText("Shopping and checkout are not available in this foundation preview.")).toBeVisible();
+  await expect(page.getByText("Checkout is not available. Explore your saved cart preview.")).toBeVisible();
   await page.keyboard.press("Escape");
   await page.screenshot({ path: testInfo.outputPath("home.png"), fullPage: true });
   const health = await request.get("/api/health");
