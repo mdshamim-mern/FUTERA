@@ -8,6 +8,9 @@ describe("environment validation", () => {
   it("requires a complete database configuration", () => {
     expect(() => parseEnv({ MONGODB_URI: "mongodb://localhost:27017" })).toThrow("Invalid environment");
   });
+  it("rejects MongoDB catalog mode without credentials", () => {
+    expect(() => parseEnv({ CATALOG_SOURCE: "mongodb" })).toThrow("CATALOG_SOURCE");
+  });
   it("rejects invalid config without leaking credentials", () => {
     expect(() => parseEnv({ MONGODB_URI: "secret-password", MONGODB_DB: "futera" })).toThrow("Invalid environment configuration: MONGODB_URI");
     expect(() => parseEnv({ APP_URL: "not-a-url" })).toThrow("APP_URL");
