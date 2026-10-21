@@ -1,8 +1,5 @@
 import "server-only";
-import {mutateAdmin} from "./admin";
-import {BuildModel,OrderModel,orderStatuses} from "./models/commerce";
-import {requireUser} from "./guards";
-import {ownerKey} from "./cart";
-export async function ownedBuild(id:string){const user=await requireUser();return BuildModel.findOne({_id:id,ownerId:user._id});}
-export async function ownedOrder(id:string){const owner=await ownerKey();return owner?OrderModel.findOne({_id:id,ownerKey:owner}):null;}
-export async function advanceOrder(id:string,next:typeof orderStatuses[number]){await mutateAdmin({operation:"order",id,next,reason:"Advance order fulfillment"});}
+import {api,ApiError} from "@/lib/api";
+import type {Account,Order} from "@/types/api";
+export const accountData=()=>api<Account>("/v1/account");
+export async function ownedOrder(id:string){try{return await api<Order>(`/v1/orders/${encodeURIComponent(id)}`);}catch(error){if(error instanceof ApiError&&[401,404].includes(error.status))return null;throw error;}}

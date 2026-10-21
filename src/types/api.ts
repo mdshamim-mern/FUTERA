@@ -1,0 +1,12 @@
+import type {Product} from "@/features/products/schema";
+import type {BuildReference} from "@/features/builder/schema";
+import type {CheckoutInput} from "@/features/checkout/schema";
+export const orderStatuses=["Confirmed","Assembling","Testing","Shipped","Delivered"] as const;
+export type SessionUser={id:string;name:string;email:string;role:"customer"|"admin"};
+export type AccountUser=SessionUser&{_id:string;addresses:CheckoutInput["address"][];wishlist:string[];disabled:boolean};
+export type SavedBuild={_id:string;name:string;refs:BuildReference[];shareToken:string|null};
+export type Order={_id:string;isSample:boolean;status:typeof orderStatuses[number];totalMinor:number;address:CheckoutInput["address"];lines:{id:string;name:string;quantity:number;unitMinor:number}[];timeline:{status:string;at:string}[];createdAt:string};
+export type Account={user:AccountUser;builds:SavedBuild[];orders:Order[]};
+export type AdminProduct=Product&{_id:string;__v?:number;createdAt:string;updatedAt:string};
+export type Coupon={_id:string;percent:number;minimumMinor:number;maximumDiscountMinor:number;startsAt:number;endsAt:number;maxUses:number;used:number;active:boolean;sampleOnly:boolean};
+export type Audit={_id:string;actorId:string;action:string;target:string;reason:string;before:unknown;after:unknown;createdAt:string};

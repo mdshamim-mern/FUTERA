@@ -1,31 +1,6 @@
 import "server-only";
-import {compatibilitySettings} from "./settings";
-import { getProducts } from "@/server/catalog";
-import { parseReferences } from "@/features/builder/schema";
-import { checkCompatibility, checkOverrides, estimatePower } from "@/features/builder/compatibility";
-import type { Product } from "@/features/products/schema";
-
-export async function resolveBuild(input: unknown) {
-  const refs = parseReferences(input);
-  const products = await getProducts(refs.map(r => r.id));
-  const seen = new Set<string>();
-  const lines: { product: Product; quantity: number }[] = [];
-  for (const ref of refs) {
-    const product=products.find(p=>p.slug===ref.id);
-    if (!product) continue;
-    const multiple=["ram","ssd","hdd","case-fan","monitor","keyboard","mouse","ups"].includes(product.category);
-    if (!multiple && seen.has(product.category)) continue;
-    seen.add(product.category);
-    lines.push({product,quantity:multiple?ref.quantity:1});
-  }
-  const parts=lines.map(({product,quantity})=>({id:product.slug,category:product.category,specs:product.specs,quantity}));
-  const settings=await compatibilitySettings();
-  const additional=checkOverrides(parts,settings.overrides);
-  return {
-    overrides:settings.overrides, lines, checks:[...checkCompatibility(parts),...additional], power:estimatePower(parts),
-    totalMinor:lines.reduce((n,l)=>n+l.product.priceMinor*l.quantity,0),
-    stockIssues:lines.filter(l=>l.quantity>l.product.stock).map(l=>({id:l.product.slug,message:`${l.product.name}: requested quantity exceeds ${l.product.isSample?"SAMPLE ":""}stock (${l.product.stock}).`})),
-    ignored:refs.length-lines.length,
-  };
-}
-export type BuildQuote = Awaited<ReturnType<typeof resolveBuild>>;
+import {api} from "@/lib/api";
+import type {Product} from "@/features/products/schema";
+import type {Check,CompatibilityOverride} from "@/features/builder/compatibility";
+export type BuildQuote={lines:{product:Product;quantity:number}[];overrides:CompatibilityOverride[];checks:Check[];power:{loadWatts:number;minimumWatts:number;recommendedWatts:number}|null;totalMinor:number;stockIssues:{id:string;message:string}[];ignored:number};
+export const resolveBuild=(input:unknown)=>api<BuildQuote>("/v1/builder/quote",{method:"POST",body:input});

@@ -48,3 +48,6 @@ Rules: CPU↔Motherboard socket (+chipset/BIOS warning); Motherboard↔RAM (DDR 
 - Keep docs current: README.md, ARCHITECTURE.md, DECISIONS.md, IMPLEMENTATION_STATUS.md, DATABASE_SCHEMA.md, PC_COMPATIBILITY_RULES.md, DESIGN_SYSTEM.md.
 - Commit in small logical commits with conventional messages (feat:, fix:, chore:, docs:, test:). Push only when I explicitly ask.
 - Explain decisions and blockers in simple Bangla in the final summary; code, comments, and docs in English.
+## Authorized STN-7 architecture update
+The user explicitly requires separate frontend/backend GitHub repositories and authorizes English conventional commits, push and deployment. FUTERA-server owns MongoDB and authoritative commerce; this repository contains Next.js UI and HTTP adapters. Opaque revocable API sessions replace the previous in-process Auth.js session implementation. Preserve all original security, sample-data disclosure and verification requirements.
+

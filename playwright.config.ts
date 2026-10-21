@@ -7,7 +7,7 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
   reporter: [["list"], ["html", { open: "never" }]],
-  use: { baseURL: "http://127.0.0.1:3000", trace: "retain-on-failure" },
+  use: { baseURL: "http://127.0.0.1:3101", trace: "retain-on-failure" },
   projects: [
     { name: "mobile-360", use: { ...devices["Desktop Chrome"], viewport: { width: 360, height: 800 } } },
     { name: "tablet-768", use: { ...devices["Desktop Chrome"], viewport: { width: 768, height: 1024 } } },
@@ -16,8 +16,8 @@ export default defineConfig({
   ],
   webServer: {
     env: { CATALOG_SOURCE: "sample" },
-    command: "npm run start -- --hostname 127.0.0.1",
-    url: "http://127.0.0.1:3000",
+    command: "node scripts/e2e-commerce-server.mjs",
+    url: "http://127.0.0.1:3101",
     reuseExistingServer: false,
     timeout: 120000,
   },
