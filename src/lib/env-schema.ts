@@ -9,9 +9,18 @@ export const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   APP_URL: z.url().default("http://localhost:3000"),
   CATALOG_SOURCE: z.enum(["sample", "mongodb"]).default("sample"),
+  COMMERCE_ENABLED: z.enum(["true", "false"]).default("false"),
+  AUTH_SECRET: optionalText.pipe(z.string().min(32).optional()),
+  SHIPPING_HOME_MINOR: z.coerce.number().int().min(0).max(1000000).optional(),
+  SHIPPING_PICKUP_MINOR: z.coerce.number().int().min(0).max(1000000).optional(),
+  PICKUP_ADDRESS: optionalText,
   MONGODB_URI: optionalText.pipe(z.string().regex(/^mongodb(?:\+srv)?:\/\//).optional()),
   MONGODB_DB: optionalText.pipe(z.string().regex(/^[a-zA-Z0-9_-]+$/).optional()),
 }).superRefine((env, ctx) => {
+  if(env.COMMERCE_ENABLED==="true"&&!env.APP_URL.startsWith("https:")&&!["localhost","127.0.0.1"].includes(new URL(env.APP_URL).hostname))ctx.addIssue({code:"custom",path:["APP_URL"],message:"Public commerce requires HTTPS."});
+  if (env.COMMERCE_ENABLED === "true" && (!env.AUTH_SECRET || !env.MONGODB_URI || env.CATALOG_SOURCE !== "mongodb" || env.SHIPPING_HOME_MINOR === undefined || env.SHIPPING_PICKUP_MINOR === undefined || !env.PICKUP_ADDRESS)) {
+    ctx.addIssue({code:"custom",path:["COMMERCE_ENABLED"],message:"Commerce requires MongoDB, a secret and explicit shipping configuration."});
+  }
   if (Boolean(env.MONGODB_URI) !== Boolean(env.MONGODB_DB)) {
     ctx.addIssue({ code: "custom", path: ["MONGODB_URI"], message: "Configure both MongoDB variables or neither." });
   }
