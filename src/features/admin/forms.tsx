@@ -4,15 +4,14 @@ import {z} from "zod";
 import {adminAction} from "./actions";
 import {categoryCodes,categoryLabels,specSchemas,type Product,type CategoryCode} from "@/features/products/schema";
 import {Button} from "@/components/ui/button";
-import {Dialog,DialogContent,DialogTitle,DialogDescription} from "@/components/ui/dialog";
+import {Dialog,DialogTrigger,DialogContent,DialogTitle,DialogDescription} from "@/components/ui/dialog";
 
 const control="mt-1 min-h-11 w-full min-w-0 rounded-md border border-border bg-background p-2 text-sm";
 export function MutationForm({payload,label="Save changes",children}:{payload:Record<string,unknown>;label?:string;children?:React.ReactNode}){
  const [state,action,pending]=useActionState(adminAction,{ok:false,message:""});
  const [reason,setReason]=useState("");const [open,setOpen]=useState(false);
  return <div className="space-y-3">{children}<label className="block text-sm">Audit reason<input className={control} value={reason} onChange={e=>setReason(e.target.value)} minLength={5} maxLength={300} required/></label>
- <Button type="button" disabled={reason.trim().length<5||pending} onClick={()=>setOpen(true)}>{label}</Button>
- <Dialog open={open} onOpenChange={setOpen}><DialogContent><DialogTitle>Confirm {label.toLowerCase()}</DialogTitle><DialogDescription>This changes live store data and records your account and reason in the audit log. Review the values before confirming.</DialogDescription><p className="break-words text-sm">{reason}</p><form action={form=>{action(form);setOpen(false);}}><input type="hidden" name="payload" value={JSON.stringify({...payload,reason})}/><Button type="submit" disabled={pending}>Confirm change</Button></form><Button variant="outline" onClick={()=>setOpen(false)}>Cancel</Button></DialogContent></Dialog>
+ <Dialog open={open} onOpenChange={setOpen}><DialogTrigger asChild><Button type="button" disabled={reason.trim().length<5||pending}>{label}</Button></DialogTrigger><DialogContent><DialogTitle>Confirm {label.toLowerCase()}</DialogTitle><DialogDescription>This changes live store data and records your account and reason in the audit log. Review the values before confirming.</DialogDescription><p className="break-words text-sm">{reason}</p><form action={form=>{action(form);setOpen(false);}}><input type="hidden" name="payload" value={JSON.stringify({...payload,reason})}/><Button type="submit" disabled={pending}>Confirm change</Button></form><Button variant="outline" onClick={()=>setOpen(false)}>Cancel</Button></DialogContent></Dialog>
  <p role={state.ok?"status":"alert"} className={state.ok?"text-success":"text-warning"}>{pending?"Saving…":state.message}</p></div>;
 }
 type FieldShape={type?:string|string[];enum?:unknown[];anyOf?:FieldShape[]};
