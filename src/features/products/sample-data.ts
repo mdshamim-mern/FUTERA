@@ -9,8 +9,8 @@ function specs(category: CategoryCode, index: number) {
   const ddr5 = index % 2 === 0;
   const socket = ddr5 ? "AM5" : "LGA1700";
   switch (category) {
-    case "cpu": return { socket, cores: 6 + (index % 3) * 2, threads: 12 + (index % 3) * 4, boostGHz: Number((4.4 + (index % 4) * .2).toFixed(1)), tdp: [65, 95, 105, 125][index % 4], integratedGraphics: ddr5 };
-    case "motherboard": return { socket, chipset: ddr5 ? "B650" : "B760", ramType: ddr5 ? "DDR5" : "DDR4", ramSlots: 4, maxRamGb: 128, maxRamSpeedMts: ddr5 ? 6000 : 3600, formFactor: index % 3 ? "ATX" : "Micro-ATX", m2Slots: 2 + index % 2, m2Interfaces: ["PCIe 4.0 NVMe"], sataPorts: 4, biosNote: "SAMPLE specification; exact CPU/BIOS support unverified." };
+    case "cpu": return { socket, cores: 6 + (index % 3) * 2, threads: 12 + (index % 3) * 4, boostGHz: Number((4.4 + (index % 4) * .2).toFixed(1)), tdp: [65, 95, 105, 125][index % 4], integratedGraphics: ddr5, supportedChipsets: [ddr5 ? "B650" : "B760"] };
+    case "motherboard": return { socket, chipset: ddr5 ? "B650" : "B760", ramType: ddr5 ? "DDR5" : "DDR4", ramSlots: 4, maxRamGb: 128, maxRamSpeedMts: ddr5 ? 6000 : 3600, formFactor: index % 3 ? "ATX" : "Micro-ATX", m2Slots: 2 + index % 2, m2Interfaces: ["PCIe 4.0 NVMe"], sataPorts: 4, biosNote: "Fictional SAMPLE BIOS support only; not evidence for real hardware.", biosStatus: "supported", supportedCpuIds: Array.from({length:5}, (_,i) => `sample-cpu-${String(i*2+(ddr5?1:2)).padStart(2,"0")}`), powerConnectors: ["CPU 8-pin"] };
     case "ram": return { ramType: ddr5 ? "DDR5" : "DDR4", capacityGb: index % 3 ? 32 : 16, modules: 2, speedMts: ddr5 ? 6000 : 3200 };
     case "ssd": return { capacityGb: [500, 1000, 2000][index % 3], interface: "PCIe 4.0 NVMe", formFactor: "M.2 2280", readMBps: 3500 + (index % 4) * 1000 };
     case "hdd": return { capacityGb: [1000, 2000, 4000][index % 3], interface: "SATA III", formFactor: "3.5 inch", rpm: index % 2 ? 5400 : 7200 };

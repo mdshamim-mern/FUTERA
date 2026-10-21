@@ -12,8 +12,8 @@ const count = z.number().int().nonnegative().nullable();
 const strings = z.array(z.string().min(1).max(60)).max(20).nullable();
 const ramType = z.enum(["DDR4", "DDR5"]).nullable();
 export const specSchemas = {
-  cpu: z.strictObject({ socket: text, cores: positive, threads: positive, boostGHz: positive, tdp: positive, integratedGraphics: z.boolean().nullable() }),
-  motherboard: z.strictObject({ socket: text, chipset: text, ramType, ramSlots: count, maxRamGb: positive, maxRamSpeedMts: positive, formFactor: text, m2Slots: count, m2Interfaces: strings, sataPorts: count, biosNote: text }),
+  cpu: z.strictObject({ socket: text, cores: positive, threads: positive, boostGHz: positive, tdp: positive, integratedGraphics: z.boolean().nullable(), supportedChipsets: strings.optional() }),
+  motherboard: z.strictObject({ socket: text, chipset: text, ramType, ramSlots: count, maxRamGb: positive, maxRamSpeedMts: positive, formFactor: text, m2Slots: count, m2Interfaces: strings, sataPorts: count, biosNote: text, biosStatus: z.enum(["supported", "update-required", "unsupported"]).nullable().optional(), supportedCpuIds: strings.optional(), powerConnectors: strings.optional() }),
   ram: z.strictObject({ ramType, capacityGb: positive, modules: positive, speedMts: positive }),
   ssd: z.strictObject({ capacityGb: positive, interface: text, formFactor: text, readMBps: positive }),
   hdd: z.strictObject({ capacityGb: positive, interface: text, formFactor: text, rpm: positive }),
