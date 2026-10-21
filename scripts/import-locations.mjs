@@ -1,0 +1,11 @@
+import {mkdir,writeFile} from "node:fs/promises";
+const repo="sohag-pro/BD-JSON";
+const commit=await fetch(`https://api.github.com/repos/${repo}/commits/master`).then(r=>{if(!r.ok)throw Error("Source unavailable");return r.json();});
+const base=`https://raw.githubusercontent.com/${repo}/${commit.sha}`;
+const source=await fetch(`${base}/bd.json`).then(r=>r.json());
+const data=source.map(d=>({id:d.id,name:d.name,districts:d.districts.map(t=>({id:t.id,name:t.name,upazilas:t.upazilas.map(u=>({id:u.id,name:u.name}))}))}));
+await mkdir("src/features/checkout/data",{recursive:true});
+await writeFile("src/features/checkout/data/locations.json",JSON.stringify(data,null,2)+"\n");
+await writeFile("src/features/checkout/data/LICENSE.txt",await fetch(`${base}/LICENSE`).then(r=>r.text()));
+await writeFile("src/features/checkout/data/README.md",`# Bangladesh location data\n\nDerived from https://github.com/${repo}, commit ${commit.sha}.\nMIT licensed; original license retained. Imported 2026-10-21. Only IDs, English\nnames and division/district/upazila nesting retained; unions/URLs omitted.\nThis community snapshot may lag administrative changes; verify delivery coverage\nbefore launch. It is not a claim of official/current postal coverage.\n\nReproduce with node scripts/import-locations.mjs (resolves the latest source revision).\n`);
+console.log(`Imported ${data.length} divisions, ${data.flatMap(d=>d.districts).length} districts, ${data.flatMap(d=>d.districts.flatMap(t=>t.upazilas)).length} upazilas.`);
