@@ -13,7 +13,7 @@ const buildPlans = [
   { title: "Orbit station", note: "A sample canvas for your next build", suffix: "08" },
 ];
 const faqs = [
-  ["Are these products available to buy?", "Products marked SAMPLE are fictional fixtures. Prices, stock and specifications are illustrative. Checkout and payment are not available in this phase."],
+  ["Are these products available to buy?", "Products marked SAMPLE are fictional fixtures, including prices, stock and specifications. When commerce is configured, COD checkout records an unpaid order. SAMPLE orders are never real purchase offers or fulfillment promises."],
   ["Does a featured build guarantee compatibility?", "No. Featured builds are sample component collections. The compatibility engine is a later phase; missing specifications must never be treated as compatible."],
   ["What does Add to build do?", "It saves a shortlist in an HTTP-only browser cookie for seven days. You can review or remove components, but it does not validate socket, clearance or power compatibility."],
   ["How do I compare components?", "Select Compare on up to three catalog cards, then open the comparison. You can share the resulting URL or remove individual products."],

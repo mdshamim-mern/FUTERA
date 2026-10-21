@@ -17,7 +17,7 @@ export const envSchema = z.object({
   MONGODB_URI: optionalText.pipe(z.string().regex(/^mongodb(?:\+srv)?:\/\//).optional()),
   MONGODB_DB: optionalText.pipe(z.string().regex(/^[a-zA-Z0-9_-]+$/).optional()),
 }).superRefine((env, ctx) => {
-  if(env.COMMERCE_ENABLED==="true"&&!env.APP_URL.startsWith("https:")&&!["localhost","127.0.0.1"].includes(new URL(env.APP_URL).hostname))ctx.addIssue({code:"custom",path:["APP_URL"],message:"Public commerce requires HTTPS."});
+  if(env.COMMERCE_ENABLED==="true"&&URL.canParse(env.APP_URL)&&!env.APP_URL.startsWith("https:")&&!["localhost","127.0.0.1"].includes(new URL(env.APP_URL).hostname))ctx.addIssue({code:"custom",path:["APP_URL"],message:"Public commerce requires HTTPS."});
   if (env.COMMERCE_ENABLED === "true" && (!env.AUTH_SECRET || !env.MONGODB_URI || env.CATALOG_SOURCE !== "mongodb" || env.SHIPPING_HOME_MINOR === undefined || env.SHIPPING_PICKUP_MINOR === undefined || !env.PICKUP_ADDRESS)) {
     ctx.addIssue({code:"custom",path:["COMMERCE_ENABLED"],message:"Commerce requires MongoDB, a secret and explicit shipping configuration."});
   }

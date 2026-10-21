@@ -18,5 +18,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#07090D" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${inter.variable} ${display.variable} ${bangla.variable} antialiased`}><a href="#main-content" className="fixed left-5 top-4 z-50 -translate-y-24 rounded-md bg-primary px-5 py-3 font-medium text-primary-foreground focus:translate-y-0">Skip to content</a><Navbar />{children}<Footer /></body></html>;
+  return <html lang="en"><body className={`${inter.variable} ${display.variable} ${bangla.variable} antialiased`}><a href="#main-content" className="fixed left-5 top-4 z-50 -translate-y-24 rounded-md bg-primary px-5 py-3 font-medium text-primary-foreground focus:translate-y-0">Skip to content</a><Navbar commerceEnabled={env.COMMERCE_ENABLED==="true"}/>{children}<Footer /></body></html>;
 }

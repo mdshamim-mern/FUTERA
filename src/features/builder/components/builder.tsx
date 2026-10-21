@@ -75,7 +75,7 @@ export function Builder({catalog,initial,shared}:{catalog:Product[];initial:Buil
   const summaryBody=<div className="space-y-5">
     <div><p className="text-xs uppercase tracking-widest text-primary">Your next machine</p><h2 className="mt-2 font-display text-2xl">Build Summary</h2></div>
     <p className="text-sm">{complete}/7 required parts selected</p><progress className="h-2 w-full accent-cyan-400" value={complete} max={7} aria-label="Required parts selected"/>
-    <div aria-live="polite"><p className="text-xs text-muted-foreground">{quote.lines.every(l=>l.product.isSample)?"SAMPLE subtotal":"Catalog subtotal"}</p><p key={quote.totalMinor} className="price builder-total text-3xl font-semibold">{pending?"Verifying…":error?"Unavailable":formatPrice(quote.totalMinor)}</p><p className="mt-2 text-xs text-muted-foreground">Server recalculated. Excludes shipping, taxes and discounts. No stock reservation or checkout.</p></div>
+    <div aria-live="polite"><p className="text-xs text-muted-foreground">{quote.lines.every(l=>l.product.isSample)?"SAMPLE subtotal":"Catalog subtotal"}</p><p key={quote.totalMinor} className="price builder-total text-3xl font-semibold">{pending?"Verifying…":error?"Unavailable":formatPrice(quote.totalMinor)}</p><p className="mt-2 text-xs text-muted-foreground">Server recalculated. Excludes shipping, taxes and discounts. Not a checkout total or stock reservation.</p></div>
     <PowerGauge power={quote.power} capacity={typeof psu?.specs.wattage==="number"?psu.specs.wattage:undefined}/>
     <section className="rounded-xl border p-4" aria-label="Build health"><h3 className={`font-medium ${healthy&&!error?"text-success":"text-warning"}`}>{pending?"Checking build…":error?"Verification unavailable":healthy?"Healthy build":"Build needs attention"}</h3><p className="mt-2 text-xs text-muted-foreground">{error?"Displayed specifications are from the last successful check. Retry to verify the current selection.":healthy?"All implemented checks pass for the declared specs. SAMPLE compatibility is illustrative; verify real hardware before buying.":"Unknown checks never count as compatible. Select missing parts and review issues."}</p>
       <ul className="mt-3 max-h-64 space-y-1 overflow-y-auto">{!pending && issues.map((issue,i)=><li key={`${issue.ruleId}-${i}`}><button className="min-h-11 w-full rounded-md py-2 text-left text-xs hover:bg-surface" onClick={()=>scrollTo(issue.involved[0])}>{issue.status==="error"?"❌":issue.status==="warning"?"⚠️":"?"} {issue.message}</button></li>)}{!pending && quote.stockIssues.map(s=><li key={s.id}><button className="min-h-11 text-left text-xs text-danger" onClick={()=>scrollTo(s.id)}>{s.message}</button></li>)}</ul>
@@ -120,4 +120,5 @@ export function Builder({catalog,initial,shared}:{catalog:Product[];initial:Buil
     <div className="builder-print-summary hidden">{summaryBody}</div>
   </div></TooltipProvider>;
 }
+
 

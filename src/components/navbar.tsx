@@ -9,7 +9,7 @@ import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTi
 
 const links = [{ href: "/products", label: "Components" }, { href: "/pc-builder", label: "PC Builder" }, { href: "/compare", label: "Compare" }, { href:"/cart",label:"Cart" }, {href:"/account",label:"Account"}];
 
-export function Navbar() {
+export function Navbar({commerceEnabled=false}:{commerceEnabled?:boolean}) {
   return (
     <header className="sticky top-0 z-40 border-b border-border glass border-x-0 border-t-0">
       <div className="page-container flex h-20 items-center justify-between gap-3">
@@ -21,7 +21,7 @@ export function Navbar() {
           <span className="hidden items-center gap-2 text-xs text-muted-foreground lg:inline-flex"><span className="size-1.5 rounded-full bg-primary" />A new era begins</span>
           <Dialog>
             <DialogTrigger asChild><Button variant="ghost" size="icon" aria-label="Cart information"><ShoppingBag className="size-5" aria-hidden="true"/></Button></DialogTrigger>
-            <DialogContent className="glass"><DialogHeader><DialogTitle>Your next build starts here</DialogTitle><DialogDescription>Checkout is not available. Explore your saved cart preview.</DialogDescription></DialogHeader><p className="text-sm leading-6 text-muted-foreground">SAMPLE products, prices and stock are fictional. Your saved selections do not reserve inventory.</p><Button asChild><Link href="/selection?mode=cart">View cart preview</Link></Button></DialogContent>
+            <DialogContent className="glass"><DialogHeader><DialogTitle>Your next build starts here</DialogTitle><DialogDescription>{commerceEnabled?"Review your cart, delivery and unpaid COD order at checkout.":"Checkout is not available. Explore your saved cart preview."}</DialogDescription></DialogHeader><p className="text-sm leading-6 text-muted-foreground">SAMPLE products, prices and stock are fictional. Your saved selections do not reserve inventory.</p><Button asChild><Link href={commerceEnabled?"/cart":"/selection?mode=cart"}>{commerceEnabled?"Open cart":"View cart preview"}</Link></Button></DialogContent>
           </Dialog>
           <Sheet>
             <SheetTrigger asChild><Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu"><Menu className="size-5" aria-hidden="true"/></Button></SheetTrigger>
