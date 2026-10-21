@@ -21,3 +21,18 @@ Buttons: primary cyan, secondary solid, outline, ghost, destructive and link.
 Shared Badge is local, not an extra shadcn registry install. EmptyState, ErrorState
 and Skeleton support future views; actual catalog/data flows remain deferred.
 The geometric F mark, wordmark and PC concept diagram are original project assets.
+
+## Phase 2 catalog additions
+
+Catalog cards and filters use solid surfaces; glass remains restricted to the navbar,
+drawers/dialogs and featured build cards. Neutral geometry SVG placeholders are original
+and are explicitly not product photographs. Product headings, price captions and
+availability captions identify SAMPLE data independently of the page notice.
+
+Catalog uses one column on mobile, two at tablet widths, and three within the desktop
+sidebar layout. Filters move to a labelled sheet below 1024px. Comparison rows stack
+by product on mobile instead of forcing a wide horizontally scrolling table. The
+brand strip wraps; there is no decorative marquee animation. FAQ uses native details
+and use-case tabs use the existing accessible shadcn primitive. Prices use tabular
+numbers and specification tables wrap long values. Skeletons and local error/empty
+states cover new routes; unknown specifications are visibly distinct from compatibility.

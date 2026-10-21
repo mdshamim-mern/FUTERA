@@ -26,7 +26,7 @@ verified payment webhooks later. Neither middleware nor hidden UI is authorizati
 
 ## Planned MongoDB collections and indexes
 
-All collections below are design only in Phase 1; no models or indexes are deployed.
+Category and Product are implemented in Phase 2; remaining collections are planned. Indexes are declared but have not been verified on a live database.
 
 | Collection | Shape and indexes |
 | --- | --- |
@@ -73,3 +73,34 @@ Confirm guest checkout and Bangla translation scope. Missing compatibility specs
 must produce unknown, never compatible. Fonts require network during the build.
 Sample content must never look like live prices/stock. Public Git must contain no
 credentials, real customer data or copied third-party assets.
+
+## Phase 2 implementation (supersedes Phase 1 planned catalog entries)
+
+`src/features/products` owns the shared Zod contracts, deterministic fixtures, pure
+URL/query helpers, presentation components and preview-selection Server Action.
+`src/server/models/catalog.ts` defines Category/Product Mongoose models. It is Node-only
+but deliberately has no Next server-only marker so the Node seed command can import
+it. All storefront access goes through `src/server/catalog.ts` (server-only).
+
+Home and catalog/detail/compare pages fetch on the server. Client islands are the
+filter sheet, gallery thumbnails, use-case tabs, comparison picker and submit pending
+state. Search/filter forms are native GET requests; no data-fetching client store.
+Catalog query building only accepts enumerated fields, bounded strings/numbers and
+predefined sort directions. Every sort has a slug tiebreaker; page size is 12, page
+input capped at 1000, then clamped to the result count. Text queries use Mongo's text
+index; sample mode uses deterministic literal substring search.
+
+`CATALOG_SOURCE` explicitly chooses fixtures or MongoDB. MongoDB failures render the
+error boundary. Models declare indexes but do not create them during page requests.
+The guarded development seed creates indexes and validates document saves. Persisted
+records are parsed into validated DTOs before reaching UI; ObjectIds stay server-side.
+
+Cart/build controls in this phase save preview references only. Server Actions
+validate mode/slug, re-read products and catalog stock for cart additions, and write
+bounded HTTP-only SameSite=Lax host cookies. HTTPS APP_URL enables Secure. Read-time
+pricing comes from server records; client prices/totals are never accepted. There is
+no reservation, inventory transaction, checkout or compatibility engine. Future real
+commerce must replace catalog stock snapshots with authoritative inventory operations.
+
+Production deployment/auth/payment decisions from Phase 0 remain open. This phase
+adds no admin APIs, catalog mutation UI, new production dependencies or hosted service.

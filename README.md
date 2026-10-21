@@ -1,11 +1,10 @@
 # FUTERA
 
-A premium PC hardware and custom-build experience for Bangladesh.
-**Phase 1 foundation preview** — no catalog, builder, auth, cart or checkout yet.
+Premium PC hardware storefront for Bangladesh. Phase 2 is a **SAMPLE catalog**:
+140 fictional components, URL-driven browsing, comparison and saved preview selections.
+No checkout, payment, stock reservation or compatibility guarantee is implemented.
 
-## Local setup (PowerShell)
-
-Use Node 24.x and npm (tested with Node 24.15.0 / npm 11.12.1).
+## Run locally (PowerShell, Node 24.x)
 
 ```powershell
 npm ci
@@ -13,9 +12,26 @@ Copy-Item .env.example .env.local
 npm run dev
 ```
 
-Open http://localhost:3000. MongoDB is optional in this phase; leave both database
-variables empty. Configure APP_URL for the environment. Do not commit .env.local.
-Google font files are fetched by next/font during builds and served locally afterward.
+Open http://localhost:3000. `CATALOG_SOURCE=sample` (default) reads deterministic
+fixtures without Atlas. `CATALOG_SOURCE=mongodb` requires both MONGODB_URI and
+MONGODB_DB; database failures surface as errors, never a silent sample fallback.
+APP_URL configures metadata and secure-cookie behavior; use HTTPS in production.
+Fonts are fetched by next/font at build time, then served locally.
+
+## Seed and indexes
+
+```powershell
+npm run seed -- --dry-run
+# For a real development seed, configure MONGODB_URI and MONGODB_DB=futera_sample.
+npm run seed
+```
+
+The seed validates all 14 categories and 140 products with Zod and Mongoose. Actual
+writes require non-production NODE_ENV and a database ending in `_sample`. It
+preflights collisions, refuses non-sample/mismatched records, creates declared indexes
+without dropping existing indexes, and saves records by slug. It is repeatable and
+never deletes unrelated records. An interrupted seed can be rerun. No live offers or
+third-party product assets are included. A dry run makes **zero database writes**.
 
 ## Commands
 
@@ -23,36 +39,39 @@ Google font files are fetched by next/font during builds and served locally afte
 | --- | --- |
 | npm run dev | Development server |
 | npm run lint | ESLint |
-| npm run typecheck | Generate Next route types, then strict TypeScript checks |
+| npm run typecheck | Next route types + strict TypeScript |
 | npm run test | Vitest + React Testing Library |
 | npm run build | Production build |
-| npm run start | Serve the existing production build |
-| npm run test:e2e | Playwright against a production server; build first |
-| npm run seed | Explicit SAMPLE no-op; zero records until schemas exist |
+| npm run start | Serve production build |
+| npm run test:e2e | Chromium smoke flows; build first, port 3000 must be free |
+| npm run seed -- --dry-run | Validate all SAMPLE fixtures without a database |
+| npm run seed | Upsert SAMPLE data into an explicitly configured sample database |
 
-Before first browser test run `npx playwright install chromium`. The Playwright
-config starts/stops its own production server on port 3000, which must be free.
-Screenshots and reports are ignored by Git. Unit tests cover environment failures
-and shared empty-state rendering; browser tests cover 360px, 768px, 1024px and 1440px.
+Install test browser once: `npx playwright install chromium`. E2E tests explicitly
+use sample mode and start/stop their own production server. Screenshots and reports
+are ignored by Git. Test scopes/results are in IMPLEMENTATION_STATUS.md.
 
-## Structure and contracts
+## Routes and behavior
 
-Read [ARCHITECTURE.md](ARCHITECTURE.md), [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md),
-[PC_COMPATIBILITY_RULES.md](PC_COMPATIBILITY_RULES.md),
-[DESIGN_SYSTEM.md](DESIGN_SYSTEM.md), [DECISIONS.md](DECISIONS.md) and
-[IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md).
+- `/`: hero, per-component budget presets, use-case tabs, featured components and
+  sample builds, trust principles, static text brand strip, FAQ.
+- `/products`: category, search, brand, BDT price, availability, socket, RAM type,
+  sort and page in URL parameters. Native GET forms reset page when filtering.
+- `/products/[slug]`: neutral gallery, specification table, preview cart/build actions.
+- `/compare?items=slug,slug,slug`: maximum three unique products; shareable server view.
+  The catalog comparison picker keeps only references in local storage across paging.
+- `/selection?mode=cart|build`: HTTP-only cookie references, maximum 12 unique parts,
+  seven-day expiry. All product values and subtotals are reloaded on the server.
+  No quantities, order placement or compatibility evaluation yet.
+- `/api/health`: uncached liveness only, not database readiness.
 
-`GET /api/health` returns `{ "status": "ok", "service": "futera", "check": "liveness" }`
-with no-store caching. It does not test Atlas or imply commerce readiness.
-The server-only MongoDB helper reuses connections and concurrent connection attempts.
-No database connection is made just to render the home page.
+MongoDB search uses the text index with a quoted phrase. Fixture search uses literal,
+case-insensitive substring matching for a database-free demo; MongoDB linguistic and
+punctuation behavior can differ. Prices are integer BDT minor units internally.
+Missing specs display Unknown; cross-category comparisons display Not applicable.
 
-All original brand/PC concept SVG assets are project-created. The ten UI primitives
-are generated from shadcn/ui (Radix), with local accessibility/theme adjustments.
-No copied commercial branding, product data, pricing or stock is included.
+## Documentation
 
-## Deployment
-
-No deployment is performed in this phase. Proposed target: Node-compatible Next.js
-hosting plus MongoDB Atlas, with separate preview/production secrets and databases.
-Run all quality gates before deploying. See the architecture risks and open decisions.
+See ARCHITECTURE.md, DATABASE_SCHEMA.md, PC_COMPATIBILITY_RULES.md, DESIGN_SYSTEM.md,
+DECISIONS.md and IMPLEMENTATION_STATUS.md. AGENTS.md is preserved unchanged.
+No deployment or push is performed without a separate request.

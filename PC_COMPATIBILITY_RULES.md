@@ -22,3 +22,11 @@ is stable and Bangla-ready. Missing specs return unknown, never ok.
 Test exact boundaries, missing data, multiple parts and shared resource conflicts.
 Warnings are not errors; unknown results must remain visible in a build summary.
 BIOS evidence and thermal-rating sources need curation before production use.
+
+## Phase 2 specification source
+
+Category-specific catalog schemas now store the inputs for these future checks.
+All specification keys are validated and nullable values remain unknown. Featured
+builds and build shortlists do not run this engine and explicitly say so. Catalog
+comparison is a visual inspection tool, not a compatibility result. Sample power,
+clearance and socket values are fictional fixtures, not certified manufacturer data.
