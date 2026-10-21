@@ -12,7 +12,7 @@ and Git 2.54.0.windows.1 are available. No tool blocker identified.
 - `src/app`: App Router pages, layouts, loading/error boundaries and HTTP routes.
 - `src/components`: shared shell, identity, state components and shadcn primitives.
 - `src/features/<feature>`: future products, builder, cart, checkout, account and admin.
-- `src/features/builder/compatibility`: future pure TypeScript rules; no UI/DB imports.
+- `src/features/builder/compatibility`: implemented pure TypeScript rules; no UI/DB imports.
 - `src/server`: future server-only business operations and repositories.
 - `src/lib`: environment validation, database connection and shared utilities.
 - `src/types`: future shared domain contracts.
@@ -104,3 +104,24 @@ commerce must replace catalog stock snapshots with authoritative inventory opera
 
 Production deployment/auth/payment decisions from Phase 0 remain open. This phase
 adds no admin APIs, catalog mutation UI, new production dependencies or hosted service.
+
+## Phase 3 builder (supersedes earlier planned builder statements)
+
+The server page loads a bounded catalog (maximum 1,000 active products) and resolves
+shared reference IDs through src/server/builder.ts. That module applies single-slot
+constraints, ignores unknown IDs, calculates integer subtotals from fresh records,
+checks stock and executes the pure compatibility engine. The quoteBuild Server Action
+accepts unknown input and validates it through Zod; no client product values are trusted.
+No new HTTP endpoints, database writes, checkout or reservation logic are introduced.
+
+The builder client island uses Zustand persist for IDs, quantities and ten local saved
+snapshots only. Hydration is explicit to avoid SSR mismatches. Each change requests a
+server quote; stale responses are ignored, pending totals say Verifying, failures hide
+the amount and provide retry. Shared links take precedence over local hydration; edits
+remove the shared query parameter so reload preserves the edited local build.
+Picker candidate checks are pure local previews against the server-provided catalog;
+authoritative selected prices/stock/checks come from the subsequent server action.
+
+The bounded full catalog is appropriate for this sample phase; production inventory
+size needs server-paginated picker queries. Local saves are device-specific, not account
+storage. Messenger depends on device sharing support and has a copy-link fallback.

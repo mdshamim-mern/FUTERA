@@ -36,3 +36,18 @@ brand strip wraps; there is no decorative marquee animation. FAQ uses native det
 and use-case tabs use the existing accessible shadcn primitive. Prices use tabular
 numbers and specification tables wrap long values. Skeletons and local error/empty
 states cover new routes; unknown specifications are visibly distinct from compatibility.
+
+## Phase 3 builder
+
+Desktop uses a 1.85:1 component/summary grid with a sticky glass summary. Below 1024px,
+the summary becomes a sticky bottom glass bar and a labelled bottom sheet. Picker is
+a focus-trapped modal above 640px and a full-viewport dialog below it; quick view is a
+separate sheet. Rows remain solid, with neutral original placeholders and spec chips.
+Status icons have accessible text and focusable explanation tooltips. Known conflicts
+use danger borders and dimmed illustrations while keeping explanatory text readable.
+
+The SVG semicircle gauge sits inside the glass summary; numbers and recommendations
+are textual as well as visual. Price updates use a brief opacity/translation entrance,
+not decorative continuous motion. Global reduced-motion rules disable these transitions.
+Print hides navigation/actions, shows component rows and includes a dedicated summary.
+Filters and quantity controls have visible labels and minimum 44px target heights.

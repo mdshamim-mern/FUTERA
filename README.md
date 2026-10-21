@@ -1,7 +1,8 @@
 # FUTERA
 
-Premium PC hardware storefront for Bangladesh. Phase 2 is a **SAMPLE catalog**:
-140 fictional components, URL-driven browsing, comparison and saved preview selections.
+Premium PC hardware storefront for Bangladesh. Phase 3 adds a compatibility-first
+PC builder to the **SAMPLE catalog**: 140 fictional components, URL-driven browsing,
+comparison, preview selections and locally saved builds.
 No checkout, payment, stock reservation or compatibility guarantee is implemented.
 
 ## Run locally (PowerShell, Node 24.x)
@@ -64,6 +65,18 @@ are ignored by Git. Test scopes/results are in IMPLEMENTATION_STATUS.md.
   seven-day expiry. All product values and subtotals are reloaded on the server.
   No quantities, order placement or compatibility evaluation yet.
 - `/api/health`: uncached liveness only, not database readiness.
+- `/pc-builder`: seven required categories, optional extras, quantity-aware compatibility,
+  power estimate, responsive picker and summary. Local saves contain IDs/quantities;
+  shared URLs use a bounded JSON `build` parameter, validated and re-resolved server-side.
+  Save/Duplicate retain up to ten local snapshots. Reset keeps saved snapshots.
+  WhatsApp opens a composed link; Messenger uses native share or copy fallback; Print
+  produces a component list and summary. Nothing is automatically sent to anyone.
+
+The builder's default filter hides known conflicts; incomplete-spec options remain
+explicitly unverified. Healthy requires seven categories, all checks passing and stock
+available. Quick starts are fictional target-budget scenarios, not budget guarantees.
+FPS is unavailable without benchmarks; performance hints are qualitative estimates.
+See PC_COMPATIBILITY_RULES.md for assumptions and unmodelled physical constraints.
 
 MongoDB search uses the text index with a quoted phrase. Fixture search uses literal,
 case-insensitive substring matching for a database-free demo; MongoDB linguistic and

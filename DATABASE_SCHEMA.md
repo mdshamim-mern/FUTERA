@@ -48,3 +48,18 @@ keyboard layout/switch/connectivity/backlight; mouse DPI/weight/connectivity/but
 UPS VA/watts/topology/outlets. Core PC fields follow the compatibility plan above.
 SAMPLE products require SAMPLE name and SKU prefixes. Seed brands and all offer
 values are fictional; image paths are restricted to local neutral SVG placeholders.
+
+## Phase 3 compatibility evidence and local builds
+
+CPU adds optional nullable supportedChipsets (string list). Motherboard adds optional
+nullable biosStatus (supported/update-required/unsupported), supportedCpuIds (slug list)
+and powerConnectors (counted string list). Missing evidence stays unknown. Sample
+fixtures declare fictional evidence, not manufacturer certification. BIOS status applies
+to the listed CPU IDs; production mixed-version support needs a per-CPU evidence matrix.
+RAM capacityGb means total capacity per kit; modules means physical modules per kit.
+
+No builds or compatibilityRules collection is created in this phase. Local storage key
+futera-builder-v1 retains validated ID/quantity references and up to ten named snapshots.
+Public share URLs contain only those references, never prices, account data or secrets.
+Catalog stock remains a server-read snapshot, not an inventory reservation. Current
+server quotes do not persist mutations or claim a payable checkout amount.

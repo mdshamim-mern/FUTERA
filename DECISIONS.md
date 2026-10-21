@@ -39,3 +39,29 @@ lint-tooling advisory and all actual validation results.
   is URL-addressable and server-resolved, bounded to 3 unique products.
 - Brand marquee is static wrapping text to preserve motion/accessibility and avoid
   implying partnerships with real manufacturers. No new production packages added.
+
+## Phase 3 decisions
+
+- Implement and test the pure engine before the interactive builder. Unknown is not
+  compatible; healthy requires all required categories, all checks ok and sufficient stock.
+- Install Zustand only for builder state. Native CSS animates the authoritative total
+  with a short entrance transition; reduced-motion disables it. No Motion dependency
+  is needed for this interaction, and no interpolated number is presented as a quote.
+- Add nullable/optional compatibility evidence to existing catalog schemas. Fictional
+  sample evidence enables deterministic healthy/conflicting test builds; legacy records
+  without evidence remain unknown.
+- Persist IDs/quantities only, validate shared JSON with Zod and re-resolve all values
+  server-side. Bound references to 24, quantities to 8 and saved snapshots to 10.
+- Default picker hides known conflicts but labels incomplete checks unverified, allowing
+  incremental assembly without claiming that unknown options are compatible.
+- Budget chips are target scenarios and may exceed the target with available sample
+  parts. Editing adds RAM/storage; Office uses integrated graphics; AI/ML adds RAM and
+  a sample GPU with 12VHPWR. None is a real price or workload performance claim.
+- Do not fabricate FPS or numeric bottleneck percentages for fictional hardware.
+  Show an unavailable FPS estimate and a clearly labelled qualitative bottleneck hint.
+- WhatsApp uses its documented click-to-chat link format (https://faq.whatsapp.com/5913398998672934).
+  Messenger uses the device share chooser or copy fallback, avoiding an invented app ID
+  or unsupported automatic send. Real recipient delivery is not part of browser tests.
+- npm audit reports five high findings in the existing ESLint/braces transitive chain.
+  The suggested force fix downgrades eslint-config-next to 14.2.35; do not apply that
+  incompatible downgrade to Next 16 automatically. Track upstream tooling remediation.

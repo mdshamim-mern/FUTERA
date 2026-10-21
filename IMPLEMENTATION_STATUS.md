@@ -1,6 +1,76 @@
 # Implementation status
 
-## Current state — Phase 2 complete (2026-10-21)
+## Current state — Phase 3 complete (2026-10-21)
+
+Phase 3 adds the PC Builder while preserving the storefront and AGENTS.md. No push,
+deployment, auth, checkout, payment processing or new MongoDB collection was added.
+
+### Implemented in Phase 3
+
+- Pure compatibility engine delivered and unit-tested first: all AGENTS.md comparisons,
+  conservative unknown results, multiple RAM kits/modules, M.2/SATA quantities, BIOS
+  evidence, dedicated EPS/PCIe/12VHPWR counts, optional GPU/display-output checks.
+- Server-recalculated subtotal/stock/checks and a semicircle power estimate with 30%
+  headroom and upward-rounded PSU recommendation. Stale async responses are ignored.
+- /pc-builder with required/optional rows, quantity/change/remove controls, spec chips,
+  stock and tooltip statuses, progress, issue-to-row navigation and animated subtotal.
+- Desktop two-column layout/sticky glass summary; mobile fixed bar and summary sheet.
+  Modal/fullscreen picker with search, sort, brand, price and spec filters, conflict
+  visibility toggle and quick-view drawer. Unknown candidates are explicitly unverified.
+- Zustand local references, bounded saved/duplicate snapshots, reset, restore, safe
+  Zod-validated share URLs, fresh server resolution, WhatsApp link, native Messenger
+  sharing/copy fallback and print styling. No external message was sent during testing.
+- Sample budget/use-case starters; Editing expands RAM/storage, Office omits GPU,
+  AI/ML uses additional RAM and a sample 12VHPWR GPU. Targets are not price promises.
+- Performance card reports no available FPS benchmark for fictional hardware and gives
+  a qualitative, clearly labelled estimated bottleneck hint. No invented FPS numbers.
+- All seven required docs updated; no additional env variables or secrets introduced.
+
+### Phase 3 actual verification
+
+| Command/check | Actual final result |
+| --- | --- |
+| npm run lint | PASS, exit 0, no diagnostics |
+| npm run typecheck | PASS, route types generated, tsc exit 0 |
+| npm run test -- --reporter=dot | PASS, 7 files / 83 tests, 16.46s; 64 engine tests |
+| npm run build | PASS, compiled 18.5s, TypeScript 12.4s, /pc-builder dynamic route |
+| npm run test:e2e | PASS, 20 tests, 1.5m, 360/768/1024/1440px |
+| npm run seed -- --dry-run | PASS, 14 categories / 140 products; no database writes |
+| git diff --check | PASS |
+
+The builder browser flow selects parts, deliberately exposes a socket mismatch, fixes
+it, reaches healthy, saves/reloads and round-trips a shared build. Additional flows
+cover picker search/brand/price/spec filters, quick view, RAM quantity conflicts, sample
+starters, local duplicate/reset/restore. Existing storefront tests continue to pass.
+Horizontal overflow assertions pass at all four widths, including picker and summary.
+Reduced motion is enabled in the core flow; existing keyboard focus smoke tests pass.
+Mobile/laptop screenshots were visually reviewed in ignored test-results directories.
+
+Browser testing found and fixed a fullscreen picker translation bug (production CSS
+optimization retained Tailwind translation variables) and a quick-view focus-restoration
+bug that could dismiss the parent picker. No force-click or hidden-overflow workaround
+was used. Sticky summaries scroll independently when taller than the viewport.
+
+### Phase 3 limitations / unverified
+
+- No MongoDB credentials: real Atlas reads, persisted sample evidence/indexes and live
+  inventory integration were not tested. Sample mode and server-resolution unit mocks
+  were tested. A quote is not a reservation or a payable checkout amount.
+- No real-device, non-Chromium or screen-reader certification. Actual WhatsApp/Messenger
+  delivery and a physical printout were not tested. Messenger availability depends on
+  the device's share chooser; the copy-link fallback remains available.
+- No new Lighthouse measurement in Phase 3. Phase 2 figures below are historical and
+  must not be interpreted as current builder measurements.
+- npm audit reports 5 high findings in the development ESLint/braces dependency chain.
+  Its proposed force fix downgrades eslint-config-next to 14.2.35; that incompatible
+  downgrade was not applied. No claim is made that this audit passes.
+- Picker loads at most 1,000 active products; production scale needs pagination. Exact
+  manufacturer BIOS, shared-lane, physical-clearance and thermal evidence needs curation.
+  See PC_COMPATIBILITY_RULES.md for the explicit boundaries of the implemented checks.
+
+Phase 3 is complete. Stop and await the next phase prompt.
+
+## Historical Phase 2 completion (2026-10-21)
 
 Phase 0/1 foundation is preserved. AGENTS.md and existing Git history are unchanged.
 Phase 2 adds the storefront and component catalog without deploying or pushing.
