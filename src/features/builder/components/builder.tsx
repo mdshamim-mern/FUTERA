@@ -116,7 +116,7 @@ export function Builder({catalog,initial,shared}:{catalog:Product[];initial:Buil
     </section>
     <div className="builder-bottom glass fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3 px-5 py-3 lg:hidden"><div className="min-w-0"><p className="text-xs">{complete}/7 selected</p><p className="price text-sm font-semibold">{pending?"Verifying…":error?"Unavailable":formatPrice(quote.totalMinor)}</p></div><Button onClick={()=>setSummary(true)}>View summary</Button></div>
     <Sheet open={summary} onOpenChange={setSummary}><SheetContent side="bottom" className="glass max-h-[90dvh] rounded-t-2xl"><SheetHeader><SheetTitle>Your build at a glance</SheetTitle><SheetDescription>Live checks against declared component specifications.</SheetDescription></SheetHeader><div className="px-5 pb-8">{summaryBody}</div></SheetContent></Sheet>
-    {picker && <Picker key={`${picker.category}-${picker.id}`} category={picker.category} replaceId={picker.id} catalog={catalog} refs={refs} onClose={()=>setPicker(null)} onSelect={select}/>}
+    {picker && <Picker overrides={quote.overrides} key={`${picker.category}-${picker.id}`} category={picker.category} replaceId={picker.id} catalog={catalog} refs={refs} onClose={()=>setPicker(null)} onSelect={select}/>}
     <div className="builder-print-summary hidden">{summaryBody}</div>
   </div></TooltipProvider>;
 }

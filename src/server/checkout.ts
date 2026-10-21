@@ -8,6 +8,8 @@ import {ownerKey} from "./cart";
 import {parseReferences} from "@/features/builder/schema";
 import {checkoutSchema,type CheckoutInput} from "@/features/checkout/schema";
 import {calculateOrder,type Coupon,type PricedProduct} from "@/features/checkout/pricing";
+import {SettingModel} from "./models/admin";
+import {shippingSettings} from "./settings";
 const sign=(value:string)=>createHmac("sha256",env.AUTH_SECRET!).update(value).digest("hex");
 async function price(owner:string,input:CheckoutInput,session?:mongoose.ClientSession){
   const cart=await CartModel.findById(owner).session(session??null);
@@ -15,7 +17,8 @@ async function price(owner:string,input:CheckoutInput,session?:mongoose.ClientSe
   const products=await ProductModel.find({slug:{$in:refs.map(r=>r.id)}}).session(session??null).lean() as unknown as PricedProduct[];
   const coupon=input.coupon?await CouponModel.findById(input.coupon).session(session??null):null;
   if(input.coupon&&!coupon)throw Error("Coupon not found.");
-  return calculateOrder(refs,products,coupon?.toObject() as Coupon|null,input.method==="home"?env.SHIPPING_HOME_MINOR!:env.SHIPPING_PICKUP_MINOR!);
+  const shipping=await shippingSettings(session);
+  return calculateOrder(refs,products,coupon?.toObject() as Coupon|null,input.method==="home"?shipping.homeMinor:shipping.pickupMinor);
 }
 export async function reviewCheckout(input:CheckoutInput){
   const owner=await ownerKey(true);const quote=await price(owner!,input);const payload=JSON.stringify({owner,input,quote,expires:Date.now()+600000,requestId:randomUUID()});
@@ -29,8 +32,11 @@ export async function placeOrder(token:string){
   if(!owner||owner!==saved.owner||saved.expires<Date.now())throw Error("Quote expired. Review again.");
   const existing=await OrderModel.findOne({ownerKey:owner,requestId:saved.requestId});if(existing)return existing._id;
   let orderId="";
+ await SettingModel.updateOne({_id:"mutation-lock"},{$setOnInsert:{value:{},revision:0}},{upsert:true});
   await mongoose.connection.transaction(async session=>{
     const previous=await OrderModel.findOne({ownerKey:owner,requestId:saved.requestId}).session(session);if(previous){orderId=previous._id;return;}
+    // Serialize admin configuration changes with final checkout validation.
+    await SettingModel.updateOne({_id:"mutation-lock"},{$inc:{revision:1}},{session});
     const quote=await price(owner!,input,session);
     if(JSON.stringify(quote)!==JSON.stringify(saved.quote))throw Error("Price, stock or discount changed. Review your order again.");
     for(const line of quote.lines){const result=await ProductModel.updateOne({slug:line.id,active:true,priceMinor:line.unitMinor,stock:{$gte:line.quantity}},{$inc:{stock:-line.quantity}},{session});if(result.modifiedCount!==1)throw Error("Stock changed. Review your cart.");}

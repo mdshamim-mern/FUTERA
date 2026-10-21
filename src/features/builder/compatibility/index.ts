@@ -58,3 +58,9 @@ export function checkCompatibility(parts: Part[]): Check[] {
   if (cpu && gpu.length === 0) test("display-output", typeof cpu.specs.integratedGraphics === "boolean", cpu.specs.integratedGraphics === true, "A GPU or integrated graphics is required for display output",[cpu]);
   return checks;
 }
+
+/** Additive overrides cannot suppress unknown or failing base checks. */
+export type CompatibilityOverride={partIds:string[];status:"warning"|"error";message:string};
+export function checkOverrides(parts:Part[],overrides:CompatibilityOverride[]):Check[]{
+ return overrides.filter(rule=>rule.partIds.every(id=>parts.some(p=>p.id===id))).map((rule,index)=>({status:rule.status,ruleId:`admin-override-${index}`,message:rule.message,messageKey:"compatibility.admin-override",involved:rule.partIds}));
+}

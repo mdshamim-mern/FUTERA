@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { categoryCodes, categoryLabels, type CategoryCode, type Product } from "@/features/products/schema";
 import { formatPrice, specLabel, specValue } from "@/features/products/format";
-import { checkCompatibility, type Part } from "../compatibility";
+import { checkCompatibility, checkOverrides, type CompatibilityOverride, type Part } from "../compatibility";
 import type { BuildReference } from "../schema";
-export function Picker({category,replaceId,catalog,refs,onClose,onSelect}:{category:CategoryCode|"other";replaceId?:string;catalog:Product[];refs:BuildReference[];onClose:()=>void;onSelect:(p:Product)=>void}) {
+export function Picker({overrides,category,replaceId,catalog,refs,onClose,onSelect}:{overrides:CompatibilityOverride[];category:CategoryCode|"other";replaceId?:string;catalog:Product[];refs:BuildReference[];onClose:()=>void;onSelect:(p:Product)=>void}) {
   const [search,setSearch]=useState(""); const [brand,setBrand]=useState(""); const [maximum,setMaximum]=useState(""); const [spec,setSpec]=useState(""); const [sort,setSort]=useState("price-asc"); const [compatible,setCompatible]=useState(true); const [quick,setQuick]=useState<Product|null>(null); const [extraCategory,setExtraCategory]=useState<CategoryCode>("ram");
   const actual=category==="other"?extraCategory:category;
   const quickTrigger=useRef<HTMLButtonElement|null>(null);
@@ -17,10 +17,10 @@ export function Picker({category,replaceId,catalog,refs,onClose,onSelect}:{categ
     const single=!["ram","ssd","hdd","case-fan","monitor","keyboard","mouse","ups"].includes(product.category);
     const current=refs.filter(r=>r.id!==replaceId && r.id!==product.slug).flatMap(r=>{const p=catalog.find(p=>p.slug===r.id);return p && (!single || p.category!==product.category)?[{id:p.slug,category:p.category,quantity:r.quantity,specs:p.specs}]:[];});
     const candidate:Part={id:product.slug,category:product.category,quantity:1,specs:product.specs};
-    const checks=checkCompatibility([...current,candidate]).filter(c=>c.involved.includes(product.slug));
+    const checks=[...checkCompatibility([...current,candidate]),...checkOverrides([...current,candidate],overrides)].filter(c=>c.involved.includes(product.slug));
     const errors=checks.filter(c=>c.status==="error"); const unknown=checks.some(c=>c.status==="unknown");
     return {product,errors,unknown,warnings:checks.filter(c=>c.status==="warning")};
-  }),[catalog,actual,refs,replaceId]);
+  }),[catalog,actual,refs,replaceId,overrides]);
   const visible=candidates.filter(({product:p,errors})=>(!compatible || !errors.length) && p.name.toLowerCase().includes(search.toLowerCase()) && (!brand || p.brand===brand) && (!maximum || p.priceMinor<=Number(maximum)*100) && (!spec || Object.values(p.specs).some(v=>String(v).toLowerCase().includes(spec.toLowerCase())))).sort((a,b)=>sort==="name"?a.product.name.localeCompare(b.product.name):sort==="price-desc"?b.product.priceMinor-a.product.priceMinor:a.product.priceMinor-b.product.priceMinor);
   return <>
     <Dialog open onOpenChange={open=>{if(!open && !quick)onClose();}}><DialogContent className="glass builder-picker sm:max-w-4xl" onInteractOutside={event=>{if(quick)event.preventDefault();}} onEscapeKeyDown={event=>{if(quick)event.preventDefault();}}><DialogHeader><DialogTitle>Select {categoryLabels[actual]}</DialogTitle><DialogDescription>Fictional SAMPLE options. Unknown checks are unverified, never compatible. Prices and stock are checked on selection.</DialogDescription></DialogHeader>

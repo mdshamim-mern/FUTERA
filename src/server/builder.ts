@@ -1,7 +1,8 @@
 import "server-only";
+import {compatibilitySettings} from "./settings";
 import { getProducts } from "@/server/catalog";
 import { parseReferences } from "@/features/builder/schema";
-import { checkCompatibility, estimatePower } from "@/features/builder/compatibility";
+import { checkCompatibility, checkOverrides, estimatePower } from "@/features/builder/compatibility";
 import type { Product } from "@/features/products/schema";
 
 export async function resolveBuild(input: unknown) {
@@ -18,8 +19,10 @@ export async function resolveBuild(input: unknown) {
     lines.push({product,quantity:multiple?ref.quantity:1});
   }
   const parts=lines.map(({product,quantity})=>({id:product.slug,category:product.category,specs:product.specs,quantity}));
+  const settings=await compatibilitySettings();
+  const additional=checkOverrides(parts,settings.overrides);
   return {
-    lines, checks:checkCompatibility(parts), power:estimatePower(parts),
+    overrides:settings.overrides, lines, checks:[...checkCompatibility(parts),...additional], power:estimatePower(parts),
     totalMinor:lines.reduce((n,l)=>n+l.product.priceMinor*l.quantity,0),
     stockIssues:lines.filter(l=>l.quantity>l.product.stock).map(l=>({id:l.product.slug,message:`${l.product.name}: requested quantity exceeds ${l.product.isSample?"SAMPLE ":""}stock (${l.product.stock}).`})),
     ignored:refs.length-lines.length,
