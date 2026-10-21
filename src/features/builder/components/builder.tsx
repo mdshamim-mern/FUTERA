@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import {useRouter} from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
@@ -12,8 +13,11 @@ import { encodeBuild, requiredCategories, type BuildReference } from "../schema"
 import { quoteBuild } from "../actions";
 import { PowerGauge } from "./power-gauge";
 import { Picker } from "./picker";
+import {addBuildToCart} from "@/features/cart/actions";
+import {saveBuildToAccount} from "@/features/account/actions";
 
 export function Builder({catalog,initial,shared}:{catalog:Product[];initial:BuildQuote;shared:boolean}) {
+  const router=useRouter();
   const {refs,saved,replace,save}=useBuilder();
   const [ready,setReady]=useState(false), [quote,setQuote]=useState(initial), [pending,setPending]=useState(true), [error,setError]=useState("");
   const [picker,setPicker]=useState<{category:CategoryCode|"other";id?:string}|null>(null), [summary,setSummary]=useState(false), [notice,setNotice]=useState("");
@@ -105,7 +109,7 @@ export function Builder({catalog,initial,shared}:{catalog:Product[];initial:Buil
       </div>
       <aside className="glass hidden max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-2xl p-6 lg:sticky lg:top-24 lg:block" data-testid="desktop-summary">{summaryBody}</aside>
     </div>
-    <section className="builder-actions my-8 space-y-4"><h2 className="font-display text-xl">Keep your build</h2><div className="flex flex-wrap gap-2"><Button disabled={pending||!!error||!quote.lines.length} onClick={()=>saveLocal()}>Save build</Button><Button variant="outline" disabled={pending||!quote.lines.length} onClick={()=>saveLocal(true)}>Duplicate</Button><Button variant="outline" disabled={!ready} onClick={()=>{change([]);setNotice("Build reset. Saved builds remain on this device.");}}>Reset</Button><Button variant="outline" disabled={pending||!!error} onClick={()=>void copy()}>Copy link</Button><Button variant="outline" disabled={pending||!!error} onClick={()=>{window.open(`https://wa.me/?text=${encodeURIComponent(`My FUTERA build: ${url()}`)}`,"_blank","noopener,noreferrer");}}>WhatsApp</Button><Button variant="outline" disabled={pending||!!error} onClick={()=>void messenger()}>Messenger</Button><Button variant="outline" disabled={pending||!!error} onClick={()=>window.print()}>Print</Button></div>
+    <section className="builder-actions my-8 space-y-4"><h2 className="font-display text-xl">Keep your build</h2><div className="flex flex-wrap gap-2"><Button disabled={pending||!!error||!quote.lines.length} onClick={()=>saveLocal()}>Save build</Button><Button variant="outline" disabled={pending||!quote.lines.length} onClick={()=>saveLocal(true)}>Duplicate</Button><Button variant="outline" disabled={!ready} onClick={()=>{change([]);setNotice("Build reset. Saved builds remain on this device.");}}>Reset</Button><Button variant="outline" disabled={pending||!!error} onClick={()=>void copy()}>Copy link</Button><Button variant="outline" disabled={pending||!!error} onClick={()=>{window.open(`https://wa.me/?text=${encodeURIComponent(`My FUTERA build: ${url()}`)}`,"_blank","noopener,noreferrer");}}>WhatsApp</Button><Button variant="outline" disabled={pending||!!error} onClick={()=>void messenger()}>Messenger</Button><Button variant="outline" disabled={pending||!!error} onClick={()=>window.print()}>Print</Button><Button disabled={pending||!healthy} onClick={async()=>{try{await addBuildToCart(refs);router.push("/cart");}catch{setNotice("Could not add build. Check commerce configuration, stock or cart limits.");}}}>Add whole build to cart</Button><Button variant="outline" disabled={pending||!quote.lines.length} onClick={async()=>{try{await saveBuildToAccount(refs);setNotice("Saved to your account. Visit Account to rename, share or restore it.");}catch{setNotice("Log in and enable commerce before saving to your account.");}}}>Save to account</Button></div>
       <p className="text-xs text-muted-foreground">Messenger uses your device’s share chooser or a copy-link fallback. Nothing is sent automatically. Local saves keep IDs and quantities only.</p>
       {shareUrl && <label className="block text-sm">Share link<input readOnly value={shareUrl} onFocus={e=>e.target.select()} className="builder-control mt-2 w-full"/></label>}
       {saved.length>0 && <div className="space-y-2"><h3 className="text-sm">Saved on this device</h3>{saved.map((s,i)=><Button key={i} variant="ghost" className="mr-2 max-w-full whitespace-normal" onClick={()=>{change(s.refs);setNotice(`Restored ${s.name}.`);}}>Restore {s.name}</Button>)}</div>}
@@ -116,3 +120,4 @@ export function Builder({catalog,initial,shared}:{catalog:Product[];initial:Buil
     <div className="builder-print-summary hidden">{summaryBody}</div>
   </div></TooltipProvider>;
 }
+

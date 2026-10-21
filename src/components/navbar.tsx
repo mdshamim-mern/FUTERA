@@ -7,14 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
-const links = [{ href: "/products", label: "Components" }, { href: "/pc-builder", label: "PC Builder" }, { href: "/compare", label: "Compare" }];
+const links = [{ href: "/products", label: "Components" }, { href: "/pc-builder", label: "PC Builder" }, { href: "/compare", label: "Compare" }, { href:"/cart",label:"Cart" }, {href:"/account",label:"Account"}];
 
 export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-border glass border-x-0 border-t-0">
       <div className="page-container flex h-20 items-center justify-between gap-3">
         <Brand />
-        <nav aria-label="Main navigation" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Main navigation" className="hidden items-center gap-4 md:flex">
           {links.map((link) => <Link key={link.href} href={link.href} className="inline-flex min-h-11 items-center rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground">{link.label}</Link>)}
         </nav>
         <div className="flex items-center gap-2 sm:gap-4">

@@ -114,4 +114,6 @@
   .builder-root section { break-inside:avoid; }
   .builder-root section, .builder-root article { background:white !important; }
   .builder-root * { color:black !important; }
+  .quote-print { color:black; background:white; }
+  .quote-print img[alt="FUTERA"] { filter:brightness(0); }
 }
