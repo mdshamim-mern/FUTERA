@@ -65,3 +65,29 @@ lint-tooling advisory and all actual validation results.
 - npm audit reports five high findings in the existing ESLint/braces transitive chain.
   The suggested force fix downgrades eslint-config-next to 14.2.35; do not apply that
   incompatible downgrade to Next 16 automatically. Track upstream tooling remediation.
+
+## Phase 4 decisions
+
+- Use requested Auth.js credentials with native crypto scrypt instead of another hashing
+  package. Recheck users/roles on the server; sessionVersion provides logout revocation.
+- Keep commerce off until replica-set MongoDB, strong secret and explicit fees/pickup
+  address are configured. HTTP is permitted only on localhost/127.0.0.1 for testing.
+- Use MongoDB-backed per-account and global auth throttles, without trusting forwarded
+  client IP headers. Additional trusted-edge abuse protection remains launch work.
+- Native Next/React forms and Server Actions are sufficient here; no RHF/state library
+  added for checkout. Zustand remains limited to the builder.
+- Use owner-bound signed quote snapshots plus transaction-time recalculation; no client
+  total is authoritative. COD means an unpaid persisted order, never payment success.
+- Keep bKash/Nagad/Card disabled until a real adapter, credentials and sandbox verification
+  are supplied together. There are no fake provider endpoints or simulated successes.
+- Use native Print / Save as PDF for branded quotes; qrcode supplies the actual encoded
+  share URL. Public build sharing is explicit and revocable, with no owner personal data.
+- Retain the MIT license and pinned source attribution for the community Bangladesh
+  administrative dataset. It needs delivery-coverage review before a live launch.
+- Test against isolated real MongoDB 8.2.6 replica sets, including authorization and atomic
+  order writes. Generated test secrets are never committed; all orders remain SAMPLE.
+
+Phase 4 dependency note: Auth.js is next-auth 5.0.0-beta.32, pinned by package-lock.json;
+review upstream stability/security updates before launch. The final production-only
+npm audit reported zero advisories. The previously reported five development ESLint
+chain findings remain separate; no force downgrade was applied.

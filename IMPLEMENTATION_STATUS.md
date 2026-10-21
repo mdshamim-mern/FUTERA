@@ -1,6 +1,91 @@
 # Implementation status
 
-## Current state — Phase 3 complete (2026-10-21)
+## Current state — Phase 4 complete (2026-10-21)
+
+Accounts, saved builds, cart/wishlist and transactional COD checkout are implemented.
+AGENTS.md is unchanged. No deployment, push, real customer record, real payment or
+fulfillment was performed. Commerce is opt-in and requires explicit private config.
+
+### Implemented in Phase 4
+
+- Auth.js 5.0.0-beta.32 credentials registration/login/logout, salted native scrypt,
+  one-day encrypted JWT sessions and server-side user/sessionVersion/disabled checks.
+  Logout revokes prior session tokens. Registration always creates customer; admin
+  authorization reads the current database role. MongoDB-backed per-email/global rate
+  limits, same-origin auth POSTs, Auth.js CSRF and Next Server Action origin protections.
+- User-owned MongoDB saved builds: save, rename, duplicate, delete, restore and
+  rotate/revoke public shares. Account lists orders, saved addresses and wishlist.
+  Public build pages expose no automatic owner identity or address data.
+- Guest cart cookie uses 256-bit random opaque tokens; only hashed guest keys persist.
+  Login/register merges guest/account quantities transactionally without silently
+  dropping excess quantities. Whole-build add and product cart/wishlist controls work.
+- Cascading division/district/upazila selectors, exact 01XXXXXXXXX phone validation,
+  home/pickup delivery and explicit configured fees; no invented live fee defaults.
+  The attributed MIT community dataset contains 8 divisions, 64 districts, 491 upazilas.
+- Server pricing/coupon validation, owner-bound signed ten-minute review snapshots,
+  fresh transaction-time recalculation, conditional stock decrement, coupon usage,
+  immutable order snapshots and idempotency. Price/cart mismatches or insufficient
+  stock reject creation. COD remains unpaid; online methods stay disabled/coming soon.
+- Private order confirmation with UUID and status timeline; admin-only sequential
+  Confirmed → Assembling → Testing → Shipped → Delivered transitions. No admin UI.
+- Original FUTERA printable quote with QR to public share link and browser Save as PDF.
+  PDF output generated in Chromium; print-media layout visually reviewed.
+- Loading/error/empty states, .env.example, explicit index migration command and all
+  seven maintained docs updated. Auth/payment secrets are not committed.
+
+### Phase 4 actual final verification
+
+| Command/check | Result |
+| --- | --- |
+| npm run lint | PASS, exit 0, no diagnostics |
+| npm run typecheck | PASS, route types generated and tsc exit 0 |
+| npm run test -- --reporter=dot | PASS, 9 files / 109 tests, 36.26s |
+| npm run build | PASS, compile 14.0s / TypeScript 9.2s; all new routes present |
+| npm run test:e2e | PASS, 20 tests / 1.8m, 360/768/1024/1440px |
+| npm run test:e2e:commerce | PASS, 4 tests / 1.3m, same four widths |
+| npm audit --omit=dev --json | PASS, zero production vulnerabilities reported |
+| git diff --check / AGENTS.md preservation | PASS |
+
+Real isolated MongoDB 8.2.6 replica sets tested atomic unpaid order creation, stock
+decrement/rollback, stale prices, exhausted coupons, concurrent/repeated confirmation,
+quote-owner binding, persistent rate limits, admin guards, timeline transitions and
+foreign build read/delete + foreign order read denial. Guard tests inject identity;
+browser tests exercise actual Auth.js cookies and credential hashing without auth mocks.
+
+Browser commerce flow: builder → guest cart → registration/merge → account build save
+and public share → COD address/review/confirm → private order. A separate anonymous
+context cannot read the order; logout completes before checking denial, old session
+cookies are also denied, and a fresh login restores rightful access. QR/print PNGs and
+sample PDFs are under ignored test-results/commerce directories. Existing responsive,
+focus, reduced-motion and no-horizontal-overflow tests continue to pass.
+
+Validation caught and fixed a runtime env-reader omission, strict test-harness types,
+framework imports in integration tests, and a logout-test race that navigated before
+the Server Action completed. Mongo launch allowance is 60s for loaded Windows hosts.
+Earlier diagnostic failures are not presented as passing results; the final runs above
+passed without bypassing authentication, stock checks or payment rules.
+
+### Configuration and limitations
+
+- Your live Atlas/hosting environment is not configured or tested. Real replica-set
+  behavior was tested locally. Enable commerce only after private AUTH_SECRET, MongoDB,
+  explicit shipping/pickup config, canonical HTTPS URL and npm run db:indexes are set.
+- No real bKash/Nagad/Card credentials or sandbox integration was supplied. These
+  methods remain unavailable; no payment success is simulated. No tax rule is invented.
+- Physical printing, QR scanning on a real phone, non-Chromium devices and deployed
+  HTTPS/proxy behavior were not certified. Chromium PDF generation and print layout
+  were verified. No new Lighthouse measurement was performed in this phase.
+- Community administrative data may lag current delivery coverage. Review before launch.
+  Password recovery, email verification, MFA, trusted-edge abuse controls, cancellation/
+  restocking and production inventory reconciliation remain launch work.
+- Auth.js is a beta version. Production-only npm audit is clear at this check; five
+  existing high development ESLint-chain findings remain. No forced downgrade applied.
+- Account lists show the newest 50 orders/builds; larger production history needs paging.
+  Catalog product stock is authoritative in this phase; no separate inventory ledger yet.
+
+Phase 4 is complete. Stop and await the next phase prompt.
+
+## Historical Phase 3 completion (2026-10-21)
 
 Phase 3 adds the PC Builder while preserving the storefront and AGENTS.md. No push,
 deployment, auth, checkout, payment processing or new MongoDB collection was added.

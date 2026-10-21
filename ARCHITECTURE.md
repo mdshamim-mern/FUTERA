@@ -125,3 +125,35 @@ authoritative selected prices/stock/checks come from the subsequent server actio
 The bounded full catalog is appropriate for this sample phase; production inventory
 size needs server-paginated picker queries. Local saves are device-specific, not account
 storage. Messenger depends on device sharing support and has a copy-link fallback.
+
+## Phase 4 accounts and commerce (supersedes previous planned entries)
+
+Auth.js credentials use encrypted JWT sessions with a one-day lifetime. Passwords use
+Node scrypt (N=32768, r=8, p=1), random 16-byte salts and timing-safe comparison. Every
+session read verifies the live user, disabled flag and sessionVersion; logout increments
+the version before clearing cookies, revoking earlier tokens. Admin checks read the
+current MongoDB role, never a form field or client token role. Registration always creates
+customer. Rate counters are atomic MongoDB fixed windows, shared across app instances:
+per-email login/register limits plus global auth/registration caps; TTL removes old rows.
+This intentionally avoids trusting arbitrary X-Forwarded-For headers. Add trusted-edge
+IP throttling and recovery/MFA/email verification before a public launch.
+
+Server Actions use Next's origin validation; Auth.js HTTP routes additionally require
+canonical host and same-origin POST, while preserving Auth.js CSRF handling. HTTPS is
+required for non-local commerce, enabling Secure cookies; guest cookies are HTTP-only,
+SameSite=Lax, random 256-bit values. Only their SHA-256 owner keys enter MongoDB.
+Guest merge, cart clearing and guest-order ownership transfer happen transactionally.
+
+Commerce requires MongoDB and explicit fees, and never silently uses fixture persistence.
+The server signs an owner-bound ten-minute review snapshot with HMAC SHA-256. Confirmation
+validates the signature/owner, then re-reads all data inside a transaction. Conditional
+stock decrements, coupon usage, immutable order snapshot and cart clearing commit as one
+unit. Unique ownerKey/requestId enforces idempotency, including concurrent confirmations.
+The sole controlled exception to product document-save writes is the guarded stock-only
+$inc in this transaction; no arbitrary catalog update payload is accepted.
+
+Saved builds, wishlist and addresses are user-owned. Every build mutation queries ownerId;
+orders query ownerKey. Public share tokens are random/revocable and expose product references
+only. QR quotes re-resolve current catalog values; they are not price locks or invoices.
+Order status changes are admin-guarded sequential updates; customer-facing statuses are
+not driven by client claims. COD remains unpaid. Online providers have no enabled adapter.

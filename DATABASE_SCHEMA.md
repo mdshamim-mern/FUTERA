@@ -63,3 +63,23 @@ futera-builder-v1 retains validated ID/quantity references and up to ten named s
 Public share URLs contain only those references, never prices, account data or secrets.
 Catalog stock remains a server-read snapshot, not an inventory reservation. Current
 server quotes do not persist mutations or claim a payable checkout amount.
+
+## Phase 4 collections and indexes
+
+User: UUID _id, unique normalized email, name, nonselected passwordHash, role (customer
+by default), sessionVersion, disabled, up to ten addresses and wishlist references.
+SavedBuild: UUID _id, ownerId, name, ID/quantity references, nullable shareToken;
+ownerId/updatedAt index and unique partial string shareToken index.
+Cart: ownerKey _id (user UUID or hashed guest token), references, guest expiresAt TTL.
+Order: UUID _id, ownerKey, requestId, immutable line/address/pricing snapshots, method,
+COD/unpaid, isSample, current status and timestamped timeline. ownerKey/createdAt index
+and unique ownerKey/requestId index. Private order IDs do not grant read authorization.
+Coupon: normalized code _id, percent, minimumMinor, maximumDiscountMinor, startsAt/endsAt
+(epoch milliseconds), maxUses/used, active and sampleOnly. Usage increments transactionally.
+AuthRate: hashed scope/window _id, hits, expiresAt TTL. No raw email/IP/password stored here.
+
+Run npm run db:indexes explicitly before traffic. No index dropping or production seed
+occurs automatically. Products.stock is the authoritative transactional quantity in this
+phase; a separate inventory ledger/reservation lifecycle is future work. Confirmed COD
+orders allocate stock immediately. Cancellation/restock/refund flows are not implemented.
+Sample orders retain isSample=true and must never be fulfilled as real commerce.

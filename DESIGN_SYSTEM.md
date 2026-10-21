@@ -51,3 +51,13 @@ are textual as well as visual. Price updates use a brief opacity/translation ent
 not decorative continuous motion. Global reduced-motion rules disable these transitions.
 Print hides navigation/actions, shows component rows and includes a dedicated summary.
 Filters and quantity controls have visible labels and minimum 44px target heights.
+
+## Phase 4 commerce and quote presentation
+
+Account/cart/checkout use solid cards, visible native labels, keyboard focus and the
+same 44px control minimums. Payment methods are explicit: COD selectable, other methods
+visibly coming soon and disabled. SAMPLE notices appear on review and confirmed orders;
+confirmation never says paid. Public build quotes show original FUTERA branding,
+server-derived line prices, date, subtotal, share QR and a browser Print / Save as PDF
+control. Print removes navigation/actions and turns the wordmark black for white paper.
+All commerce routes have loading/error boundaries; empty cart/account sections are explicit.

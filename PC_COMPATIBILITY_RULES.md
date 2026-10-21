@@ -75,3 +75,11 @@ Reference and server tests cover malformed/oversized/tampered input, unknown IDs
 single-slot normalization, price recalculation and insufficient stock. Playwright
 selects parts, exposes a socket conflict, fixes it, reaches healthy, persists and
 round-trips the shared build at 360/768/1024/1440px.
+
+## Phase 4 handoff to commerce
+
+The engine is unchanged. Add whole build to cart uses selected IDs/quantities only,
+then re-resolves stock/prices server-side. Checkout revalidates inventory and pricing;
+it does not convert an engine pass into a manufacturer guarantee. Saved account builds
+store references, and restore/public quote views resolve fresh catalog values. Public
+quotes may contain incomplete builds and are explicitly indicative, not purchase promises.
