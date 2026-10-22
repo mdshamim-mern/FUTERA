@@ -8,6 +8,7 @@ test("guest build merges at registration and COD creates an unpaid private order
   const email=`sample-${info.project.name}-${Date.now()}@example.test`;await page.getByRole("textbox",{name:"Email",exact:true}).fill(email);
   await page.getByLabel("Password (12–128 characters)").fill("SAMPLE-test-password-123!");await page.getByRole("button",{name:"Register",exact:true}).click();
   await expect(page.getByRole("heading",{name:"Hello, SAMPLE Test Customer"})).toBeVisible({timeout:15000});
+  await page.getByRole("textbox",{name:"Display name",exact:true}).fill("SAMPLE Test Customer");await page.getByRole("button",{name:"Save profile",exact:true}).click();await expect(page.getByText("Profile updated.",{exact:true})).toBeVisible();
   const forbidden=await page.request.get("/admin");expect(forbidden.status()).toBe(403);
   const forbiddenApi=await page.request.get("/api/admin/test");expect(forbiddenApi.status()).toBe(403);
   await page.goto("/pc-builder");await expect(page.getByRole("button",{name:"Save to account"})).toBeEnabled();await page.getByRole("button",{name:"Save to account"}).click();

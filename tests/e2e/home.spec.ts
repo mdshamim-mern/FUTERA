@@ -32,3 +32,12 @@ test("foundation is responsive, keyboard accessible and honest about availabilit
   expect(health.ok()).toBe(true);
   expect(await health.json()).toEqual({ status: "ok", service: "futera", check: "liveness" });
 });
+
+test("theme persists, home sections and public information remain usable",async({page},info)=>{
+ await page.goto("/");await expect(page.locator("main section")).toHaveCount(10);
+ await page.getByRole("button",{name:"Switch to light mode"}).click();await expect(page.locator("html")).toHaveAttribute("data-theme","light");await page.reload();await expect(page.locator("html")).toHaveAttribute("data-theme","light");
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.screenshot({path:info.outputPath("home-light.png"),fullPage:true});
+ for(const path of ["/about","/contact","/privacy","/support","/assistant"]){await page.goto(path);await expect(page.getByRole("heading",{level:1})).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
+ await expect(page.getByRole("button",{name:"Recommend components"})).toBeDisabled();await expect(page.getByRole("button",{name:"Ask for guidance"})).toBeDisabled();
+});
