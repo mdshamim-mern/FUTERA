@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowRight, ArrowUpRight, Check, ScanLine } from "lucide-react";
 import { Badge } from "@/components/badge";
 import { GlassCard } from "@/components/glass-card";
@@ -34,7 +36,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <StorefrontSections />
+      <Suspense fallback={<section className="page-container min-h-screen py-14" aria-busy="true" aria-label="Loading components"><Skeleton className="h-10 w-2/3"/><div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{[0,1,2,3].map(i=><Skeleton key={i} className="h-96"/>)}</div></section>}><StorefrontSections /></Suspense>
     </main>
   );
 }

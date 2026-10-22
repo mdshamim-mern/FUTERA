@@ -9,7 +9,7 @@ import {currentUser} from "@/server/guards";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
-const bangla = Noto_Sans_Bengali({ subsets: ["bengali"], variable: "--font-noto-bengali", display: "swap" });
+const bangla = Noto_Sans_Bengali({ subsets: ["bengali"], variable: "--font-noto-bengali", display: "swap", preload: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.APP_URL),

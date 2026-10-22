@@ -6,12 +6,12 @@ import { categoryLabels } from "@/features/products/schema";
 import { formatPrice, specValue } from "@/features/products/format";
 import { CompareToggle } from "@/features/products/components/compare-toggle";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
   return (
     <article className="flex min-w-0 flex-col rounded-xl border border-border bg-card" data-testid="product-card">
       <Link href={`/products/${product.slug}`} className="group rounded-t-xl p-4">
         <div className="relative aspect-[3/2] overflow-hidden rounded-lg bg-background">
-          <Image src={product.images[0].src} alt={product.images[0].alt} fill sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 28vw" className="object-contain"/>
+          <Image src={product.images[0].src} alt={product.images[0].alt} fill preload={priority} sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, (max-width: 1279px) 32vw, 17vw" className="object-contain"/>
           <span className="absolute left-3 top-3 rounded bg-background px-2 py-1 text-[10px] font-semibold tracking-widest text-primary">{product.isSample ? "SAMPLE" : categoryLabels[product.category]}</span>
         </div>
         <p className="mt-4 text-xs text-muted-foreground">{product.brand} / {categoryLabels[product.category]}</p>
