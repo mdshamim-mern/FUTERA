@@ -18,12 +18,12 @@ export function ProductCard({ product }: { product: Product }) {
         <h2 className="mt-2 font-display text-lg leading-6 font-medium group-hover:text-primary">{product.name}</h2>
       </Link>
       <div className="flex flex-1 flex-col px-4 pb-4">
-        <p className="mb-5 text-xs leading-6 text-muted-foreground">{Object.values(product.specs).slice(0, 3).map(specValue).join(" · ")}</p>
+        <p className="mb-3 line-clamp-2 text-sm text-muted-foreground">{product.description}</p><p className="mb-5 text-xs leading-6 text-muted-foreground">{Object.values(product.specs).slice(0, 3).map(specValue).join(" · ")}</p>
         <div className="mt-auto border-t border-border pt-4">
           <p className="text-xs text-muted-foreground">{product.isSample ? "Illustrative sample price" : "Catalog price"}</p>
           <p className="price mt-1 text-xl font-semibold">{formatPrice(product.priceMinor)}</p>
           <p className={`mt-1 text-xs ${product.stock > 0 ? "text-success" : "text-muted-foreground"}`}>{product.isSample ? "Sample availability: " : "Availability: "}{product.stock > 0 ? "in stock" : "out of stock"}</p>
-          <div className="mt-4 flex items-center justify-between gap-2"><CompareToggle slug={product.slug}/><Link href={`/products/${product.slug}`} className="inline-flex min-h-11 items-center gap-1 rounded px-2 text-xs text-primary">Details <ArrowUpRight aria-hidden="true" className="size-4"/></Link></div>
+          <div className="mt-4 flex items-center justify-between gap-2"><CompareToggle slug={product.slug}/><Link href={`/products/${product.slug}`} className="inline-flex min-h-11 items-center gap-1 rounded px-2 text-xs text-primary">View Details <ArrowUpRight aria-hidden="true" className="size-4"/></Link></div>
         </div>
       </div>
     </article>

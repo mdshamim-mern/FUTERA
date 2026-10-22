@@ -4,6 +4,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { env } from "@/lib/env";
 import "./globals.css";
+import {cookies} from "next/headers";
+import {currentUser} from "@/server/guards";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
@@ -17,6 +19,8 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = { themeColor: "#07090D" };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${inter.variable} ${display.variable} ${bangla.variable} antialiased`}><a href="#main-content" className="fixed left-5 top-4 z-50 -translate-y-24 rounded-md bg-primary px-5 py-3 font-medium text-primary-foreground focus:translate-y-0">Skip to content</a><Navbar commerceEnabled={env.COMMERCE_ENABLED==="true"}/>{children}<Footer /></body></html>;
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const theme=(await cookies()).get("futera-theme")?.value==="light"?"light":"dark";
+  const user=env.COMMERCE_ENABLED==="true"?await currentUser():null;
+  return <html lang="en" data-theme={theme}><body className={`${inter.variable} ${display.variable} ${bangla.variable} antialiased`}><a href="#main-content" className="fixed left-5 top-4 z-50 -translate-y-24 rounded-md bg-primary px-5 py-3 font-medium text-primary-foreground focus:translate-y-0">Skip to content</a><Navbar commerceEnabled={env.COMMERCE_ENABLED==="true"} user={user} theme={theme}/>{children}<Footer /></body></html>;
 }
