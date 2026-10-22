@@ -123,3 +123,6 @@ Authentication uses random opaque, revocable, HTTP-only cookies backed by hashed
 Local development: clone FUTERA-server beside FUTERA, install dependencies in both, run the API on port 4000 and Next.js on port 3000. Database seed/index scripts delegate to the backend. Build the backend before running the frontend Playwright suites. Tests use an isolated ephemeral replica set, never Atlas.
 
 Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL and backend URL as frontend API_BASE_URL. Commerce stays disabled until Atlas and explicit shipping configuration are available. No live database, OAuth or AI credentials have been supplied. Sample data remains labelled and cannot satisfy a real-inventory requirement.
+
+## Provider and content decisions
+Use Google OIDC with jose signature verification and server-side opaque sessions. Use Gemini REST without an additional SDK; provider errors never become simulated answers. Require sign-in and database quotas for AI requests. Keep sample disclosures until the owner supplies verified retail data. Contact links use the user-supplied GitHub project; do not fabricate phone numbers, offices or social identities.

@@ -197,3 +197,6 @@ Authentication uses random opaque, revocable, HTTP-only cookies backed by hashed
 Local development: clone FUTERA-server beside FUTERA, install dependencies in both, run the API on port 4000 and Next.js on port 3000. Database seed/index scripts delegate to the backend. Build the backend before running the frontend Playwright suites. Tests use an isolated ephemeral replica set, never Atlas.
 
 Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL and backend URL as frontend API_BASE_URL. Commerce stays disabled until Atlas and explicit shipping configuration are available. No live database, OAuth or AI credentials have been supplied. Sample data remains labelled and cannot satisfy a real-inventory requirement.
+
+## External integrations
+Google callback reaches the frontend Route Handler, which relays the code/state with the HTTP-only OAuth cookie to the backend. JWT signature/claims and one-time DB state are verified before issuing the normal revocable session. Gemini calls execute only on the backend with a fixed official endpoint and server-only credentials. No private account records enter prompts. Product review writes derive owner IDs from authenticated sessions.

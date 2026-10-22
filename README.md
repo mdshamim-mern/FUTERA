@@ -171,3 +171,15 @@ Authentication uses random opaque, revocable, HTTP-only cookies backed by hashed
 Local development: clone FUTERA-server beside FUTERA, install dependencies in both, run the API on port 4000 and Next.js on port 3000. Database seed/index scripts delegate to the backend. Build the backend before running the frontend Playwright suites. Tests use an isolated ephemeral replica set, never Atlas.
 
 Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL and backend URL as frontend API_BASE_URL. Commerce stays disabled until Atlas and explicit shipping configuration are available. No live database, OAuth or AI credentials have been supplied. Sample data remains labelled and cannot satisfy a real-inventory requirement.
+
+## STN-7 implementation update — 22 October 2026
+- Independent Express API and frontend adapters are implemented and pushed. Backend production health/catalog verified at https://futera-server.vercel.app (sample mode).
+- Light/dark tokens, persistent theme control, profile menu, responsive navigation, four-column listing cards, ten home sections, and About/Support/Contact/Privacy pages are implemented.
+- Account and admin sidebars, editable display name, database-backed monthly order chart, and all admin table filters are implemented.
+- Reviews store real user submissions only, expose no account identity, and support pagination/aggregate rating. No reviews or activity are invented. Related components use current catalog records.
+- Google integration uses PKCE, nonce, expiring single-use state, signed JWT issuer/audience/algorithm checks and customer-only registration. Existing password accounts are never silently linked by email.
+- Gemini-backed component recommendations and PC-building help are implemented with authenticated quotas, bounded prompts, schema validation and catalog-ID allowlisting. There is no synthetic AI fallback.
+- External activation remains blocked by missing Atlas access, Google OAuth client credentials and Gemini credentials/model configuration. No live account, order, Google login or AI generation is claimed.
+- Verified retail data, image licenses, contact details and social accounts remain unavailable. Existing SAMPLE labels and neutral illustrations remain; therefore the rubric's no-dummy-content requirement is not satisfied.
+- Public demo credentials are not provisioned without an isolated database. Do not expose a write-capable admin account as a public demo.
+- The latest verification record belongs in docs/VERIFICATION.md after checks finish. Lighthouse has not been measured.

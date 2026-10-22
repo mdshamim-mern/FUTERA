@@ -72,3 +72,6 @@ container. Category-specific spec fields adapt to nullable strings, numbers, boo
 enums and comma-separated arrays; blank means unknown. Every change asks for an audit
 reason, shows a confirmation dialog, pending state and server success/error message.
 Archive is the reversible bulk action. No optimistic stock, role or order updates occur.
+
+## STN-7 theme and layout
+A first-party futera-theme cookie controls server-rendered light/dark tokens. Light mode uses dark teal foreground accents and white cards; dark mode retains restrained cyan. Semantic warning/error/success colors communicate status. Mobile header wordmark is compact to preserve 44px controls. Home has ten content sections. Desktop product listing uses four equal grid tracks; cards stretch within each row. Hero artwork is hidden on small screens to keep the primary actions within the first screen.

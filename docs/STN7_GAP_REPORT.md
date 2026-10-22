@@ -45,3 +45,15 @@ Audit baseline: Phase 5 commit 5d73549, 21 October 2026. Deadline: 22 October 20
 10. Push and deploy are authorized, but paid subscriptions and new security-sensitive grants need explicit approval.
 
 Existing green Phase 5 results are historical, not proof the migration works. Each migration milestone must rerun its checks. Some home FAQ copy still says compatibility is a future phase; correct it during content revision.
+
+## STN-7 implementation update — 22 October 2026
+- Independent Express API and frontend adapters are implemented and pushed. Backend production health/catalog verified at https://futera-server.vercel.app (sample mode).
+- Light/dark tokens, persistent theme control, profile menu, responsive navigation, four-column listing cards, ten home sections, and About/Support/Contact/Privacy pages are implemented.
+- Account and admin sidebars, editable display name, database-backed monthly order chart, and all admin table filters are implemented.
+- Reviews store real user submissions only, expose no account identity, and support pagination/aggregate rating. No reviews or activity are invented. Related components use current catalog records.
+- Google integration uses PKCE, nonce, expiring single-use state, signed JWT issuer/audience/algorithm checks and customer-only registration. Existing password accounts are never silently linked by email.
+- Gemini-backed component recommendations and PC-building help are implemented with authenticated quotas, bounded prompts, schema validation and catalog-ID allowlisting. There is no synthetic AI fallback.
+- External activation remains blocked by missing Atlas access, Google OAuth client credentials and Gemini credentials/model configuration. No live account, order, Google login or AI generation is claimed.
+- Verified retail data, image licenses, contact details and social accounts remain unavailable. Existing SAMPLE labels and neutral illustrations remain; therefore the rubric's no-dummy-content requirement is not satisfied.
+- Public demo credentials are not provisioned without an isolated database. Do not expose a write-capable admin account as a public demo.
+- The latest verification record belongs in docs/VERIFICATION.md after checks finish. Lighthouse has not been measured.

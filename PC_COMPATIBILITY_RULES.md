@@ -93,3 +93,6 @@ requires all listed part IDs to be present and can only append warning or error.
 remove a base check, supply missing specs, or turn unknown into ok. `checkOverrides` stays
 pure TypeScript and runs in both server build resolution and component picker previews.
 MongoDB settings are Zod-validated and changes are audited. SAMPLE mode has no overrides.
+
+## Split deployment
+The browser copy supports immediate feedback. FUTERA-server reruns authoritative pure checks when resolving a build. AI recommendations never override compatibility results or turn missing specifications into compatible results. Existing rule semantics remain unchanged.

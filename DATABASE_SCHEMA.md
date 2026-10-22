@@ -109,3 +109,6 @@ Authentication uses random opaque, revocable, HTTP-only cookies backed by hashed
 Local development: clone FUTERA-server beside FUTERA, install dependencies in both, run the API on port 4000 and Next.js on port 3000. Database seed/index scripts delegate to the backend. Build the backend before running the frontend Playwright suites. Tests use an isolated ephemeral replica set, never Atlas.
 
 Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL and backend URL as frontend API_BASE_URL. Commerce stays disabled until Atlas and explicit shipping configuration are available. No live database, OAuth or AI credentials have been supplied. Sample data remains labelled and cannot satisfy a real-inventory requirement.
+
+## STN-7 additions
+ApiSession: hashed token ID, userId, session version and expiresAt TTL. OAuthAttempt: hashed state ID, PKCE verifier, nonce and expiresAt TTL; callback consumes the record atomically. User.googleSub has a unique partial index. ProductReview: product, ownerId, rating, body and timestamps; unique product/owner index plus product/createdAt index. Public review DTOs exclude owner IDs and email. Run backend npm run db:indexes before enabling commerce.
