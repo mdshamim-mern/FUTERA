@@ -183,3 +183,7 @@ Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL a
 - Verified retail data, image licenses, contact details and social accounts remain unavailable. Existing SAMPLE labels and neutral illustrations remain; therefore the rubric's no-dummy-content requirement is not satisfied.
 - Public demo credentials are not provisioned without an isolated database. Do not expose a write-capable admin account as a public demo.
 - The latest verification record belongs in docs/VERIFICATION.md after checks finish. Lighthouse has not been measured.
+
+## Deployment and submission
+Frontend: https://futera-mdshamim.vercel.app — Backend: https://futera-server.vercel.app/api/health. See [submission details](docs/SUBMISSION.md) and [actual verification](docs/VERIFICATION.md). The deployment is a labelled demonstration; missing owner credentials and real retail content remain explicit blockers.
+

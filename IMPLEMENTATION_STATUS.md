@@ -339,3 +339,6 @@ Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL a
 - Verified retail data, image licenses, contact details and social accounts remain unavailable. Existing SAMPLE labels and neutral illustrations remain; therefore the rubric's no-dummy-content requirement is not satisfied.
 - Public demo credentials are not provisioned without an isolated database. Do not expose a write-capable admin account as a public demo.
 - The latest verification record belongs in docs/VERIFICATION.md after checks finish. Lighthouse has not been measured.
+
+Final verification: frontend 78 tests, backend 159 tests, 24 storefront/browser tests and 8 commerce browser tests pass. Both production deployments and the exact-origin builder quote contract were verified. See docs/SUBMISSION.md for unfinished owner-dependent requirements.
+
