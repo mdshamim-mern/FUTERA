@@ -14,7 +14,7 @@ const bangla = Noto_Sans_Bengali({ subsets: ["bengali"], variable: "--font-noto-
 export const metadata: Metadata = {
   metadataBase: new URL(env.APP_URL),
   title: { default: "FUTERA — Build the future of your desk", template: "%s | FUTERA" },
-  description: "Meet FUTERA: a new era of PC hardware and compatibility-first custom builds for Bangladesh. Explore our clearly labelled sample component catalog.",
+  description: "Meet FUTERA: a new era of PC hardware and compatibility-first custom builds for Bangladesh. Research components with linked manufacturer sources.",
   icons: { icon: "/futera-mark.svg", apple: "/futera-mark.svg" },
 };
 export const viewport: Viewport = { themeColor: "#07090D" };

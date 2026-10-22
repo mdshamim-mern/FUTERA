@@ -1,3 +1,4 @@
+import {ReferenceSections} from "./reference-sections";
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2, CircleHelp, ShieldCheck } from "lucide-react";
 import { getBrands, getProducts, listProducts } from "@/server/catalog";
@@ -25,6 +26,7 @@ export async function StorefrontSections() {
     listProducts(parseCatalogQuery({})), getBrands(),
     Promise.all(buildPlans.map(async (plan) => ({ ...plan, products: await getProducts(["cpu", "motherboard", "ram", "ssd", "gpu", "psu", "case", "cpu-cooler"].map((category) => `sample-${category}-${plan.suffix}`)) }))),
   ]);
+  if(featured.products.some(p=>p.isReference)){const all=await listProducts(parseCatalogQuery({page:"2"}));return <ReferenceSections products={[...featured.products,...all.products]} brands={brands}/>;}
   return <>
     <section className="border-b border-border" aria-label="FUTERA principles"><div className="page-container grid gap-5 py-7 md:grid-cols-3">{[{ icon: ShieldCheck, text: "Sample data, clearly labelled" }, { icon: CheckCircle2, text: "Specifications before assumptions" }, { icon: CircleHelp, text: "Clear prices in BDT" }].map(({ icon: Icon, text }) => <p key={text} className="flex items-center gap-3 text-sm text-muted-foreground"><Icon className="size-5 text-primary" aria-hidden="true"/>{text}</p>)}</div></section>
     <section className="page-container py-14 md:py-20" aria-labelledby="budget-heading"><p className="text-xs tracking-[.2em] text-primary">START WITH A NUMBER</p><h2 id="budget-heading" className="mt-3 font-display text-3xl font-medium">Your component. Your budget.</h2><p className="mt-3 text-sm text-muted-foreground">Per-component price presets, not complete-PC quotes. All sample prices are illustrative.</p><div className="mt-7 grid gap-4 sm:grid-cols-3">{[10000, 25000, 50000].map((budget) => <Link key={budget} href={`/products?max=${budget}&sort=price-asc`} className="flex min-h-28 items-center justify-between gap-4 rounded-xl border border-border bg-card p-6 hover:border-primary/50"><span><span className="text-xs text-muted-foreground">Explore components under</span><span className="price mt-2 block font-display text-2xl font-semibold">{formatPrice(budget * 100)}</span></span><ArrowUpRight className="size-5 text-primary" aria-hidden="true"/></Link>)}</div></section>

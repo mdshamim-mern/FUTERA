@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 const cases = [
   { id: "gaming", title: "Gaming", headline: "Make room for your next world.", text: "Start by exploring graphics and processor specifications. Match the components to your games, display and budget; performance varies by workload.", category: "gpu", cta: "Explore graphics cards" },
-  { id: "creating", title: "Creating", headline: "More space for your ideas.", text: "Compare memory capacity and storage interfaces for your creative workflow. These sample components illustrate the choices, not benchmark results.", category: "ram", cta: "Explore memory" },
+  { id: "creating", title: "Creating", headline: "More space for your ideas.", text: "Compare memory capacity and storage interfaces for your creative workflow. Catalog specifications describe components, not benchmark results.", category: "ram", cta: "Explore memory" },
   { id: "everyday", title: "Everyday", headline: "A thoughtful daily companion.", text: "Begin with a processor and build outward. Check the socket, memory generation and the specifications your day-to-day work needs.", category: "cpu", cta: "Explore processors" },
 ];
 export function UseCaseTabs() {

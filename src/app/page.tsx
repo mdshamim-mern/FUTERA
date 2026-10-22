@@ -22,7 +22,7 @@ export default function Home() {
               <Button asChild size="lg"><Link href="/products">Explore components <ArrowRight aria-hidden="true"/></Link></Button>
               <Button asChild size="lg" variant="outline"><Link href="/pc-builder">Build your PC <ArrowUpRight aria-hidden="true"/></Link></Button>
             </div>
-            <p className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><span className="size-1.5 rounded-full bg-warning"/>SAMPLE catalog · No live purchase offers</p>
+            <p className="mt-6 flex items-center gap-2 text-xs text-muted-foreground"><span className="size-1.5 rounded-full bg-warning"/>Source-linked research · No unverified purchase offers</p>
           </div>
           <div className="hero-grid relative hidden min-w-0 rounded-3xl md:block">
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-transparent via-transparent to-[#8273be]/[.07]" aria-hidden="true"/>
