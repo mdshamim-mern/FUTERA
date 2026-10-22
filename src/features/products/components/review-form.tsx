@@ -1,0 +1,5 @@
+"use client";
+import {useActionState} from "react";
+import {submitReview} from "../review-action";
+import {Button} from "@/components/ui/button";
+export function ReviewForm({slug}:{slug:string}){const [state,action,pending]=useActionState(submitReview,{success:false,message:""});return <form action={action} className="mt-6 max-w-xl space-y-4"><input type="hidden" name="slug" value={slug}/><label className="block">Your rating<select name="rating" className="builder-control ml-3" required defaultValue=""><option value="" disabled>Choose</option>{[1,2,3,4,5].map(n=><option key={n} value={n}>{n} / 5</option>)}</select></label><label className="block">Your review<textarea name="body" className="builder-control mt-2 block min-h-28 w-full" required minLength={10} maxLength={1500}/></label><p className="text-xs text-muted-foreground">Your text and rating will be public. Do not include personal information. Submitting again updates your review. Login required.</p><Button disabled={pending}>{pending?"Saving…":"Submit review"}</Button>{state.message&&<p role={state.success?"status":"alert"}>{state.message}</p>}</form>;}

@@ -1,0 +1,4 @@
+import {api} from "@/lib/api";
+import {AdviceForm} from "@/features/assistant/advice-form";
+export const metadata={title:"AI build assistance"};
+export default async function Assistant(){const config=await api<{aiEnabled:boolean}>("/v1/config");return <main id="main-content" className="page-container py-14"><h1 className="font-display text-4xl">A second opinion for your build.</h1><p className="mt-4 max-w-2xl text-muted-foreground">Use AI to explore components or understand PC-building choices. The compatibility engine remains the source of deterministic checks.</p><div className="mt-9 grid gap-7 lg:grid-cols-2">{(["recommend","support"] as const).map(mode=><section key={mode} className="rounded-xl border bg-card p-6"><h2 className="mb-6 font-display text-2xl">{mode==="recommend"?"Component recommendations":"PC-building help"}</h2><AdviceForm mode={mode} enabled={config.aiEnabled}/></section>)}</div></main>;}

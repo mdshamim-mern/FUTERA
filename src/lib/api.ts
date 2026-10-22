@@ -8,7 +8,7 @@ export async function api<T>(path:string,options:{method?:string;body?:unknown;m
  const jar=await cookies();
  const response=await fetch(new URL(path,env.API_BASE_URL),{method:options.method??"GET",cache:"no-store",headers:{"Content-Type":"application/json",Origin:new URL(env.APP_URL).origin,Cookie:jar.toString()},body:options.body===undefined?undefined:JSON.stringify(options.body),signal:AbortSignal.timeout(20000)});
  if(options.mutate){for(const header of response.headers.getSetCookie()){
-  const [pair,...attributes]=header.split(";");const index=pair.indexOf("=");const name=pair.slice(0,index);if(!["futera-session","futera-guest"].includes(name))continue;
+  const [pair,...attributes]=header.split(";");const index=pair.indexOf("=");const name=pair.slice(0,index);if(!["futera-session","futera-guest","futera-oauth"].includes(name))continue;
   const attrs=Object.fromEntries(attributes.map(a=>{const [k,...v]=a.trim().split("=");return [k.toLowerCase(),v.join("=")];}));
   jar.set(name,decodeURIComponent(pair.slice(index+1)),{httpOnly:true,secure:env.APP_URL.startsWith("https:"),sameSite:"lax",path:"/",...(attrs["max-age"]!==undefined?{maxAge:Number(attrs["max-age"])}:{}),...(attrs.expires?{expires:new Date(attrs.expires)}:{})});
  }}
