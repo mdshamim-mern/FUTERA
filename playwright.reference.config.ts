@@ -1,0 +1,2 @@
+import {defineConfig,devices} from "@playwright/test";
+export default defineConfig({testDir:"./tests/reference",reporter:"list",use:{baseURL:"http://127.0.0.1:3102",trace:"retain-on-failure"},projects:[360,768,1440].map(width=>({name:`reference-${width}`,use:{...devices["Desktop Chrome"],viewport:{width,height:900}}})),webServer:{command:"node scripts/e2e-commerce-server.mjs --reference",url:"http://127.0.0.1:3102",reuseExistingServer:false,timeout:120000}});

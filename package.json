@@ -12,7 +12,8 @@
     "test:e2e": "playwright test",
     "seed": "node scripts/backend-task.mjs seed",
     "test:e2e:commerce": "playwright test --config playwright.commerce.config.ts",
-    "db:indexes": "node scripts/backend-task.mjs indexes"
+    "db:indexes": "node scripts/backend-task.mjs indexes",
+    "test:e2e:reference": "playwright test --config playwright.reference.config.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

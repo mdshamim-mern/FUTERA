@@ -1,9 +1,10 @@
 import {spawn} from "node:child_process";
 import {fileURLToPath} from "node:url";
 const commerce=process.argv.includes("--commerce");
-const port=commerce?3100:3101,apiPort=commerce?4100:4101;
+const reference=process.argv.includes("--reference");
+const port=commerce?3100:reference?3102:3101,apiPort=commerce?4100:reference?4102:4101;
 const backend=fileURLToPath(new URL("../../FUTERA-server/",import.meta.url));
-const env={...process.env,APP_URL:`http://127.0.0.1:${port}`,API_BASE_URL:`http://127.0.0.1:${apiPort}`,COMMERCE_ENABLED:String(commerce),CATALOG_SOURCE:"sample",PORT:String(apiPort)};
+const env={...process.env,APP_URL:`http://127.0.0.1:${port}`,API_BASE_URL:`http://127.0.0.1:${apiPort}`,COMMERCE_ENABLED:String(commerce),CATALOG_SOURCE:reference?"reference":"sample",PORT:String(apiPort)};
 const api=spawn(process.execPath,[commerce?"scripts/e2e-server.mjs":"dist/index.js"],{cwd:backend,env,stdio:"inherit",windowsHide:true});
 let web,stopping=false;
 function stop(code=0){if(stopping)return;stopping=true;web?.kill();api.kill();process.exit(typeof code==="number"?code:0);}
