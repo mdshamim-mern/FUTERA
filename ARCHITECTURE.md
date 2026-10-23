@@ -205,3 +205,6 @@ Google callback reaches the frontend Route Handler, which relays the code/state 
 ## Reference catalog update — 23 October 2026
 
 The backend now supports CATALOG_SOURCE=reference for 20 source-linked, non-purchasable models. CHECKOUT_ENABLED=false separates account/AI activation from retail fulfillment. Frontend checkout reads the backend capability; all order mutation entry points independently enforce it. Home streams its hero above a reserved catalog loading region.
+
+## Demo migration policy and editorial routes — 23 October 2026
+The owner-authorized demo-store policy supersedes the earlier reference-only content decision. Migration is gated on accurate model specs, licensed exact-model assets and isolated database activation. Do not mislabel reference records as purchasable demo inventory before the data workflow is complete. /blog and /blog/[slug] are server-rendered original editorial content from src/features/editorial/articles.ts; /terms documents demo scope. Existing /guides links are retained.

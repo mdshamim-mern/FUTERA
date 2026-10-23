@@ -117,3 +117,6 @@ ApiSession: hashed token ID, userId, session version and expiresAt TTL. OAuthAtt
 ## Reference catalog update — 23 October 2026
 
 Product now permits isReference, sourceUrl and reviewedAt. Reference records require source/date, isSample=false and zero non-offer sentinels for priceMinor/stock. Price/availability queries exclude references; order calculation and final stock mutation reject them. Account-only configuration can use a real MongoDB database while reference data remains source-controlled and checkout stays disabled.
+
+## Pending demo schema migration
+The owner authorized a future isolated demo seed with prices, inventory, review records and six months of orders. This policy update does not itself change production schema or seed data. Demo flags, manager-role policy and migration validation must be implemented and tested before activation. Current reference-product order rejection remains intact.

@@ -131,3 +131,6 @@ Use Google OIDC with jose signature verification and server-side opaque sessions
 ## Reference catalog update — 23 October 2026
 
 The owner chose an informational real-model catalog with no unverified sales. Reference entries cannot carry retail inventory or an offer; zero internal sentinels are never displayed as free prices. Manufacturer facts are linked per record; unknown compatibility data stays null. Original category diagrams replace fictitious product imagery without pretending to be licensed photographs. No customer opinions or activity are fabricated.
+
+## 23 October 2026: explicit demo-store authorization
+Illustrative demo prices/stock/reviews/orders are permitted in an isolated demo database with surface disclosures and per-record demo flags. Hardware specs and test outcomes are never fabricated. Generic licensed editorial photographs must not impersonate model-specific photography. Keep the existing live mode honest while asset/credential gates remain unmet. Safe independent UI/content improvements ship separately.

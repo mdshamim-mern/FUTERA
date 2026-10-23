@@ -101,3 +101,6 @@ The browser copy supports immediate feedback. FUTERA-server reruns authoritative
 ## Reference catalog update — 23 October 2026
 
 Manufacturer reference data contains deliberately unknown fields, including revision-dependent memory limits, BIOS state, exact PSU connectors and unsupported numeric cooler TDP ratings. These remain unknown and cannot produce a guaranteed healthy purchase. Reference entries also carry an availability issue; they may be researched and saved but never checked out. The pure compatibility rules are unchanged.
+
+## Demo data evidence requirement
+The demo-store policy does not relax compatibility truthfulness. Complete seeded specifications must come from manufacturer evidence. No invented cooler rating, connector count, BIOS status or physical dimension may be used to force a healthy build. Existing pure-engine tests remain authoritative during the catalog migration.

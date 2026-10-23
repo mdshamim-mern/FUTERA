@@ -192,3 +192,8 @@ Frontend: https://futera-mdshamim.vercel.app — Backend: https://futera-server.
 ## Reference catalog update — 23 October 2026
 
 A factual, informational reference catalog now contains 20 real hardware models with manufacturer sources and original category diagrams. See docs/CATALOG_PROVENANCE.md for provenance and retail safeguards. npm run test:e2e:reference verifies source links, three filters, pagination and disabled checkout at 360/768/1440. Accounts/OAuth/AI require the owner service activation steps in docs/SERVICE_ACTIVATION.md.
+
+## STN-7 demo migration — 23 October 2026
+The owner now authorizes an isolated demo store: prices, stock and orders may be illustrative, while model specifications remain evidence-based. See AGENTS.md and docs/STN7_CHECKLIST.md for the superseding policy and remaining gates. The active reference deployment has not yet been converted to a functioning demo store. Licensed exact-model photography, isolated database credentials and provider activation are outstanding. No real purchases or fulfillment are offered.
+
+Original Blog list/detail routes (ten articles), Terms, attributed Unsplash editorial photography, safe social links and direct Login/Register navigation are added. Existing /guides URLs remain valid. Run npm run test:e2e:links for the declared public interaction audit; it is not an exhaustive authenticated-role certification. Asset provenance and missing images: docs/ASSETS.md. Actual test coverage: docs/LINK_BUTTON_REPORT.md.

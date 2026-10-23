@@ -347,3 +347,6 @@ Final verification: frontend 78 tests, backend 159 tests, 24 storefront/browser 
 ## Reference catalog update — 23 October 2026
 
 Implemented and pushed: owner contact/social links, three original guides, explicit product Overview/Specifications, loading/lead-image performance fixes, 20 source-linked real-model references, price/stock non-offer display and authoritative checkout refusal. Local checks pass: frontend 79 unit tests, backend 165 tests, 3 reference browser tests, 24 responsive regressions and 8 isolated commerce regressions. Atlas sign-in is now available; a scoped database-user password handoff is pending. Google project futera-512418 was created; User Data Policy acceptance/client setup is pending. Gemini account sign-in is pending. Do not claim these provider flows are live.
+
+## 23 October 2026: demo migration started, not complete
+Both AGENTS.md policies now authorize an isolated demo store. Ten original blog articles, Terms, safe external social links, visible Login/Register navigation and available-category fallback are implemented. New public interaction test inventory and asset manifest are added. Full demo catalog, 80+ model photos, database activation, manager/demo accounts and providers remain open in docs/STN7_CHECKLIST.md. Do not infer full STN-7 completion from this update.

@@ -1,53 +1,50 @@
 # AGENTS.md — FUTERA
 
-## Project
-FUTERA: premium PC hardware e-commerce + custom PC configurator for the Bangladesh market (currency ৳ BDT, formatted like ৳ 85,500).
-Brand idea: "Future + Era" — modern, precise, high-tech, trustworthy. Tagline: "Build the future of your desk."
-Original branding only. Reference sites are for UX inspiration only (ryans.com/pc-builder, startech.com.bd/tool/pc_builder, elitehubs.com, modxcomputers.com, nzxt.com, ibuypower.com). Never copy their code, text, logos, images, or exact layouts.
-The GitHub repo is PUBLIC: never commit secrets, real customer data, or scraped third-party content.
+## Product and delivery
+FUTERA is a Bangladesh-focused DEMO PC hardware store and compatibility configurator for a graded assignment. Currency is BDT, formatted like ৳ 85,500. Original identity: Future + Era; tagline: Build the future of your desk. Implement a polished, responsive, modern glass interface without copying another storefront's layout, text, branding or assets.
 
-## Stack
-Next.js (App Router) + TypeScript (strict) + Tailwind CSS + shadcn/ui + Lucide + Motion
-MongoDB Atlas + Mongoose, Zod validation, React Hook Form, Zustand (builder state only)
-Auth.js (admin role protection), Vitest + React Testing Library + Playwright
-Dev environment: Windows, PowerShell, VS Code. Repo root IS the Next.js app root (no nested project folder).
+Two PUBLIC repositories are required: FUTERA (Next.js UI/HTTP adapters) and FUTERA-server (authoritative Express/MongoDB API). Keep the Next.js app at this repository root and preserve Git history. The user authorizes small English conventional commits, push and deployment for this upgrade. Final explanations and blockers are in simple Bangla. Do not claim completion from code inspection alone.
 
-## Commands (verify they exist in package.json; add if missing)
-- npm run dev | lint | typecheck | test | build | test:e2e
-- npm run seed (loads clearly-labelled SAMPLE data)
+## Demo-store policy — replaces older reference-only data policy
+- Real hardware model names and manufacturer-verifiable specifications; realistic BDT DEMO prices and stock are authorized. Record price inspiration URL/date and distinguish these values from actual retail offers internally.
+- Disclose once on each relevant surface: footer, About, checkout and README: "Demo store — prices, stock and orders are illustrative". Never claim a real retailer, supplier, shipment, payment collection or manufacturer partnership.
+- Demo reviews, customers and six months of demo orders may be seeded ONLY in an explicitly named isolated demo database. Mark records as demo; use invented non-public identities and reserved example.test emails. Review/testimonial sections must identify their demo origin; never present fabricated endorsements as real customers. Charts aggregate actual database rows at runtime, not hardcoded totals.
+- Target demo storefront copy must not contain: "Price not supplied", "Information only", "not for sale", "Retail availability not supplied", "SAMPLE", "fictional", "reference catalog", "coming soon", or "lorem". This is a UI migration acceptance gate, NOT permission to conceal the current unactivated state. Keep honest existing disclosures until replacement records and services are verified. Test fixtures, schemas, historical docs and security errors are excluded from this copy rule.
+- Cards show image, title, description, demo price, rating/review count, stock and View Details. Do not invent ratings for products without demo review records; use an honest unrated state.
+- Target 80+ real products including GPU and every supported category. At least three genuinely distinct, correctly identified images per model. Track source URL, author, license/permission, attribution and local path in docs/ASSETS.md. No copied retailer photos/descriptions, unauthorized hotlinks, grey boxes, repeated crops claimed as different product photos, or generated pictures claimed as actual model photography.
+- Unsplash is owner-approved as a source, subject to its license and image-specific rights. General PC/editorial photographs cannot be labelled as a specific product model. If model-specific licensed assets are unavailable, pause that catalog expansion and report exact missing assets; continue independent work.
+- Verify complete compatibility-critical specifications for the seven required categories. Do not invent connectors, dimensions, cooler TDP ratings or BIOS guarantees to force a healthy result. Choose well-documented hardware; genuinely missing specs remain unknown.
+- Enable COD and pickup only as clearly disclosed DEMO order workflows with configured demo fulfillment rules. Hide unavailable card/mobile banking choices; never simulate provider payment success. Never enable a broken checkout merely to remove a warning.
 
-## Architecture rules
-- src/app: routes/layouts/loading/error. src/components: shared UI. src/features/<name>: feature code (products, builder, cart, checkout, account, admin).
-- src/server: business logic + data access (server-only). src/lib: db, auth, validation, utils. src/types: shared types.
-- Server Components by default; "use client" only when needed (interactivity, builder state).
-- Server Actions for form mutations; Route Handlers only for explicit HTTP contracts.
-- Compatibility engine = pure TypeScript functions in src/features/builder/compatibility, zero UI/DB imports, fully unit-tested.
-- Prices, stock, coupons, shipping are ALWAYS recalculated on the server. Never trust client totals.
-- Validate all env vars with Zod at startup. Server-only secrets never reach client bundles.
-- Do not add a package if native Next.js/React can do it.
+## Architecture and security
+- Actual stack: Next.js App Router, strict TypeScript, Tailwind, shadcn/Radix, Lucide; Zustand for builder state only. Backend Node/Express, MongoDB Atlas/Mongoose, Zod. Vitest, React Testing Library and Playwright.
+- Opaque, hashed, revocable backend sessions replace the previous in-process Auth.js architecture. Preserve secure HttpOnly/SameSite cookies, CSRF/origin checks, auth rate limits and fresh server-side role/ownership checks.
+- src/app holds routes/layout/loading/error; src/components shared UI; src/features feature code; src/lib server-only API/env helpers; src/types shared contracts. Server Components by default. Client components only for interaction.
+- Server Actions are UI form adapters. Route handlers expose explicit HTTP contracts. Backend owns database access, final prices, stock, discounts, shipping, transactions and authorization. Never trust client totals or roles.
+- Compatibility engine stays pure TypeScript with zero UI/DB dependencies and exhaustive unit tests. Result: status ok/warning/error/unknown, ruleId, plain English message plus translation key, involved part IDs. Unknown is never compatible.
+- Cover socket/chipset/BIOS, RAM type/slots/capacity/speed (including multiple sticks), motherboard/case, GPU length, cooler height/radiators/socket/TDP, PSU (CPU TDP + GPU TDP + 100W) × 1.3 and 8-pin/12VHPWR connectors, M.2 interfaces/slots and SATA ports.
+- Validate env with Zod; maintain .env.example. Secrets stay in backend environment, never Git/client bundles/chat. No real customer data in public repositories.
+- Database password creation/submission requires owner handoff under browser policy. Obtain action-time approval where required for legal agreements or security-sensitive grants. Do not broaden Atlas network access automatically. Prefer least-privilege readWrite on the dedicated demo database; never reuse atlasAdmin for the app.
+- Google OAuth redirect is https://futera-mdshamim.vercel.app/auth/google/callback. Backend is already deployed at https://futera-server.vercel.app. Do not invent another callback, migrate hosting unnecessarily or enable billing without approval.
+- Demo login credentials must be restricted to an isolated demo deployment; never publish unrestricted production admin access. Add manager only with explicit least-privilege policy and tests.
+- AI assistant, suggestions and admin insights must call a configured provider, validate outputs against actual catalog/compatibility data, apply quotas and authorization, and fail honestly. Never fake live AI or OAuth success.
 
-## Design system: "Dark Glass"
-- Tokens as CSS variables + Tailwind theme: --bg #07090D, --surface rgba(255,255,255,0.05), --surface-strong rgba(255,255,255,0.09), --border rgba(255,255,255,0.10), --accent #22D3EE (restrained cyan), --accent-2 subtle violet for gradients only, --danger/--warning/--success.
-- Glass = translucent surface + backdrop-blur (12–20px) + 1px border + soft shadow + inner highlight. Use ONLY on navbar, builder summary, modals/drawers, featured cards — not on every element. Solid fallback when backdrop-filter is unsupported.
-- Fonts via next/font: Space Grotesk (display), Inter (UI), Hind Siliguri or Noto Sans Bengali (Bangla). Tabular numbers for prices.
-- WCAG AA contrast, visible focus rings, prefers-reduced-motion respected, touch targets ≥ 44px.
-- Every data view needs loading (skeleton), empty, error, and success states.
-- Mobile-first: 360 / 768 / 1024 / 1440. No horizontal scroll.
-- Avoid: generic SaaS-dashboard look, excess neon, heavy blur, decorative animation that hurts usability.
+## Design and content
+- Dark Glass: --bg #07090D, translucent surfaces 0.05/0.09, border 0.10, restrained cyan #22D3EE; violet only subtle gradients. At most three brand colors plus neutrals and semantic statuses. Support light/dark with WCAG AA contrast.
+- Glass on navbar, featured panels, summary and overlays; 12–20px blur, thin border, soft shadow and solid fallback. Do not blur every card or build a generic dashboard look.
+- next/font: Space Grotesk display, Inter UI, Noto Sans Bengali; tabular prices. Consistent radius, spacing and card height. Four product columns on desktop. Skeleton, empty, error and success states.
+- Mobile first at 360/768/1024/1440, no horizontal overflow; visible keyboard focus, >=44px targets, reduced-motion support. Hero about 60–70vh with accessible interaction; allow content to grow when needed for text zoom/short screens.
+- At least ten meaningful Home sections. Database-backed statistics/testimonials only after demo data exists. Newsletter must actually persist opt-in and report pending/success/error; no fake submission.
+- Public product details: correct gallery, overview, specs, reviews/form and related products. Explore: URL-driven search, category/brand/price/rating/stock filters, sort/pagination.
+- Blog list/detail with 10+ original useful articles, Terms, About, Contact, Support and Privacy. Preserve old /guides links. Do not duplicate filler articles to meet a number.
+- Logged out: >=4 navigation routes and clear Login/Register. Logged in: >=6 and profile dropdown. User sidebar >=4, admin >=6. Tables need filters/pagination; profiles editable.
+- User-supplied contact details are authorized public project contacts. IDB, Agargaon, Dhaka is not a verified shop or pickup location. External social links open safely with target=_blank and rel=noopener noreferrer.
 
-## Compatibility engine contract
-Result per check: { status: "ok" | "warning" | "error" | "unknown", ruleId, message (plain English + Bangla-ready key), involved: [partIds] }.
-"unknown" = missing spec data; never treat unknown as compatible.
-Rules: CPU↔Motherboard socket (+chipset/BIOS warning); Motherboard↔RAM (DDR type, slots, max capacity/speed); Motherboard↔Case form factor; GPU length vs case clearance; Cooler height vs case; radiator support; Cooler socket + TDP rating; PSU wattage = (CPU TDP + GPU TDP + 100W) × 1.3 with connector checks (8-pin, 12VHPWR); storage M.2 slots/interface + SATA ports.
-
-## Working rules
-- Small, reviewable changes. No unrelated edits. Never delete or overwrite existing files without saying so.
-- Never invent prices, stock, API endpoints, payment success, or test results. Dev data must be labelled "sample".
-- No secrets in git. Maintain .env.example. Keep .env* in .gitignore.
-- Before finishing ANY task: run lint, typecheck, test, build; report real results. If something fails or can't run, say so.
-- Keep docs current: README.md, ARCHITECTURE.md, DECISIONS.md, IMPLEMENTATION_STATUS.md, DATABASE_SCHEMA.md, PC_COMPATIBILITY_RULES.md, DESIGN_SYSTEM.md.
-- Commit in small logical commits with conventional messages (feat:, fix:, chore:, docs:, test:). Push only when I explicitly ask.
-- Explain decisions and blockers in simple Bangla in the final summary; code, comments, and docs in English.
-## Authorized STN-7 architecture update
-The user explicitly requires separate frontend/backend GitHub repositories and authorizes English conventional commits, push and deployment. FUTERA-server owns MongoDB and authoritative commerce; this repository contains Next.js UI and HTTP adapters. Opaque revocable API sessions replace the previous in-process Auth.js session implementation. Preserve all original security, sample-data disclosure and verification requirements.
-
+## Verification and working rules
+- Small reviewable changes; announce before overwriting existing files. No unrelated changes. Do not add dependencies when platform features suffice.
+- Commands: npm run dev, lint, typecheck, test, build, test:e2e; seed only the intended isolated demo database. Run lint/typecheck/test/build in BOTH repositories before final reporting. Report actual outputs, failures and limitations.
+- Maintain README, ARCHITECTURE, DECISIONS, IMPLEMENTATION_STATUS, DATABASE_SCHEMA, PC_COMPATIBILITY_RULES, DESIGN_SYSTEM and docs/STN7_CHECKLIST.md, docs/ASSETS.md, docs/LINK_BUTTON_REPORT.md.
+- Verify public routes and role-specific flows at 360/1440, light/dark. Use explicit interaction assertions for buttons, forms, navigation and dialogs; do not blindly click destructive admin controls. Report audited coverage, never claim EVERY button works without an inventory and assertions. Investigate 404/500, console errors and failed requests; explain expected denied requests.
+- Test private-data isolation, role grants, demo cart/order transactions, and storefront after admin edits. Test real OAuth/AI separately from mocks. Credentials being present is not proof the feature works.
+- Measure public mobile Lighthouse Home/Products, aiming >=85 performance; report actual performance/accessibility/best-practices/SEO, configuration and date. Do not fabricate scores or hide lower runs.
+- Verify deployment readiness and live behavior after pushes. Keep incomplete external steps explicit and give the owner concrete next actions without requesting secrets in chat.

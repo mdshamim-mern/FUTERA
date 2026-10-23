@@ -80,3 +80,6 @@ A first-party futera-theme cookie controls server-rendered light/dark tokens. Li
 ## Reference catalog update — 23 October 2026
 
 Public contact details are centralized in src/lib/contact.ts. Seven original category SVG diagrams use the existing dark/cyan tokens and explicitly say they are not product photographs. Reference cards and comparison/build/print views display Price not supplied or Not priced, never the zero storage sentinel. The first catalog image is preloaded; homepage streaming reserves space to reduce layout shift.
+
+## 23 October 2026: editorial design
+Blog uses a restrained glass split header with attributed editorial photography, consistent bordered article cards and a readable detail layout with sticky contents on desktop. Terms uses the same heading, border/radius and spacing system. No extra animation package was added. Product photography remains a separate provenance requirement.
