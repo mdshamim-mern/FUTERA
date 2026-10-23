@@ -342,3 +342,8 @@ Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL a
 
 Final verification: frontend 78 tests, backend 159 tests, 24 storefront/browser tests and 8 commerce browser tests pass. Both production deployments and the exact-origin builder quote contract were verified. See docs/SUBMISSION.md for unfinished owner-dependent requirements.
 
+
+
+## Reference catalog update — 23 October 2026
+
+Implemented and pushed: owner contact/social links, three original guides, explicit product Overview/Specifications, loading/lead-image performance fixes, 20 source-linked real-model references, price/stock non-offer display and authoritative checkout refusal. Local checks pass: frontend 79 unit tests, backend 165 tests, 3 reference browser tests, 24 responsive regressions and 8 isolated commerce regressions. Atlas sign-in is now available; a scoped database-user password handoff is pending. Google project futera-512418 was created; User Data Policy acceptance/client setup is pending. Gemini account sign-in is pending. Do not claim these provider flows are live.

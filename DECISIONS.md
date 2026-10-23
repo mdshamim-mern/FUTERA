@@ -126,3 +126,8 @@ Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL a
 
 ## Provider and content decisions
 Use Google OIDC with jose signature verification and server-side opaque sessions. Use Gemini REST without an additional SDK; provider errors never become simulated answers. Require sign-in and database quotas for AI requests. Keep sample disclosures until the owner supplies verified retail data. Contact links use the user-supplied GitHub project; do not fabricate phone numbers, offices or social identities.
+
+
+## Reference catalog update — 23 October 2026
+
+The owner chose an informational real-model catalog with no unverified sales. Reference entries cannot carry retail inventory or an offer; zero internal sentinels are never displayed as free prices. Manufacturer facts are linked per record; unknown compatibility data stays null. Original category diagrams replace fictitious product imagery without pretending to be licensed photographs. No customer opinions or activity are fabricated.

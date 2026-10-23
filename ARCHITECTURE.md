@@ -200,3 +200,8 @@ Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL a
 
 ## External integrations
 Google callback reaches the frontend Route Handler, which relays the code/state with the HTTP-only OAuth cookie to the backend. JWT signature/claims and one-time DB state are verified before issuing the normal revocable session. Gemini calls execute only on the backend with a fixed official endpoint and server-only credentials. No private account records enter prompts. Product review writes derive owner IDs from authenticated sessions.
+
+
+## Reference catalog update — 23 October 2026
+
+The backend now supports CATALOG_SOURCE=reference for 20 source-linked, non-purchasable models. CHECKOUT_ENABLED=false separates account/AI activation from retail fulfillment. Frontend checkout reads the backend capability; all order mutation entry points independently enforce it. Home streams its hero above a reserved catalog loading region.

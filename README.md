@@ -187,3 +187,8 @@ Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL a
 ## Deployment and submission
 Frontend: https://futera-mdshamim.vercel.app — Backend: https://futera-server.vercel.app/api/health. See [submission details](docs/SUBMISSION.md) and [actual verification](docs/VERIFICATION.md). The deployment is a labelled demonstration; missing owner credentials and real retail content remain explicit blockers.
 
+
+
+## Reference catalog update — 23 October 2026
+
+A factual, informational reference catalog now contains 20 real hardware models with manufacturer sources and original category diagrams. See docs/CATALOG_PROVENANCE.md for provenance and retail safeguards. npm run test:e2e:reference verifies source links, three filters, pagination and disabled checkout at 360/768/1440. Accounts/OAuth/AI require the owner service activation steps in docs/SERVICE_ACTIVATION.md.

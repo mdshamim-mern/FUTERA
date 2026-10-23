@@ -1,26 +1,24 @@
 # FUTERA submission
 
+Updated: 23 October 2026.
+
 - Live frontend: https://futera-mdshamim.vercel.app
-- Live backend health: https://futera-server.vercel.app/api/health
+- Live backend: https://futera-server.vercel.app
 - Frontend repository: https://github.com/mdshamim-mern/FUTERA
 - Backend repository: https://github.com/mdshamim-mern/FUTERA-server
-- Both repositories use main for production deployment. Existing history is preserved.
 - Verification: [VERIFICATION.md](VERIFICATION.md).
+- Catalog sources: [CATALOG_PROVENANCE.md](CATALOG_PROVENANCE.md).
 
-## Implemented
-Separate Next.js frontend and Express/MongoDB API; catalog and deterministic PC Builder; secure session/account/cart/checkout/admin foundations; dark/light theme; responsive navigation and profile menu; ten home sections; four-column desktop products; About, Contact, Privacy and Support; account/admin sidebars; editable profile; order charts from database records; filtered admin tables; owner-scoped reviews and related products; Google OIDC integration; Gemini recommendations and PC-building support.
+## Delivered
 
-## Submission limits — do not conceal these
-The live deployment is a labelled sample demonstration, not a retail business ready to accept real orders. MongoDB Atlas access is unavailable. Consequently live registration, login, saved accounts and checkout remain disabled. Database-backed flows passed isolated replica-set tests but have not been verified against Atlas.
-Google OAuth client credentials and Gemini API/model configuration were not supplied. Provider integration/security tests pass with controlled fixtures, but real Google login and real AI generation are not verified or enabled.
-No verified product inventory, real prices, licensed product photography, retail contact information or social accounts were supplied. Do not remove SAMPLE labels to claim compliance with the no-dummy-content rubric.
-No public user/admin demo credentials are provisioned. Never share a production administrator password; provision a restricted isolated demonstration database first. Demo autofill remains unconfigured.
-Lighthouse was not measured.
+Separate deployed Next.js frontend and authoritative Express API; 20 manufacturer-sourced hardware reference records; searchable/filterable/paginated catalog; comparison and compatibility builder; original diagrams and building guides; owner-provided contact/social information; responsive light/dark interface. Accounts, role guards, cart, COD order transactions, admin, Google OIDC and two Gemini modes are implemented and tested in isolation.
 
-## Owner activation checklist
-1. Sign into Atlas personally and configure a dedicated database user and network policy; place the resulting URI only in backend Vercel secrets.
-2. Configure all backend variables in .env.example, including a cryptographically random AUTH_SECRET and explicit shipping rules. Run npm run db:indexes from FUTERA-server. Seed only a deliberately named _sample database for a demonstration.
-3. For Google, configure an OAuth web client with redirect https://futera-mdshamim.vercel.app/auth/google/callback and store its credentials only in backend Vercel.
-4. Configure GEMINI_API_KEY and GEMINI_MODEL together with an owner-approved provider account and quota.
-5. Enable COMMERCE_ENABLED in both projects only after database/configuration validation, redeploy and rerun end-to-end tests. Never simulate a successful payment.
-6. Replace fixtures only with owner-verified catalog data and assets whose usage rights are documented.
+The owner explicitly chose an informational catalog without unverified selling claims. Reference products have no advertised retail price or stock and cannot be ordered. Diagrams are original category illustrations, not manufacturer photography. No invented testimonials, reviews or sales statistics are published.
+
+## Remaining activation work
+
+Atlas login is confirmed, but the dedicated application database user/password is not created. Backend database/session secrets are not configured. Live accounts, public demo credentials, private dashboards and checkout are not verified or enabled.
+
+Google project FUTERA (futera-512418) exists; consent policy approval and OAuth web-client creation remain pending. Gemini login/key/model setup for the owner-designated account remains pending. Live Google login and both live AI responses have not been verified. See [SERVICE_ACTIVATION.md](SERVICE_ACTIVATION.md).
+
+Do not publish unrestricted production administrator credentials. Demo access needs an isolated database and explicit restrictions. Retail checkout additionally requires verified inventory, prices and fulfillment rules; the supplied contact location does not establish a pickup service.

@@ -96,3 +96,8 @@ MongoDB settings are Zod-validated and changes are audited. SAMPLE mode has no o
 
 ## Split deployment
 The browser copy supports immediate feedback. FUTERA-server reruns authoritative pure checks when resolving a build. AI recommendations never override compatibility results or turn missing specifications into compatible results. Existing rule semantics remain unchanged.
+
+
+## Reference catalog update — 23 October 2026
+
+Manufacturer reference data contains deliberately unknown fields, including revision-dependent memory limits, BIOS state, exact PSU connectors and unsupported numeric cooler TDP ratings. These remain unknown and cannot produce a guaranteed healthy purchase. Reference entries also carry an availability issue; they may be researched and saved but never checked out. The pure compatibility rules are unchanged.

@@ -75,3 +75,8 @@ Archive is the reversible bulk action. No optimistic stock, role or order update
 
 ## STN-7 theme and layout
 A first-party futera-theme cookie controls server-rendered light/dark tokens. Light mode uses dark teal foreground accents and white cards; dark mode retains restrained cyan. Semantic warning/error/success colors communicate status. Mobile header wordmark is compact to preserve 44px controls. Home has ten content sections. Desktop product listing uses four equal grid tracks; cards stretch within each row. Hero artwork is hidden on small screens to keep the primary actions within the first screen.
+
+
+## Reference catalog update — 23 October 2026
+
+Public contact details are centralized in src/lib/contact.ts. Seven original category SVG diagrams use the existing dark/cyan tokens and explicitly say they are not product photographs. Reference cards and comparison/build/print views display Price not supplied or Not priced, never the zero storage sentinel. The first catalog image is preloaded; homepage streaming reserves space to reduce layout shift.

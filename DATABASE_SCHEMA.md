@@ -112,3 +112,8 @@ Deployment: separate Vercel projects, Node 24, frontend URL as backend APP_URL a
 
 ## STN-7 additions
 ApiSession: hashed token ID, userId, session version and expiresAt TTL. OAuthAttempt: hashed state ID, PKCE verifier, nonce and expiresAt TTL; callback consumes the record atomically. User.googleSub has a unique partial index. ProductReview: product, ownerId, rating, body and timestamps; unique product/owner index plus product/createdAt index. Public review DTOs exclude owner IDs and email. Run backend npm run db:indexes before enabling commerce.
+
+
+## Reference catalog update — 23 October 2026
+
+Product now permits isReference, sourceUrl and reviewedAt. Reference records require source/date, isSample=false and zero non-offer sentinels for priceMinor/stock. Price/availability queries exclude references; order calculation and final stock mutation reject them. Account-only configuration can use a real MongoDB database while reference data remains source-controlled and checkout stays disabled.
