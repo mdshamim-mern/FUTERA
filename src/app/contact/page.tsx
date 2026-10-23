@@ -10,8 +10,8 @@ export default function Page() {
       <a className="inline-flex min-h-11 items-center text-primary" href={`tel:${contact.phone}`}>{contact.phoneLabel}</a><p>{contact.location}</p>
       <p className="text-sm leading-6 text-muted-foreground">Project contact location supplied by the owner; this is not a confirmed retail showroom or pickup point. Arrange any meeting directly before visiting.</p>
     </address>
-    <nav aria-label="Contact social channels" className="flex flex-wrap gap-x-6 gap-y-2">{contact.socials.map(({label,href})=><a key={label} href={href} className="inline-flex min-h-11 items-center text-primary">{label} ↗</a>)}</nav>
+    <nav aria-label="Contact social channels" className="flex flex-wrap gap-x-6 gap-y-2">{contact.socials.map(({label,href})=><a key={label} href={href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-primary">{label} ↗</a>)}</nav>
     <p className="leading-8 text-muted-foreground">For reproducible software bugs, use the public issue tracker. Never post passwords, payment details, or personal order information there.</p>
-    <div className="flex flex-wrap gap-6"><Link className="inline-flex min-h-11 items-center text-primary" href="/support">Help & support →</Link><a className="inline-flex min-h-11 items-center text-primary" href="https://github.com/mdshamim-mern/FUTERA/issues">Project issue tracker ↗</a></div>
+    <div className="flex flex-wrap gap-6"><Link className="inline-flex min-h-11 items-center text-primary" href="/support">Help & support →</Link><a className="inline-flex min-h-11 items-center text-primary" href="https://github.com/mdshamim-mern/FUTERA/issues" target="_blank" rel="noopener noreferrer">Project issue tracker ↗</a></div>
   </article></main>;
 }

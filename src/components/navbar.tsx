@@ -14,12 +14,12 @@ import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTi
 const links = [{ href: "/products", label: "Components" }, { href: "/pc-builder", label: "PC Builder" }, { href: "/compare", label: "Compare" }, { href:"/cart",label:"Cart" }, {href:"/account",label:"Account"}];
 
 export function Navbar({commerceEnabled=false,user=null,theme="dark"}:{commerceEnabled?:boolean;user?:SessionUser|null;theme?:"light"|"dark"}) {
-  const navigation=[...links,{href:"/about",label:"About"},{href:"/assistant",label:"AI help"},...(user?[{href:"/account#saved-builds",label:"Saved builds"}]:[])];
+  const navigation=[...links,{href:"/about",label:"About"},{href:"/assistant",label:"AI help"},...(user?[{href:"/account#saved-builds",label:"Saved builds"}]:[{href:"/login",label:"Log in"},{href:"/register",label:"Register"}])];
   return (
     <header className="sticky top-0 z-40 border-b border-border glass border-x-0 border-t-0">
       <div className="page-container flex h-20 items-center justify-between gap-3">
         <Brand />
-        <nav aria-label="Main navigation" className="hidden items-center gap-4 xl:flex">
+        <nav aria-label="Main navigation" className="hidden items-center gap-3 xl:flex">
           {navigation.map((link) => <Link key={link.href} href={link.href} className="inline-flex min-h-11 items-center rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground">{link.label}</Link>)}
         </nav>
         <div className="flex items-center gap-0 sm:gap-2">
