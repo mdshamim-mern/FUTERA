@@ -8,7 +8,7 @@ Updated 23 October 2026. Checked means observed/tested, not merely requested. Th
 - [x] Ten original blog articles, list/detail routes and Terms implemented.
 - [x] Licensed attributed editorial photo acquired; model-specific images remain missing (ASSETS.md).
 - [ ] Run and record current lint/typecheck/test/build in both repos.
-- [ ] Run new 360/1440 light/dark public links-and-buttons tests and report exact coverage.
+- [x] Public links-and-buttons: 4 passed (2.3m); reference catalog: 3 passed (31.2s). Coverage and exclusions in LINK_BUTTON_REPORT.md.
 - [ ] Verify latest deployment and rerun mobile Lighthouse; previous scores are not this revision's measurements.
 - [ ] 80+ verified model catalog with three accurate photos each. Blocked on model-specific licensed photos and remaining spec research, per owner-invoked stop-on-missing-assets requirement.
 - [ ] Demo pricing/stock/review seed and six months of isolated demo orders; do not convert uncertain hardware specs into fabricated complete data.
@@ -21,3 +21,4 @@ Updated 23 October 2026. Checked means observed/tested, not merely requested. Th
 - [ ] Complete all-page interaction inventory, including guarded roles and forms. No exhaustive claim from the public subset.
 
 The reference catalog stays enabled during the blocked data migration so the live app does not silently claim working commerce. New pages and navigation fixes can ship independently.
+
