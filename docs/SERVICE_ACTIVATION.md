@@ -4,7 +4,7 @@ Only the project owner can complete account sign-in and declarations. Do not sen
 
 ## Atlas
 
-Atlas login is confirmed. The dedicated futera_app user has not been created; the owner must enter and submit its new credential. Limit readWrite to futera_live and configure an appropriate network policy. Set MONGODB_URI and MONGODB_DB together in backend Vercel secrets. The public deployment uses the reference catalog with checkout disabled.
+Atlas login is confirmed. The dedicated futera_app user has not been created; the owner must enter and submit its new credential. Limit readWrite to futera_demo and configure an appropriate network policy. Set MONGODB_URI and MONGODB_DB together in backend Vercel secrets. The public deployment uses the reference catalog with checkout disabled.
 
 ## Google OAuth
 
@@ -33,4 +33,3 @@ The owner supplied public contact details on 23 October 2026; these are centrali
 The owner approved 20 factual reference models with original diagrams. Real stock, commercial prices and image licenses are still required for a retail catalog. Never invent testimonials, reviews, purchases or sales statistics. Public demo admin access requires an isolated demonstration database and restricted permissions; never publish unrestricted production admin credentials.
 
 Location spelling reference: [IsDB-BISEW IDB Bhaban](https://www.isdb-bisew.org/idb-bhaban) confirms Agargaon, Sher-e-Bangla Nagar, Dhaka. This verifies the landmark location, not the owner's office occupancy.
-

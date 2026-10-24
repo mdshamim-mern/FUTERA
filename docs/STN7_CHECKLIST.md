@@ -22,3 +22,13 @@ Updated 23 October 2026. Checked means observed/tested, not merely requested. Th
 
 The reference catalog stays enabled during the blocked data migration so the live app does not silently claim working commerce. New pages and navigation fixes can ship independently.
 
+
+## 24 October 2026 continuation
+
+- Frontend lint/typecheck/build passed; 80 unit tests passed. Backend lint/typecheck/build passed; 167 tests passed.
+- Responsive catalog/gallery flow: 3 passed (360/768/1440). Initial two cold-start assertions failed while the loading skeleton was visible; waiting for the actual page heading fixed the test synchronization.
+- Public interaction inventory: 4 passed at 360/1440 in light/dark. This does not certify every authenticated/admin control.
+- Five licensed photographs added across Ryzen 9 7950X (three) and Crucial P3 Plus 2TB (two). Four sourced market price observations; these do not create inventory or purchase offers. Remaining model photos and prices are incomplete.
+- Atlas futera_demo: inserted 20 sourced products and 7 categories without overwriting records; created indexes. Actual API registration/account access returned 200, anonymous account 401, customer admin mutation 403, logout then account 401. Temporary verification users were removed.
+- Local AUTH_SECRET was generated, account configuration repaired and checkout kept disabled. Secrets were not committed. Vercel environment activation is not yet verified.
+- Both real Gemini modes returned 502. Model list works, but model availability/generation requires further diagnosis. OAuth, full commerce activation, 80-product expansion, demo credentials and exhaustive STN-7 completion remain pending.
