@@ -35,3 +35,19 @@ For EACH model below provide three distinct, accurate photographs (front/product
 
 The planned 80+ catalog additionally needs verified model selection and the same photo manifest for GPU, HDD, fans, monitors, keyboards, mice and UPS. Do not invent 60 model records simply to reach a count before specs and photos are ready.
 
+
+## Verified photography and market observations — 23 October 2026
+
+Ryzen 9 7950X now has three distinct licensed photographs. Full frames are retained: other processors in comparison photographs are identified in alt text. These are not retailer photographs. Converted to 960px WebP; no model substitution.
+
+- `public/images/products/amd-ryzen-9-7950x/package.webp`: 极客湾Geekerwan · resized / WebP; [source](https://commons.wikimedia.org/wiki/File:Ausf%C3%BChrlicher_Test_der_Ryzen_7000-Serie_(%E6%9E%81%E5%AE%A2%E6%B9%BEGeekerwan)_02.png); [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+- `public/images/products/amd-ryzen-9-7950x/processor-pair.webp`: 极客湾Geekerwan · resized / WebP; [source](https://commons.wikimedia.org/wiki/File:Ausf%C3%BChrlicher_Test_der_Ryzen_7000-Serie_(%E6%9E%81%E5%AE%A2%E6%B9%BEGeekerwan)_03.png); [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+- `public/images/products/amd-ryzen-9-7950x/comparison.webp`: 极客湾Geekerwan · resized / WebP; [source](https://commons.wikimedia.org/wiki/File:Ausf%C3%BChrlicher_Test_der_Ryzen_7000-Serie_(%E6%9E%81%E5%AE%A2%E6%B9%BEGeekerwan)_07.png); [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+
+Published single-item prices checked on 23 October 2026: Ryzen 5 7600X BDT 18,300; Ryzen 7 7700X BDT 23,300; Ryzen 9 7950X BDT 46,900. Sources are linked in each record. These retailer observations do not establish FUTERA stock or a purchase offer. Packaging photos may show retail boxes while quoted retailer listings specify tray variants.
+
+### Crucial P3 Plus 2TB — 24 October 2026
+
+Two distinct sides verified against the photographed CT2000P3PSSD8 / 2000GB label. Third distinct photograph is still missing; no duplicated crop is counted.
+- `public/images/products/crucial-p3-plus-2000gb/identification-label.webp` — PantheraLeo1359531 · resized / WebP; [source](https://commons.wikimedia.org/wiki/File:Crucial_CT20000P3PSSD8_20240302_002_OKcorr02_Kopie.jpg); [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- `public/images/products/crucial-p3-plus-2000gb/component-side.webp` — PantheraLeo1359531 · resized / WebP; [source](https://commons.wikimedia.org/wiki/File:Crucial_CT20000P3PSSD8_20240302_004_OK_corr02_Kopie.jpg); [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

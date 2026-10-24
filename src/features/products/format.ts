@@ -6,4 +6,4 @@ export const specLabel = (key: string) => labels[key] ?? key.replace(/([A-Z])/g,
 export const specValue = (value: unknown) => value === null || value === undefined ? "Unknown — not verified" : Array.isArray(value) ? value.join(", ") : typeof value === "boolean" ? value ? "Yes" : "No" : String(value);
 
 /** Reference records use zero storage sentinels, never a free-product offer. */
-export function displayProductPrice(product:{priceMinor:number;isReference?:boolean}) { return product.isReference ? "Price not supplied" : formatPrice(product.priceMinor); }
+export function displayProductPrice(product:{priceMinor:number;isReference?:boolean;marketPrice?:{amountMinor:number}}) { return product.marketPrice && product.isReference ? formatPrice(product.marketPrice.amountMinor) : product.isReference ? "Price not supplied" : formatPrice(product.priceMinor); }
