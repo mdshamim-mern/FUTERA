@@ -360,3 +360,12 @@ Both AGENTS.md policies now authorize an isolated demo store. Ten original blog 
 - Atlas futera_demo: inserted 20 sourced products and 7 categories without overwriting records; created indexes. Actual API registration/account access returned 200, anonymous account 401, customer admin mutation 403, logout then account 401. Temporary verification users were removed.
 - Local AUTH_SECRET was generated, account configuration repaired and checkout kept disabled. Secrets were not committed. Vercel environment activation is not yet verified.
 - Both real Gemini modes returned 502. Model list works, but model availability/generation requires further diagnosis. OAuth, full commerce activation, 80-product expansion, demo credentials and exhaustive STN-7 completion remain pending.
+
+## Production account activation — 2026-10-24
+- Owner saved AUTH_SECRET in Vercel. Enabled COMMERCE_ENABLED on frontend/backend; checkout remains disabled.
+- Backend deployment DVXHELLwcxVqBmrt9D82T34SB1ps and frontend EKAmstvQbsd4gXrGD5SAHRDig4Go are Ready.
+- Live API: health 200, registration 200/customer, authenticated account 200, customer admin mutation 403, logout 200, revoked session 401. Secure/HttpOnly/SameSite=Lax cookie verified. Temporary example.test account removed from futera_demo.
+- Live Google login exposed redirect_uri_mismatch. Corrected FUTERA OAuth client's redirect from backend root to https://futera-mdshamim.vercel.app/auth/google/callback; Google confirmed OAuth client saved. Full OAuth completion remains unverified pending propagation/retest.
+- Mobile Lighthouse 13.5.0, headless Chromium, default simulated mobile settings, live URLs, 2026-10-24: Home Performance 63 / Accessibility 100 / Best Practices 100 / SEO 100; Products 72 / 100 / 100 / 100. Performance target >=85 is not met. JSON evidence remains in ignored .artifacts/lighthouse-oct24-{home,products}.json.
+- AI structured application requests remain unverified/failed in prior real-provider checks; provider configuration alone is not proof of working AI.
+- OAuth retest now reaches the normal Google consent screen (redirect mismatch resolved). Final permission consent requested from owner; callback/session completion not yet claimed.
