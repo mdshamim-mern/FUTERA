@@ -51,3 +51,10 @@ Published single-item prices checked on 23 October 2026: Ryzen 5 7600X BDT 18,30
 Two distinct sides verified against the photographed CT2000P3PSSD8 / 2000GB label. Third distinct photograph is still missing; no duplicated crop is counted.
 - `public/images/products/crucial-p3-plus-2000gb/identification-label.webp` — PantheraLeo1359531 · resized / WebP; [source](https://commons.wikimedia.org/wiki/File:Crucial_CT20000P3PSSD8_20240302_002_OKcorr02_Kopie.jpg); [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 - `public/images/products/crucial-p3-plus-2000gb/component-side.webp` — PantheraLeo1359531 · resized / WebP; [source](https://commons.wikimedia.org/wiki/File:Crucial_CT20000P3PSSD8_20240302_004_OK_corr02_Kopie.jpg); [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+## 24 October 2026 enrichment
+- Ryzen 7 7700X uses the licensed processor-pair photo already documented above: 7700X is on the left and 7950X on the right. This is one correctly captioned shared comparison image, not three different views.
+- Ryzen 9 7900X price observation: BDT 36,000, https://www.startech.com.bd/amd-ryzen-9-7900x-processor , checked 2026-10-24.
+- Crucial P3 Plus 1TB price observation: BDT 6,900, https://www.startech.com.bd/crucial-p3-plus-1tb-nvme-ssd , checked 2026-10-24.
+- The downloaded Geekerwan 08 frame is a specification chart, not model photography, so it was rejected for product galleries. Memory PC candidates require more identification/license verification and were not installed.
+- Ryzen 9 7950X alone has been activated as explicitly marked demo inventory with three licensed frames, BDT 46,900 illustrative price and initial demo stock 12. Other model photos remain incomplete as listed above. Existing demo order verification has consumed inventory; activation reruns do not reset stock.

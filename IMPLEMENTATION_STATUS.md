@@ -370,3 +370,10 @@ Both AGENTS.md policies now authorize an isolated demo store. Ten original blog 
 - AI structured application requests remain unverified/failed in prior real-provider checks; provider configuration alone is not proof of working AI.
 - OAuth retest now reaches the normal Google consent screen (redirect mismatch resolved). Final permission consent requested from owner; callback/session completion not yet claimed.
 - OAuth completion verified live after owner consent: Google Continue redirected to /account displaying the authorized account; reload retained the authenticated account page. No extra scopes or admin role were granted. Screenshot evidence: ignored .artifacts/google-login-success.png. Previous pending OAuth statements above are historical and superseded by this result.
+
+## 24 October implementation and actual verification
+- Added isDemo product/order markers, strict licensed-photo/source-price activation checks, mixed-inventory rejection and idempotent demo activation.
+- Atlas futera_demo: actual customer cart → signed server quote → Confirmed/unpaid order passed, total 4,702,000 minor units; stock decremented once and quote replay returned the same order. Anonymous order request returned 404. Dedicated example.test demo identity only.
+- Customer-only demo login/autofill added with an explicit isolated-database env guard. No public unrestricted admin credentials.
+- Gemini 3.5 Flash-Lite returned real, Zod-validated support/recommendation answers in roughly 2–6 seconds. Live Vercel model change still requires account step-up verification; local results do not prove deployed AI.
+- Glass redesign: Login/Register, Navbar, social icons moved left in Footer, About, AI Help and Compare; public light/dark route/overflow assertions expanded. Catalog photo completeness, all-table pagination and full role-aware interaction inventory remain incomplete.

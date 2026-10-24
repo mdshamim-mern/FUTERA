@@ -6,7 +6,7 @@ export class ApiError extends Error {constructor(public status:number,message:st
 export async function api<T>(path:string,options:{method?:string;body?:unknown;mutate?:boolean}={}):Promise<T>{
  if(!path.startsWith("/v1/")||path.includes(".."))throw Error("Invalid API path");
  const jar=await cookies();
- const response=await fetch(new URL(path,env.API_BASE_URL),{method:options.method??"GET",cache:"no-store",headers:{"Content-Type":"application/json",Origin:new URL(env.APP_URL).origin,Cookie:jar.toString()},body:options.body===undefined?undefined:JSON.stringify(options.body),signal:AbortSignal.timeout(20000)});
+ const response=await fetch(new URL(path,env.API_BASE_URL),{method:options.method??"GET",cache:"no-store",headers:{"Content-Type":"application/json",Origin:new URL(env.APP_URL).origin,Cookie:jar.toString()},body:options.body===undefined?undefined:JSON.stringify(options.body),signal:AbortSignal.timeout(path==="/v1/ai/advice"?30000:20000)});
  if(options.mutate){for(const header of response.headers.getSetCookie()){
   const [pair,...attributes]=header.split(";");const index=pair.indexOf("=");const name=pair.slice(0,index);if(!["futera-session","futera-guest","futera-oauth"].includes(name))continue;
   const attrs=Object.fromEntries(attributes.map(a=>{const [k,...v]=a.trim().split("=");return [k.toLowerCase(),v.join("=")];}));

@@ -21,7 +21,7 @@ test("guest build merges at registration and COD creates an unpaid private order
   await page.getByRole("combobox",{name:"Division",exact:true}).selectOption({label:"Dhaka"});
   await page.getByRole("combobox",{name:"District",exact:true}).selectOption({index:1});await page.getByRole("combobox",{name:"Upazila",exact:true}).selectOption({index:1});
   await page.getByRole("textbox",{name:"Street / house"}).fill("SAMPLE address, no delivery");
-  await expect(page.getByRole("radio",{name:"bKash — coming soon"})).toBeDisabled();
+  await expect(page.getByRole("radio",{name:/bKash/})).toHaveCount(0);
   await page.getByRole("button",{name:"Review order",exact:true}).click();await expect(page.getByRole("heading",{name:"Review your order"})).toBeVisible();
   await page.getByRole("button",{name:"Confirm COD order"}).click();await expect(page.getByRole("heading",{name:"Order confirmed"})).toBeVisible();
   await expect(page.getByText("Cash on Delivery · Payment: unpaid")).toBeVisible();
@@ -65,3 +65,4 @@ test("admin edits a product and the storefront reflects it",async({page,browser}
  await storefront.reload();await expect(storefront.getByRole("heading",{name,exact:true})).toBeVisible();await guest.close();
  await page.goto("/admin?view=audit");await expect(page.getByRole("cell").filter({hasText:"Correct sample monitor title"}).first()).toBeVisible();
 });
+

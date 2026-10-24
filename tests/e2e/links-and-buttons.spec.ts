@@ -9,11 +9,12 @@ for(const theme of ["dark","light"] as const){
     page.on("console",message=>{if(message.type()==="error")consoleErrors.push(message.text());});
     page.on("requestfailed",req=>{if(!req.failure()?.errorText.includes("ERR_ABORTED"))failedRequests.push(`${req.url()}: ${req.failure()?.errorText}`);});
     const routes=new Set<string>();
-    for(const path of ["/","/blog","/terms","/contact","/guides","/support","/products"]){
+    for(const path of ["/","/blog","/terms","/contact","/guides","/support","/products","/login","/register","/about","/assistant","/compare"]){
       const response=await page.goto(path);expect(response?.status(),path).toBe(200);
-      await expect(page.getByRole("heading",{level:1})).toBeVisible();
+      await expect(page.getByRole("heading",{level:1})).toBeVisible({timeout:30000});
       await expect(page.locator("html")).toHaveAttribute("data-theme",theme);
       expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${path}: overflow`).toBe(true);
+      if(["/login","/about","/assistant","/compare"].includes(path))await page.screenshot({path:info.outputPath(`${path.slice(1)}-${theme}.png`),fullPage:true});
       for(const href of await page.locator('a[href^="/"]').evaluateAll(links=>links.map(link=>link.getAttribute("href")!)))routes.add(href);
       for(const link of await page.locator('nav[aria-label="Social links"] a, nav[aria-label="Contact social channels"] a').all()){
         expect(new URL((await link.getAttribute("href"))!).protocol).toBe("https:");
