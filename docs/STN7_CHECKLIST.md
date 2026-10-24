@@ -32,3 +32,7 @@ The reference catalog stays enabled during the blocked data migration so the liv
 - Atlas futera_demo: inserted 20 sourced products and 7 categories without overwriting records; created indexes. Actual API registration/account access returned 200, anonymous account 401, customer admin mutation 403, logout then account 401. Temporary verification users were removed.
 - Local AUTH_SECRET was generated, account configuration repaired and checkout kept disabled. Secrets were not committed. Vercel environment activation is not yet verified.
 - Both real Gemini modes returned 502. Model list works, but model availability/generation requires further diagnosis. OAuth, full commerce activation, 80-product expansion, demo credentials and exhaustive STN-7 completion remain pending.
+
+## 24 October checkpoint
+Verified: responsive glass Login/Register/Navbar/Footer/About/AI/Compare redesign deployed; two-repo lint/typecheck/test/build; 80 frontend + 170 backend unit/integration tests; bounded public 360/1440 dark/light audit and 4 commerce/admin browser tests. Google live login was verified previously. Actual Atlas demo order transaction was verified locally against futera_demo.
+Pending: complete licensed model galleries/prices/categories, live checkout and demo autofill activation, live Gemini feature verification after Vercel step-up/model change, complete dashboard pagination audit and constrained admin demo credentials. Public checkout remains disabled until the documented runtime configuration is activated and live-tested.

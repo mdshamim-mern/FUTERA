@@ -4,7 +4,7 @@ const commerce=process.argv.includes("--commerce");
 const reference=process.argv.includes("--reference");
 const port=commerce?3100:reference?3102:3101,apiPort=commerce?4100:reference?4102:4101;
 const backend=fileURLToPath(new URL("../../FUTERA-server/",import.meta.url));
-const env={...process.env,APP_URL:`http://127.0.0.1:${port}`,API_BASE_URL:`http://127.0.0.1:${apiPort}`,COMMERCE_ENABLED:String(commerce),CATALOG_SOURCE:reference?"reference":"sample",PORT:String(apiPort)};
+const env={...process.env,CHECKOUT_ENABLED:String(commerce),DEMO_LOGIN_ENABLED:"false",GOOGLE_CLIENT_ID:"",GOOGLE_CLIENT_SECRET:"",GEMINI_API_KEY:"",GEMINI_MODEL:"",APP_URL:`http://127.0.0.1:${port}`,API_BASE_URL:`http://127.0.0.1:${apiPort}`,COMMERCE_ENABLED:String(commerce),CATALOG_SOURCE:reference?"reference":"sample",PORT:String(apiPort)};
 const api=spawn(process.execPath,[commerce?"scripts/e2e-server.mjs":"dist/index.js"],{cwd:backend,env,stdio:"inherit",windowsHide:true});
 let web,stopping=false;
 function stop(code=0){if(stopping)return;stopping=true;web?.kill();api.kill();process.exit(typeof code==="number"?code:0);}
