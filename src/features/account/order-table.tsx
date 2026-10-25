@@ -1,0 +1,4 @@
+import Link from "next/link";
+import type {Order} from "@/types/api";
+import {formatPrice} from "@/features/products/format";
+export function OrderTable({orders}:{orders:Order[]}){return <div className="max-w-full overflow-x-auto rounded-xl border" tabIndex={0} aria-label="Your orders table"><table className="w-full text-left text-sm"><thead><tr>{["Order","Date","Status","Booked amount"].map(label=><th className="p-3" key={label}>{label}</th>)}</tr></thead><tbody>{orders.map(order=><tr key={order._id} className="border-t"><td className="min-w-40 p-3"><Link href={`/orders/${order._id}`} className="break-all text-primary">{order._id}</Link></td><td className="whitespace-nowrap p-3">{order.createdAt.slice(0,10)}</td><td className="p-3">{order.status}</td><td className="whitespace-nowrap p-3">{formatPrice(order.totalMinor)}</td></tr>)}</tbody></table>{!orders.length&&<p className="p-4 text-sm text-muted-foreground">No orders yet.</p>}</div>;}
