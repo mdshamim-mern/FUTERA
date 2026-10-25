@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description: "Meet FUTERA: a new era of PC hardware and compatibility-first custom builds for Bangladesh. Research components with linked manufacturer sources.",
   icons: { icon: "/futera-mark.svg", apple: "/futera-mark.svg" },
 };
-export const viewport: Viewport = { themeColor: "#07090D" };
+export const viewport: Viewport = { themeColor: "#192a3a" };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const theme=(await cookies()).get("futera-theme")?.value==="light"?"light":"dark";
