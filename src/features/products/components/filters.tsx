@@ -16,6 +16,6 @@ export function Filters({ query, categories, brands }: { query: CatalogQuery; ca
     <label className="block text-sm">Memory generation<select className={`${control} mt-2`} name="ramType" defaultValue={query.ramType}><option value="">Any memory</option><option>DDR4</option><option>DDR5</option></select></label>
     <label className="block text-sm">Sort by<select className={`${control} mt-2`} name="sort" defaultValue={query.sort}><option value="featured">Featured first</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name: A to Z</option></select></label>
     <Button type="submit" className="w-full">Apply filters</Button><Link href="/products" className="flex min-h-11 items-center justify-center rounded text-sm text-muted-foreground">Reset filters</Link>
-    <p className="text-xs leading-5 text-muted-foreground">Spec filters only include products with a matching specification. SAMPLE prices and availability are fictional.</p>
+    <p className="text-xs leading-5 text-muted-foreground">Spec filters only include products with a matching specification. Demo prices and stock are educational. Price notes distinguish sourced references from illustrative estimates.</p>
   </form>;
 }
