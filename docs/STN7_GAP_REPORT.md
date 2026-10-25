@@ -1,3 +1,5 @@
+> Historical setup/audit record. The current state is documented in STN7_CHECKLIST.md, SUBMISSION.md and the latest dated section of VERIFICATION.md. Earlier claims that Atlas, demo login, checkout or AI are disabled are superseded.
+
 # STN-7 requirement audit — 23 October 2026
 
 Production frontend: https://futera-mdshamim.vercel.app

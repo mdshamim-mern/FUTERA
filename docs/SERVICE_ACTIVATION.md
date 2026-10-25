@@ -1,3 +1,5 @@
+> Historical setup/audit record. The current state is documented in STN7_CHECKLIST.md, SUBMISSION.md and the latest dated section of VERIFICATION.md. Earlier claims that Atlas, demo login, checkout or AI are disabled are superseded.
+
 # Service activation handoff
 
 Only the project owner can complete account sign-in and declarations. Do not send passwords, OTPs, database URIs, OAuth client secrets, or API keys in chat or commit them.
