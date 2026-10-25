@@ -4,6 +4,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { env } from "@/lib/env";
 import "./globals.css";
+import "./catalog.css";
 import {cookies} from "next/headers";
 import {currentUser} from "@/server/guards";
 
