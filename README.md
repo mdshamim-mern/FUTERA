@@ -201,3 +201,7 @@ Original Blog list/detail routes (ten articles), Terms, attributed Unsplash edit
 ## Demo storefront update — 24 October 2026
 Demo store — prices, stock and orders are illustrative. Login/Register, Navbar, icon-only social footer, About, AI Help and Compare now share the responsive glass workspace design. Provider-backed recommendations and support are validated against supplied catalog IDs. Google sign-in has been verified on the live deployment.
 Real model photography and source prices are still incomplete; credited images must correctly depict their models. Shared customer auto-fill is available only when the backend explicitly enables its isolated demo account. No unrestricted admin credentials are published.
+
+## Active demo deployment — 25 October 2026
+
+The earlier reference-only deployment notes above are historical. Atlas is connected; demo COD checkout and both Gemini modes are active and verified live. Public customer and read-only administrator autofill buttons are available on Login. Current catalog: 20 photographed models, eight sourced price references and twelve illustrative demo amounts, all with illustrative inventory. No actual payment or physical fulfillment. See [submission details](docs/SUBMISSION.md), [media provenance](PRODUCT_MEDIA_SOURCES.md), and [verification](docs/VERIFICATION.md).

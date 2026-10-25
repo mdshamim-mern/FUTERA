@@ -10,5 +10,8 @@ export default defineConfig({
     setupFiles: ["./tests/setup.ts"],
     include: ["tests/unit/**/*.test.{ts,tsx}"],
     clearMocks: true,
+    maxWorkers: 1,
+    pool: "threads",
+    fileParallelism: false,
   },
 });

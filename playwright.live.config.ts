@@ -1,0 +1,2 @@
+import {defineConfig,devices} from "@playwright/test";
+export default defineConfig({testDir:"./tests/live",workers:1,fullyParallel:false,retries:0,timeout:180000,reporter:[["list"],["html",{outputFolder:"playwright-report/live",open:"never"}]],outputDir:"test-results/live",use:{baseURL:"https://futera-mdshamim.vercel.app",trace:"retain-on-failure"},projects:[{name:"live-mobile",use:{...devices["Desktop Chrome"],viewport:{width:360,height:800}}},{name:"live-desktop",use:{...devices["Desktop Chrome"],viewport:{width:1440,height:1000}}}]});

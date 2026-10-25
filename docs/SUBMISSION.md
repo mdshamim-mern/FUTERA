@@ -1,24 +1,31 @@
 # FUTERA submission
 
-Updated: 23 October 2026.
+- [Live website](https://futera-mdshamim.vercel.app)
+- [Live API](https://futera-server.vercel.app)
+- [Frontend repository](https://github.com/mdshamim-mern/FUTERA)
+- [Backend repository](https://github.com/mdshamim-mern/FUTERA-server)
 
-- Live frontend: https://futera-mdshamim.vercel.app
-- Live backend: https://futera-server.vercel.app
-- Frontend repository: https://github.com/mdshamim-mern/FUTERA
-- Backend repository: https://github.com/mdshamim-mern/FUTERA-server
-- Verification: [VERIFICATION.md](VERIFICATION.md).
-- Catalog sources: [CATALOG_PROVENANCE.md](CATALOG_PROVENANCE.md).
+## Demo access
 
-## Delivered
+Use the Login page buttons to fill credentials, then press Log in.
 
-Separate deployed Next.js frontend and authoritative Express API; 20 manufacturer-sourced hardware reference records; searchable/filterable/paginated catalog; comparison and compatibility builder; original diagrams and building guides; owner-provided contact/social information; responsive light/dark interface. Accounts, role guards, cart, COD order transactions, admin, Google OIDC and two Gemini modes are implemented and tested in isolation.
+| Role | Email | Public demo password | Scope |
+| --- | --- | --- | --- |
+| Customer | customer@futera.example.test | Futera-Demo-Customer-2026! | Shared educational cart, builds and demo orders |
+| Admin | admin@futera.example.test | Futera-Demo-ReadOnly-2026! | Read-only catalog/config and demo-account records; no store mutations or private-customer data |
 
-The owner explicitly chose an informational catalog without unverified selling claims. Reference products have no advertised retail price or stock and cannot be ordered. Diagrams are original category illustrations, not manufacturer photography. No invented testimonials, reviews or sales statistics are published.
+Only use invented details in these shared demonstration accounts. Owner administrator accounts remain private and retain the normal protected mutation workflow.
 
-## Remaining activation work
+## Verified activation — 25 October 2026
 
-Atlas login is confirmed, but the dedicated application database user/password is not created. Backend database/session secrets are not configured. Live accounts, public demo credentials, private dashboards and checkout are not verified or enabled.
+MongoDB Atlas is connected to the isolated futera_demo database. Live demo customer login, signed quote, COD confirmation and idempotent retry passed. The order remains unpaid; no money is collected and no goods are delivered. Live anonymous order access returned 404.
 
-Google project FUTERA (futera-512418) exists; consent policy approval and OAuth web-client creation remain pending. Gemini login/key/model setup for the owner-designated account remains pending. Live Google login and both live AI responses have not been verified. See [SERVICE_ACTIVATION.md](SERVICE_ACTIVATION.md).
+Both deployed Gemini modes returned actual provider answers. Google login was verified after owner consent on 24 October. Never include private data in AI prompts.
 
-Do not publish unrestricted production administrator credentials. Demo access needs an isolated database and explicit restrictions. Retail checkout additionally requires verified inventory, prices and fulfillment rules; the supplied contact location does not establish a pickup service.
+All current 20 catalog models have product photography, positive demo prices and illustrative inventory. Eight prices use retailer observations; twelve are explicitly illustrative BDT amounts. Three SSD capacities use captioned P3 Plus family photography. This is not a verified retail stock or price feed. See [media and pricing notes](../PRODUCT_MEDIA_SOURCES.md).
+
+Dashboard lists now have server-side filters and bounded pagination. The public demo administrator cannot perform any of the eight mutation operations; this is enforced server-side and tested live.
+
+## Scope and evidence
+
+The catalog currently covers 20 models in seven populated categories. It is not an exhaustive hardware catalog. No invented reviews, testimonials, paid sales or successful online payments are claimed. See [VERIFICATION.md](VERIFICATION.md) for actual checks and remaining limits. Historical reports describe earlier stages and are superseded by this dated activation report.
