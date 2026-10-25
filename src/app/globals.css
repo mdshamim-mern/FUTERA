@@ -3,21 +3,23 @@
 
 :root {
   color-scheme: dark;
-  --bg: #192a3a;
-  --ambient-one: rgba(85,171,188,.025);
-  --ambient-two: rgba(123,150,185,.03);
-  --glass-fill: rgba(36,55,73,.96);
+  --bg: #20364a;
+  --ambient-one: rgba(27,189,213,.045);
+  --ambient-two: rgba(96,157,214,.04);
+  --glass-fill: rgba(43,68,90,.95);
+  --glass-edge: rgba(220,243,255,.25);
+  --primary-end: #18b8d3;
   --background: var(--bg);
-  --foreground: #f0f4f8;
+  --foreground: #f6faff;
   --surface: rgba(191,216,237,.06);
   --surface-strong: rgba(191,216,237,.11);
   --border: rgba(191,216,237,.27);
-  --accent: #6bd6e4;
+  --accent: #43dff0;
   --accent-2: #91a9c9;
   --danger: #ff8c9a;
   --warning: #f6c76b;
   --success: #78dfae;
-  --card: rgba(38,56,74,.97);
+  --card: rgba(44,69,92,.95);
   --card-foreground: var(--foreground);
   --popover: #293e51;
   --popover-foreground: var(--foreground);
@@ -26,7 +28,7 @@
   --secondary: #334c61;
   --secondary-foreground: var(--foreground);
   --muted: #293e51;
-  --muted-foreground: #c3d0dc;
+  --muted-foreground: #d2deea;
   --accent-foreground: #122c36;
   --destructive: var(--danger);
   --input: #7f97ad;
@@ -36,19 +38,21 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg: #e2ebf2;
-  --ambient-one: rgba(85,171,188,.025);
-  --ambient-two: rgba(123,150,185,.035);
-  --glass-fill: rgba(237,243,248,.96);
+  --bg: #eaf1f6;
+  --ambient-one: rgba(27,189,213,.045);
+  --ambient-two: rgba(96,157,214,.045);
+  --glass-fill: rgba(246,251,255,.94);
+  --glass-edge: rgba(255,255,255,.95);
+  --primary-end: #04536e;
   --foreground: #1d3345;
   --surface: rgba(223,232,240,.24);
   --surface-strong: rgba(154,183,206,.22);
   --border: rgba(59,91,117,.28);
-  --accent: #086b7c;
+  --accent: #006e85;
   --danger: #ad1935;
   --warning: #805300;
   --success: #126c44;
-  --card: rgba(237,243,248,.97);
+  --card: rgba(248,252,255,.94);
   --popover: #eaf2f8;
   --primary-foreground: #ffffff;
   --secondary: #d1e1ec;
@@ -224,3 +228,12 @@ a.home-panel:hover{border-color:color-mix(in srgb,var(--primary) 45%,var(--borde
 .hero-workspace{background:var(--card);backdrop-filter:none}
 .hero-workspace-bottom{background:var(--card);box-shadow:none}
 .home-panel,.catalog-card,.resource-panel,.detail-section{box-shadow:0 5px 16px #183b5709,inset 0 1px 0 var(--surface-strong)}
+
+/* Brighter accents and precise reflections add energy without a fog layer. */
+[data-slot="button"][data-variant="default"],.resource-button:not(.resource-button-secondary){background:linear-gradient(120deg,var(--primary),var(--primary-end));box-shadow:inset 0 1px 0 var(--glass-edge),0 4px 12px #087a961a}
+.hero-workspace{background:linear-gradient(135deg,var(--surface-strong),transparent 48%),var(--card);border-color:color-mix(in srgb,var(--primary) 36%,var(--border));box-shadow:inset 0 1px 0 var(--glass-edge),0 12px 30px #123e5b12}
+.hero-workspace-top{background:color-mix(in srgb,var(--primary) 6%,var(--card))}
+.hero-workspace-bottom{border-color:color-mix(in srgb,var(--primary) 25%,var(--border));box-shadow:inset 0 1px 0 var(--glass-edge)}
+.hero-badge{background:color-mix(in srgb,var(--primary) 8%,var(--background));border-color:color-mix(in srgb,var(--primary) 40%,var(--border))}
+.nav-routes,.brand-mark{box-shadow:inset 0 1px 0 var(--glass-edge),0 3px 12px #183b5709}
+.nav-routes .nav-link[aria-current=page]{background:color-mix(in srgb,var(--primary) 19%,var(--card))}
