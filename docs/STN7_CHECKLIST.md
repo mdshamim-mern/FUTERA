@@ -3,7 +3,7 @@
 Updated 25 October 2026. Scope is the current educational demo, not a real inventory/fulfillment business.
 
 - [x] Light/dark shared design system, responsive layouts and visible focus/reduced-motion handling.
-- [x] Sticky responsive navbar with 7 logged-out / 6 logged-in links and profile dropdown.
+- [x] Sticky responsive navbar with five public primary routes, one logged-out Log in button, Explore dropdown and six signed-in primary routes plus profile menu.
 - [x] Home rebuilt around real catalog data; no empty sample featured builds or fictional-brand labels.
 - [x] More than 10 meaningful Home sections, real-ID editable starter plans and working category CTAs, including GPU.
 - [x] Four desktop listing cards per row; consistent card layout, source-backed prices, images and loading skeletons.

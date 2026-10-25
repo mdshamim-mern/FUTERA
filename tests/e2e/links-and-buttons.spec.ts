@@ -34,8 +34,7 @@ for(const theme of ["dark","light"] as const){
     await page.goto("/");
     const themeButton=page.getByRole("button",{name:`Switch to ${theme==="dark"?"light":"dark"} mode`});
     await themeButton.click();await expect(page.locator("html")).toHaveAttribute("data-theme",theme==="dark"?"light":"dark");
-    await page.getByRole("button",{name:"Profile menu"}).click();
-    await page.getByRole("menuitem",{name:"Log in",exact:true}).click();await expect(page).toHaveURL(/\/login$/);
+    await page.getByRole("banner").getByRole("link",{name:"Log in",exact:true}).click();await expect(page).toHaveURL(/\/login$/);
     await page.getByRole("link",{name:"Create an account",exact:true}).click();await expect(page).toHaveURL(/\/register$/);
     await page.goto("/");await page.getByRole("button",{name:"Cart information"}).click();
     await expect(page.getByRole("dialog")).toBeVisible();await page.getByRole("button",{name:"Close",exact:true}).click();await expect(page.getByRole("dialog")).toHaveCount(0);
