@@ -5,6 +5,6 @@ export const addressSchema=z.object({name:z.string().trim().min(2).max(80),phone
   if(!locations.find(d=>d.id===a.division)?.districts.find(d=>d.id===a.district)?.upazilas.some(u=>u.id===a.upazila))ctx.addIssue({code:"custom",path:["upazila"],message:"Choose a valid division, district and upazila."});
 });
 export type Address=z.infer<typeof addressSchema>;
-export const checkoutSchema=z.object({address:addressSchema,method:z.enum(["home","pickup"]),coupon:z.string().trim().toUpperCase().max(30).regex(/^[A-Z0-9-]*$/),payment:z.literal("COD")});
+export const checkoutSchema=z.object({address:addressSchema,method:z.enum(["home","pickup"]),coupon:z.string().trim().toUpperCase().max(30).regex(/^[A-Z0-9-]*$/),payment:z.enum(["COD","TEST_BKASH","TEST_NAGAD","TEST_CARD"]),testOutcome:z.enum(["approved","declined","cancelled"]).optional()});
 export type CheckoutInput=z.infer<typeof checkoutSchema>;
-export function checkoutForm(form:FormData){return checkoutSchema.parse({address:Object.fromEntries(["name","phone","division","district","upazila","street"].map(k=>[k,form.get(k)])),method:form.get("method"),coupon:form.get("coupon")??"",payment:form.get("payment")});}
+export function checkoutForm(form:FormData){return checkoutSchema.parse({address:Object.fromEntries(["name","phone","division","district","upazila","street"].map(k=>[k,form.get(k)])),method:form.get("method"),coupon:form.get("coupon")??"",payment:form.get("payment"),...(form.get("payment")!=="COD"?{testOutcome:form.get("testOutcome")??"approved"}:{})});}

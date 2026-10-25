@@ -28,7 +28,7 @@
   --destructive: var(--danger);
   --input: #556171;
   --ring: var(--accent);
-  --radius: .75rem;
+  --radius: 1rem;
 }
 
 :root[data-theme="light"] {
@@ -83,7 +83,8 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
 }
 
 @layer base {

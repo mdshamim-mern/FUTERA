@@ -1,1 +1,1 @@
-export const paymentMethods=[{id:"COD",label:"Cash on Delivery",enabled:true},{id:"bkash",label:"bKash — coming soon",enabled:false},{id:"nagad",label:"Nagad — coming soon",enabled:false},{id:"card",label:"Card — coming soon",enabled:false}] as const;
+export const paymentMethods=[{id:"COD",label:"Cash on Delivery",enabled:true},{id:"TEST_BKASH",label:"bKash-style test flow — no money",enabled:true},{id:"TEST_NAGAD",label:"Nagad-style test flow — no money",enabled:true},{id:"TEST_CARD",label:"Card-style test flow — no money",enabled:true}] as const;
