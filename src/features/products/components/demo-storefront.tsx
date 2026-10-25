@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {ArrowUpRight,Cpu,Layers3,ShieldCheck,CircuitBoard,MemoryStick,HardDrive,Gpu,Plug,Box,Fan,Monitor,Keyboard,Mouse,BatteryCharging} from "lucide-react";
 import type {Product} from "@/features/products/schema";
 import {categoryLabels} from "@/features/products/schema";
 import {ProductCard} from "./product-card";
@@ -6,14 +7,16 @@ import {UseCaseTabs} from "./use-case-tabs";
 import {createStarter} from "@/features/builder/starter";
 import {encodeBuild} from "@/features/builder/schema";
 import {formatPrice} from "@/features/products/format";
-const section="page-container py-12 md:py-16";
-const card="rounded-2xl border border-border bg-card p-6";
+const categoryIcons={cpu:Cpu,motherboard:CircuitBoard,ram:MemoryStick,ssd:HardDrive,hdd:HardDrive,gpu:Gpu,psu:Plug,case:Box,"cpu-cooler":Fan,"case-fan":Fan,monitor:Monitor,keyboard:Keyboard,mouse:Mouse,ups:BatteryCharging};
+function CategoryIcon({category}:{category:Product["category"]}){const Icon=categoryIcons[category];return <Icon className="size-4" aria-hidden="true"/>;}
+const section="home-section page-container py-12 md:py-20";
+const card="home-panel rounded-2xl border border-border bg-card p-6";
 export function DemoStorefront({products,brands}:{products:Product[];brands:string[]}){
  const categories=[...new Set(products.map(p=>p.category))];
  const plans=[{name:"Everyday foundation",use:"Office",budget:80000},{name:"Creative workspace",use:"Editing",budget:120000},{name:"Performance foundation",use:"Gaming",budget:200000}].map(plan=>({...plan,build:createStarter(products,plan.budget,plan.use)}));
  return <>
- <section aria-label="FUTERA principles" className="border-y"><div className={`${section} grid gap-5 md:grid-cols-3`}>{["Manufacturer specifications, linked","Compatibility checks with clear explanations","Secure accounts and saved configurations"].map(t=><p key={t} className="text-sm text-muted-foreground">{t}</p>)}</div></section>
- <section className={section}><p className="eyebrow">CHOOSE YOUR FOUNDATION</p><h2 className="mt-4 font-display text-3xl">Explore by component.</h2><p className="mt-4 text-muted-foreground">{products.length} current models across {categories.length} categories. Every product includes photography and a specification source.</p><div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{categories.map(c=><Link prefetch={false} key={c} href={`/products?category=${c}`} className={`${card} flex min-h-24 items-center justify-between`}>{categoryLabels[c]} <span aria-hidden="true">↗</span></Link>)}</div></section>
+ <section aria-label="FUTERA principles" className="home-principles border-b"><div className="page-container grid gap-5 py-6 md:grid-cols-3">{[[Cpu,"Know your components","Source-linked specifications."],[ShieldCheck,"Understand what fits","Checks with clear explanations."],[Layers3,"Keep your next idea","Saved builds and shared configurations."]].map(([Icon,title,note])=>{const Mark=Icon as typeof Cpu;return <div key={String(title)} className="home-principle"><span><Mark className="size-5" aria-hidden="true"/></span><div><p className="text-sm font-medium">{String(title)}</p><p className="mt-1 text-xs leading-5 text-muted-foreground">{String(note)}</p></div></div>;})}</div></section>
+ <section className={section}><p className="eyebrow">CHOOSE YOUR FOUNDATION</p><h2 className="mt-4 font-display text-3xl">Explore by component.</h2><p className="mt-4 text-muted-foreground">{products.length} current models across {categories.length} categories. Every product includes photography and a specification source.</p><div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{categories.map(c=><Link prefetch={false} key={c} href={`/products?category=${c}`} className={`${card} flex min-h-24 items-center justify-between`}><span className="flex items-center gap-3"><span className="studio-icon"><CategoryIcon category={c}/></span>{categoryLabels[c]}</span><ArrowUpRight className="size-4 shrink-0 text-primary" aria-hidden="true"/></Link>)}</div></section>
  <section className={section}><h2 className="font-display text-3xl">Make your budget useful.</h2><p className="mt-4 text-sm leading-7 text-muted-foreground">Filter individual components by price. These limits are not complete-PC quotes; delivery and compatibility need a separate review.</p><div className="mt-7 grid gap-4 sm:grid-cols-3">{[10000,25000,50000].map(amount=><Link prefetch={false} key={amount} href={`/products?max=${amount}&sort=price-asc`} className={card}><span className="text-sm text-muted-foreground">Components under</span><span className="mt-3 block text-2xl font-semibold">{formatPrice(amount*100)} ↗</span></Link>)}</div></section>
  <section className={section}><h2 className="mb-7 font-display text-3xl">Start with your workload.</h2><UseCaseTabs hasGraphicsCards={categories.includes("gpu")}/></section>
  <section className="border-y bg-card/30"><div className={section}><div className="flex flex-wrap items-center justify-between gap-4"><h2 className="font-display text-3xl">The component edit.</h2><Link prefetch={false} href="/products" className="min-h-11 py-3 text-primary">Explore the catalog ↗</Link></div><div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{products.slice(0,4).map(p=><ProductCard key={p.slug} product={p}/>)}</div></div></section>

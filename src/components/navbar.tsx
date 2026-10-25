@@ -1,42 +1,24 @@
 "use client";
-
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import { ArrowUpRight, Menu, ShoppingBag, UserRound } from "lucide-react";
+import {ArrowUpRight,ChevronDown,Menu,ShoppingBag,UserRound} from "lucide-react";
 import {ThemeToggle} from "@/components/theme-toggle";
 import {DropdownMenu,DropdownMenuTrigger,DropdownMenuContent,DropdownMenuItem} from "@/components/ui/dropdown-menu";
 import {logout} from "@/features/account/actions";
 import type {SessionUser} from "@/types/api";
-import { Brand } from "@/components/brand";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-
-const links = [{ href: "/products", label: "Components" }, { href: "/pc-builder", label: "PC Builder" }, { href: "/compare", label: "Compare" }];
-
-export function Navbar({commerceEnabled=false,user=null,theme="dark"}:{commerceEnabled?:boolean;user?:SessionUser|null;theme?:"light"|"dark"}) {
-  const pathname=usePathname();
-  const navigation=[...links,{href:"/about",label:"About"},{href:"/assistant",label:"AI help"},...(user?[{href:"/account#saved-builds",label:"Saved builds"}]:[{href:"/login",label:"Log in"},{href:"/register",label:"Register"}])];
-  return (
-    <header className="nav-shell sticky top-0 z-40 border-b border-border">
-      <div className="page-container flex h-[76px] items-center justify-between gap-3">
-        <Brand />
-        <nav aria-label="Main navigation" className="hidden items-center gap-1 xl:flex">
-          {navigation.map((link) => <Link prefetch={false} key={link.href} href={link.href} aria-current={pathname===link.href?"page":undefined} className="nav-link inline-flex min-h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground">{link.label}</Link>)}
-        </nav>
-        <div className="flex items-center gap-0 sm:gap-2">
-          <ThemeToggle initialTheme={theme}/>
-          <DropdownMenu><DropdownMenuTrigger asChild><Button variant="ghost" size="icon" aria-label="Profile menu"><UserRound aria-hidden="true"/></Button></DropdownMenuTrigger><DropdownMenuContent align="end">{user?<><DropdownMenuItem asChild><Link prefetch={false} href="/account#profile">Profile</Link></DropdownMenuItem><DropdownMenuItem asChild><Link prefetch={false} href="/account">My account</Link></DropdownMenuItem>{user.role==="admin"&&<DropdownMenuItem asChild><Link prefetch={false} href="/admin">Administration</Link></DropdownMenuItem>}<DropdownMenuItem onSelect={()=>void logout()}>Logout</DropdownMenuItem></>:<><DropdownMenuItem asChild><Link prefetch={false} href="/login">Log in</Link></DropdownMenuItem><DropdownMenuItem asChild><Link prefetch={false} href="/register">Register</Link></DropdownMenuItem></>}</DropdownMenuContent></DropdownMenu>
-          <Dialog>
-            <DialogTrigger asChild><Button variant="ghost" size="icon" aria-label="Cart information"><ShoppingBag className="size-5" aria-hidden="true"/></Button></DialogTrigger>
-            <DialogContent className="glass"><DialogHeader><DialogTitle>Your next build starts here</DialogTitle><DialogDescription>{commerceEnabled?"Review your cart, delivery and unpaid COD order at checkout.":"Checkout is not available. Explore your saved cart preview."}</DialogDescription></DialogHeader><p className="text-sm leading-6 text-muted-foreground">Market prices are sourced references. Stock is demonstrative; orders are unpaid practice orders. Saved selections do not reserve inventory.</p><Button asChild><Link prefetch={false} href={commerceEnabled?"/cart":"/selection?mode=cart"}>{commerceEnabled?"Open cart":"View cart preview"}</Link></Button></DialogContent>
-          </Dialog>
-          <Sheet>
-            <SheetTrigger asChild><Button variant="ghost" size="icon" className="xl:hidden" aria-label="Open menu"><Menu className="size-5" aria-hidden="true"/></Button></SheetTrigger>
-            <SheetContent className="glass"><SheetHeader><SheetTitle>Explore FUTERA</SheetTitle><SheetDescription>Build the future of your desk.</SheetDescription></SheetHeader><nav aria-label="Mobile navigation" className="flex flex-col gap-2 px-4">{navigation.map((link) => <SheetClose asChild key={link.href}><Link prefetch={false} href={link.href} className="flex min-h-12 items-center justify-between rounded-lg px-3 text-sm hover:bg-secondary">{link.label}<ArrowUpRight className="size-4" aria-hidden="true"/></Link></SheetClose>)}</nav><p className="px-7 pt-6 text-xs text-muted-foreground">Build the future of your desk · Bangladesh</p></SheetContent>
-          </Sheet>
-        </div>
-      </div>
-    </header>
-  );
+import {Brand} from "@/components/brand";
+import {Button} from "@/components/ui/button";
+import {Dialog,DialogContent,DialogDescription,DialogHeader,DialogTitle,DialogTrigger} from "@/components/ui/dialog";
+import {Sheet,SheetClose,SheetContent,SheetDescription,SheetHeader,SheetTitle,SheetTrigger} from "@/components/ui/sheet";
+const links=[{href:"/products",label:"Components"},{href:"/pc-builder",label:"PC Builder"},{href:"/compare",label:"Compare"},{href:"/about",label:"About"},{href:"/assistant",label:"AI help"}];
+const resources=[{href:"/guides",label:"Building guides"},{href:"/blog",label:"Journal"},{href:"/support",label:"Help & support"},{href:"/contact",label:"Contact"}];
+export function Navbar({commerceEnabled=false,user=null,theme="dark"}:{commerceEnabled?:boolean;user?:SessionUser|null;theme?:"light"|"dark"}){
+ const pathname=usePathname();const navigation=[...links,...(user?[{href:"/account#saved-builds",label:"Saved builds"}]:[])];
+ return <header className="nav-shell sticky top-0 z-40"><div className="site-nav-inner page-container"><Brand/>
+  <nav aria-label="Main navigation" className="hidden items-center gap-1 xl:flex">{navigation.map(link=><Link prefetch={false} key={link.href} href={link.href} aria-current={pathname===link.href?"page":undefined} className="nav-link">{link.label}</Link>)}<DropdownMenu><DropdownMenuTrigger asChild><Button variant="ghost" className="nav-link gap-1" aria-label="Explore menu">Explore <ChevronDown className="size-3" aria-hidden="true"/></Button></DropdownMenuTrigger><DropdownMenuContent align="center">{resources.map(link=><DropdownMenuItem asChild key={link.href}><Link prefetch={false} href={link.href}>{link.label}</Link></DropdownMenuItem>)}</DropdownMenuContent></DropdownMenu></nav>
+  <div className="nav-tools"><span className="theme-tool"><ThemeToggle initialTheme={theme}/></span>
+   <Dialog><DialogTrigger asChild><Button variant="ghost" size="icon" className="nav-icon" aria-label="Cart information"><ShoppingBag className="size-5" aria-hidden="true"/></Button></DialogTrigger><DialogContent className="glass"><DialogHeader><DialogTitle>Your next build starts here</DialogTitle><DialogDescription>{commerceEnabled?"Review your cart, delivery and unpaid practice order at checkout.":"Checkout is not available. Explore your saved cart preview."}</DialogDescription></DialogHeader><p className="text-sm leading-6 text-muted-foreground">Market prices are sourced references. Stock is demonstrative; orders are unpaid practice orders. Saved selections do not reserve inventory.</p><Button asChild><Link prefetch={false} href={commerceEnabled?"/cart":"/selection?mode=cart"}>{commerceEnabled?"Open cart":"View cart preview"}</Link></Button></DialogContent></Dialog>
+   {user?<DropdownMenu><DropdownMenuTrigger asChild><Button variant="ghost" size="icon" className="nav-icon" aria-label="Profile menu"><UserRound aria-hidden="true"/></Button></DropdownMenuTrigger><DropdownMenuContent align="end"><DropdownMenuItem asChild><Link prefetch={false} href="/account#profile">Profile</Link></DropdownMenuItem><DropdownMenuItem asChild><Link prefetch={false} href="/account">My account</Link></DropdownMenuItem>{user.role==="admin"&&<DropdownMenuItem asChild><Link prefetch={false} href="/admin">Administration</Link></DropdownMenuItem>}<DropdownMenuItem onSelect={()=>void logout()}>Logout</DropdownMenuItem></DropdownMenuContent></DropdownMenu>:<Button asChild className="nav-login"><Link prefetch={false} href="/login">Log in <ArrowUpRight className="hidden size-4 sm:block" aria-hidden="true"/></Link></Button>}
+   <Sheet><SheetTrigger asChild><Button variant="ghost" size="icon" className="nav-icon xl:hidden" aria-label="Open menu"><Menu className="size-5" aria-hidden="true"/></Button></SheetTrigger><SheetContent className="glass"><SheetHeader><SheetTitle>Explore FUTERA</SheetTitle><SheetDescription>Your next workspace starts here.</SheetDescription></SheetHeader><nav aria-label="Mobile navigation" className="flex flex-col gap-1 px-4">{navigation.map(link=><SheetClose asChild key={link.href}><Link prefetch={false} href={link.href} aria-current={pathname===link.href?"page":undefined} className="mobile-nav-link">{link.label}<ArrowUpRight className="size-4" aria-hidden="true"/></Link></SheetClose>)}{!user&&<SheetClose asChild><Link prefetch={false} href="/login" className="mobile-nav-link text-primary">Log in <ArrowUpRight className="size-4" aria-hidden="true"/></Link></SheetClose>}</nav><div className="mx-7 mt-6 border-t pt-4"><p className="eyebrow mb-3">KEEP EXPLORING</p>{resources.map(link=><SheetClose asChild key={link.href}><Link prefetch={false} href={link.href} className="flex min-h-11 items-center text-sm text-muted-foreground">{link.label}</Link></SheetClose>)}</div></SheetContent></Sheet>
+  </div></div></header>;
 }
