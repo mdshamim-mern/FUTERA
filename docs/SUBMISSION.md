@@ -34,3 +34,6 @@ The catalog currently covers 20 models in 14 populated categories. It is not an 
 ## Follow-up: assessment and test payments
 
 See [assessment access and local payment tests](ASSESSMENT_AND_PAYMENTS.md). Public demo administrators can create/edit/delete isolated product copies without changing store records. Test payment outcomes are local simulators, never real charges or paid orders. Real retail stock/fulfillment still requires the owner's supplier arrangement.
+
+
+Follow-up checks completed: frontend 84 tests; backend 184 tests; sourced responsive suite 13 passed/3 intentional skips; assessment pending-lock regression 4 passed; COD/admin 4 passed; public theme/navigation 4 passed; live payment flows 2 passed and live assessment flows 2 passed in separate runs. All 74 linked public destinations passed; the gallery-only migration verified 56 deployed media URLs and preserved prices/stock. See the latest VERIFICATION report for scope and limitations.

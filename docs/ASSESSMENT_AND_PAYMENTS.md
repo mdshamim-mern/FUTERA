@@ -2,7 +2,7 @@
 
 The public administrator stays read-only for storefront products, customers, orders, roles and settings. After using the Admin demo login button, open **Administration → Editable assessment** (`/admin/assessment`). Create a workspace copy from an actual sourced product, edit its name/description/price/stock, filter the list, then delete or reset it. Changes persist in the separate MongoDB `assessmentworkspaces` collection; they never update the storefront. The workspace belongs to the authenticated administrator. People sharing the public account also share that account's workspace. Never enter private information.
 
-The workspace has a 20-product limit, five-result pagination, server validation, revision conflict protection, bounded change history, pending/error/success feedback and destructive-action confirmation. Every read and mutation checks the current enabled admin role. The owner still uses the ordinary protected product management workflow.
+The workspace has a 20-product limit, five-result pagination, server validation, revision conflict protection, bounded change history, workspace-wide mutation locking, pending/error/success feedback and destructive-action confirmation. Every read and mutation checks the current enabled admin role. The owner still uses the ordinary protected product management workflow.
 
 ## Local payment tests
 

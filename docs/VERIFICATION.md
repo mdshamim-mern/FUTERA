@@ -1,4 +1,44 @@
-# FUTERA release verification
+# FUTERA follow-up verification
+
+25 October 2026. This section supersedes the baseline below for the changed features. Counts below describe separate actual runs, not a count of unique tests across all reruns.
+
+| Check | Actual result |
+| --- | --- |
+| Frontend lint/typecheck/build | Exit 0 |
+| Frontend unit tests | 84 passed, 9 files; serial fork workers |
+| Backend lint/typecheck/build | Exit 0 |
+| Backend tests | 184 passed, 15 files; one worker |
+| Sourced-catalog responsive suite | 13 passed, 3 intentional duplicate short-height skips; 3.0m |
+| Assessment pending-lock regression | 4 passed at 360/768/1024/1440; 1.7m |
+| COD/private order/owner-admin regression | 4 passed at 360/1440; 2.0m |
+| Public link/button interactions | 4 passed: light/dark at 360/1440; 2.0m |
+| Deployed local payment flows | 2 passed: mobile and desktop; 1.1m and 1.0m |
+| Deployed assessment CRUD | 2 passed: mobile and desktop; 1.1m total |
+| Production public route crawl | 74 destinations, zero failures |
+| Gallery migration | 20 models, 56 deployed media URLs verified; minimum 2 views per model; prices/stock preserved |
+
+## What changed and why
+
+- Added a separate persisted assessment product workspace. Public demo administrators can create a sourced copy, edit, search/page, delete and reset it. Store mutations, private customer records and other administrators' workspaces stay protected. Revision conflicts prevent silent overwrites; history and storage are bounded.
+- Added workspace-wide pending feedback and disabled mutation controls after live testing exposed overlapping save/delete requests. Persistence tests now await the server response, reload and verify the saved value.
+- Fixed checkout fields being reset after review. Address, payment method and scenario remain selected through decline/cancel retries.
+- Added explicitly local bKash-style/Nagad-style/Card-style test scenarios at the owner's request. Approval stays unpaid; decline/cancel changes no inventory/cart/order. These are not real provider sandboxes or gateway responses. Server guards reject test payments for non-demo inventory/databases.
+- Completed every model's gallery with credited supplementary media: 56 views comprise 53 photographs (including labelled family images), one support image and two original specification diagrams. No duplicate or incorrect-model photos were used to inflate galleries.
+- Corrected sourced-price disclosure across navigation, footer, auth, About, Terms, listing, filters and picker. Card/glass container/control radii share the 16px token; pills and edge-to-edge overlays retain intentional geometry.
+
+## Failed runs and resolution
+
+Initial parallel local test worker/MongoDB startups timed out; serial runs passed. The first browser payment run found an ambiguous alert selector and checkout reset behavior; both were corrected and all four responsive payment cases passed. A live trace recorded ERR_NETWORK_IO_SUSPENDED on the test host, while direct demo API login/create/read/delete returned 200. Production waits were aligned to 30 seconds. Subsequent payment tests passed in both viewports; assessment save/delete overlap was fixed and the persisted CRUD flows then passed separately in both viewports. Three exact product copies left by the failed browser runs were removed, without changing other workspace/store/customer data.
+
+## Practical limits
+
+The owner requested test payments only. No bank/mobile-wallet charge, paid status or real shipment was created. Sourced retailer prices do not establish FUTERA-owned stock or a supplier/fulfillment agreement. Real retail launch still needs the owner's verified stock/supplier terms, approved sale prices, delivery/returns/warranty policy and appropriate merchant service activation. Existing practice orders are not sales.
+
+The interaction matrix is in [INTERACTION_AUDIT.md](INTERACTION_AUDIT.md); public/demo access instructions are in [ASSESSMENT_AND_PAYMENTS.md](ASSESSMENT_AND_PAYMENTS.md). This is broad regression coverage, not an exhaustive certification of every device, network failure or external social-service login wall. No secrets are tracked. Previous Lighthouse results below are the preceding measured baseline; Lighthouse was not rerun for this follow-up.
+
+---
+
+# Previous release baseline
 
 25 October 2026, Bangladesh time. Actual observed results for the current sourced-catalog release; earlier reports are historical.
 

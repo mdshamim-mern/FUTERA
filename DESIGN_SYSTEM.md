@@ -87,4 +87,4 @@ Blog uses a restrained glass split header with attributed editorial photography,
 
 ## Shared container radius
 
-Container utilities rounded-lg, rounded-xl and rounded-2xl resolve to the shared 16px radius. Inputs retain smaller control radii, and circular icon controls remain circular. Listing cards retain the same reserved image/title/description/spec regions and equal-height grid layout.
+Container utilities rounded-lg, rounded-xl and rounded-2xl resolve to the shared 16px radius. Custom glass panels, inputs, buttons and standard control utilities also share this token. Pills/circular controls and edge-to-edge mobile overlays retain their intentional geometry. Listing cards retain the same reserved image/title/description/spec regions and equal-height grid layout.

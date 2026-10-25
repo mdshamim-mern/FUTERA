@@ -10,7 +10,7 @@ Updated 25 October 2026.
 - Customer chart/table and admin dynamic aggregates; filtered server pagination, editable profile and account/cart action feedback.
 - Live unpaid demo COD, saved builds, wishlist, addresses, sharing and printable quotes. Both Gemini features verified in live UI.
 - Responsive glass design, light/dark tokens, short-phone hero sizing, focus/reduced-motion support and additional content/contact/legal pages.
-- Latest checks: frontend lint/typecheck/build pass and 84 tests; backend lint/typecheck/build pass and 176 tests; sourced-catalog browser 4 pass, short-phone 1 pass, commerce/admin 8 pass, final live mobile 3 pass; 74 live route destinations and 56 media URLs without failures.
+- Latest checks: frontend lint/typecheck/build pass and 84 tests; backend lint/typecheck/build pass and 184 tests; sourced-catalog browser 13 pass / 3 intentional skips, short-phone 1 pass, commerce/admin 8 pass, final live mobile 3 pass; 74 live route destinations and 56 media URLs without failures.
 - Lighthouse mobile: Home 87/100/100/100; Products 90/100/100/100. Separate light-mode accessibility: 100/100.
 
 See [verification](docs/VERIFICATION.md), [submission](docs/SUBMISSION.md) and [product provenance](PRODUCT_MEDIA_SOURCES.md). Prices are observations, stock and orders are demonstrative, no money is collected and no physical fulfillment is promised.
@@ -19,3 +19,6 @@ See [verification](docs/VERIFICATION.md), [submission](docs/SUBMISSION.md) and [
 ## Follow-up: assessment and test payments
 
 See [assessment access and local payment tests](docs/ASSESSMENT_AND_PAYMENTS.md). Public demo administrators can create/edit/delete isolated product copies without changing store records. Test payment outcomes are local simulators, never real charges or paid orders. Real retail stock/fulfillment still requires the owner's supplier arrangement.
+
+
+Follow-up checks completed: frontend 84 tests; backend 184 tests; sourced responsive suite 13 passed/3 intentional skips; assessment pending-lock regression 4 passed; COD/admin 4 passed; public theme/navigation 4 passed; live payment flows 2 passed and live assessment flows 2 passed in separate runs. All 74 linked public destinations passed; the gallery-only migration verified 56 deployed media URLs and preserved prices/stock. See the latest VERIFICATION report for scope and limitations.
