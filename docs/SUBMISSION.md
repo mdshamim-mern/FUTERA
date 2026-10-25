@@ -22,10 +22,15 @@ MongoDB Atlas is connected to the isolated futera_demo database. Live demo custo
 
 Both deployed Gemini modes returned actual provider answers. Google login was verified after owner consent on 24 October. Never include private data in AI prompts.
 
-The 20 active catalog models cover all 14 categories, with 49 credited photographs, source-backed prices and educational demo inventory. No active price is illustrative. Ten unverified older records are archived with order history preserved. Multiple photographs are provided where available; six source listings have one photograph. This is not a verified retail stock or price feed. See [media and pricing notes](../PRODUCT_MEDIA_SOURCES.md).
+The 20 active catalog models cover all 14 categories, with 56 credited media views, source-backed prices and educational demo inventory. No active price is illustrative. Ten unverified older records are archived with order history preserved. Each model has at least two media views; these include labelled supplementary support media and diagrams. This is not a verified retail stock or price feed. See [media and pricing notes](../PRODUCT_MEDIA_SOURCES.md).
 
 Dashboard lists now have server-side filters and bounded pagination. The public demo administrator cannot perform any of the eight mutation operations; this is enforced server-side and tested live.
 
 ## Scope and evidence
 
 The catalog currently covers 20 models in 14 populated categories. It is not an exhaustive hardware catalog. No invented reviews, testimonials, paid sales or successful online payments are claimed. See [VERIFICATION.md](VERIFICATION.md) for actual checks and remaining limits. Historical reports describe earlier stages and are superseded by this dated activation report.
+
+
+## Follow-up: assessment and test payments
+
+See [assessment access and local payment tests](ASSESSMENT_AND_PAYMENTS.md). Public demo administrators can create/edit/delete isolated product copies without changing store records. Test payment outcomes are local simulators, never real charges or paid orders. Real retail stock/fulfillment still requires the owner's supplier arrangement.

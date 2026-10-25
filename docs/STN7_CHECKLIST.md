@@ -16,8 +16,13 @@ Updated 25 October 2026. Scope is the current educational demo, not a real inven
 - [x] About, Contact, Blog, Guides, Support, Privacy and Terms with owner-supplied contact/social links.
 - [x] Two real Gemini modes: component recommendations and PC-building support.
 - [x] Separate frontend/backend repositories and live deployments; public restricted demo credentials documented.
-- [x] Current sourced catalog: 20 active models / 14 categories / 49 photos / zero illustrative prices. Ten unverified models archived with history preserved.
+- [x] Current sourced catalog: 20 active models / 14 categories / 56 media views / zero illustrative prices. Ten unverified models archived with history preserved.
 
 ## Verification and limits
 
-Read VERIFICATION.md for actual test counts and measured Lighthouse results. Historical audits are not the current checklist. Six models have a single source photograph; galleries are never padded with duplicate or wrong-model pictures. Public demo admin is read-only; normal owner-admin mutations are exercised in isolated tests. Prices are observations, all inventory is demonstrative, online payment success is never simulated, and no physical delivery is claimed. Facebook login is not implemented; Google satisfies the social-login option.
+Read VERIFICATION.md for actual test counts and measured Lighthouse results. Historical audits are not the current checklist. Every model has at least two media views. These include labelled family/support images and two original specification diagrams; no duplicate or wrong-model photos are added. Public demo admin is read-only; normal owner-admin mutations are exercised in isolated tests. Prices are observations, all inventory is demonstrative, online payment success is never simulated, and no physical delivery is claimed. Facebook login is not implemented; Google satisfies the social-login option.
+
+
+## Follow-up: assessment and test payments
+
+See [assessment access and local payment tests](ASSESSMENT_AND_PAYMENTS.md). Public demo administrators can create/edit/delete isolated product copies without changing store records. Test payment outcomes are local simulators, never real charges or paid orders. Real retail stock/fulfillment still requires the owner's supplier arrangement.

@@ -11,7 +11,7 @@ A Bangladesh-focused PC research and configuration application with separate Nex
 
 ## Current application
 
-The active catalog contains 20 real models across all 14 component categories. Every active price is backed by a dated retailer observation; none is an invented placeholder amount. Product galleries contain 49 credited photographs in total. Six source listings have one image; other models have multiple distinct views. Unknown specifications remain unknown.
+The active catalog contains 20 real models across all 14 component categories. Every active price is backed by a dated retailer observation; none is an invented placeholder amount. Product galleries contain 56 credited media views in total. Six source listings have one image; other models have multiple distinct views. Unknown specifications remain unknown.
 
 Home includes meaningful sections for categories, budgets, use cases, current components, editable starter configurations, manufacturers, building workflow, guides/AI help, FAQs and a next-step CTA. Starter configurations use actual catalog IDs and display the real subtotal, over-budget notices and compatibility issues.
 
@@ -43,3 +43,8 @@ Browser fixtures use ephemeral MongoDB databases, explicit test environment isol
 The owner approved archiving models without verified prices/images. The backend `npm run demo:curate` command is limited to non-production NODE_ENV plus the isolated futera_demo database. It creates a local before-snapshot, uses a transaction, preserves existing stock and order history, and archives records rather than deleting them. Media must be deployed and verified first.
 
 Older audit documents describe earlier stages. The current dated verification and submission documents supersede old activation-blocked statements. No claim is made that automated checks prove every possible state, external social service, or production retail operation.
+
+
+## Follow-up: assessment and test payments
+
+See [assessment access and local payment tests](docs/ASSESSMENT_AND_PAYMENTS.md). Public demo administrators can create/edit/delete isolated product copies without changing store records. Test payment outcomes are local simulators, never real charges or paid orders. Real retail stock/fulfillment still requires the owner's supplier arrangement.

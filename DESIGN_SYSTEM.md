@@ -83,3 +83,8 @@ Public contact details are centralized in src/lib/contact.ts. Seven original cat
 
 ## 23 October 2026: editorial design
 Blog uses a restrained glass split header with attributed editorial photography, consistent bordered article cards and a readable detail layout with sticky contents on desktop. Terms uses the same heading, border/radius and spacing system. No extra animation package was added. Product photography remains a separate provenance requirement.
+
+
+## Shared container radius
+
+Container utilities rounded-lg, rounded-xl and rounded-2xl resolve to the shared 16px radius. Inputs retain smaller control radii, and circular icon controls remain circular. Listing cards retain the same reserved image/title/description/spec regions and equal-height grid layout.

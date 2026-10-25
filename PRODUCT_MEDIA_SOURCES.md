@@ -1,14 +1,14 @@
 # Current catalog provenance
 
-Reviewed 25 October 2026. All 20 active model records have positive source-backed price references and real product photographs; no illustrative price is used in the active catalog. Prices are dated observations, not guaranteed retailer offers or FUTERA selling prices. Inventory and unpaid checkout remain an educational demonstration.
+Reviewed 25 October 2026. All 20 active models have dated, source-backed reference prices and a real primary photograph. Prices do not establish FUTERA sale offers or stock. The catalog now has 56 media views: 53 photographs (including labelled family views), one installation-support image and two original specification diagrams. Every model has at least two media views; not every view is a distinct hardware photograph.
 
-| Model | Category | Referenced BDT price | Photos | Price source |
+| Model | Category | Referenced BDT price | Media views | Price source |
 | --- | --- | ---: | ---: | --- |
-| AMD Ryzen 5 7600X | cpu | ৳17,000 | 1 | [Price reference](https://www.startech.com.bd/amd-ryzen-5-7600x-processor) |
-| AMD Ryzen 7 7700X | cpu | ৳23,000 | 1 | [Price reference](https://www.startech.com.bd/amd-ryzen-7-7700x-processor) |
-| AMD Ryzen 9 7900X | cpu | ৳36,000 | 1 | [Price reference](https://www.startech.com.bd/amd-ryzen-9-7900x-processor) |
+| AMD Ryzen 5 7600X | cpu | ৳17,000 | 2 | [Price reference](https://www.startech.com.bd/amd-ryzen-5-7600x-processor) |
+| AMD Ryzen 7 7700X | cpu | ৳23,000 | 2 | [Price reference](https://www.startech.com.bd/amd-ryzen-7-7700x-processor) |
+| AMD Ryzen 9 7900X | cpu | ৳36,000 | 2 | [Price reference](https://www.startech.com.bd/amd-ryzen-9-7900x-processor) |
 | AMD Ryzen 9 7950X | cpu | ৳46,900 | 3 | [Price reference](https://www.startech.com.bd/amd-ryzen-9-7950x-processor) |
-| Crucial P3 Plus 1TB | ssd | ৳6,900 | 1 | [Price reference](https://www.startech.com.bd/crucial-p3-plus-1tb-nvme-ssd) |
+| Crucial P3 Plus 1TB | ssd | ৳6,900 | 2 | [Price reference](https://www.startech.com.bd/crucial-p3-plus-1tb-nvme-ssd) |
 | Crucial P3 Plus 2TB | ssd | ৳15,500 | 2 | [Price reference](https://www.binarylogic.com.bd/crucial-p3-plus-2tb-pcie-gen-4-x4-m2-2280-ssd-ct2000p3pssd8) |
 | MSI B650 GAMING PLUS WIFI | motherboard | ৳22,500 | 4 | [Price reference](https://www.startech.com.bd/msi-b650-gaming-plus-wifi-motherboard) |
 | MSI B650M GAMING PLUS WIFI | motherboard | ৳20,999 | 4 | [Price reference](https://www.startech.com.bd/msi-b650m-gaming-plus-wifi-motherboard) |
@@ -18,18 +18,24 @@ Reviewed 25 October 2026. All 20 active model records have positive source-backe
 | Seagate BarraCuda 2TB ST2000DM008 | hdd | ৳19,000 | 2 | [Price reference](https://www.startech.com.bd/seagate-barracuda-2tb-7200rpm-hdd) |
 | MSI MAG FORGE 321R AIRFLOW | case | ৳7,700 | 4 | [Price reference](https://www.startech.com.bd/msi-mag-forge-321r-airflow-gaming-case) |
 | ADATA 8GB DDR5-5600 CL46 | ram | ৳16,800 | 3 | [Price reference](https://www.startech.com.bd/adata-8gb-ddr5-5600mhz-desktop-ram) |
-| Power Guard PG 650VA CS | ups | ৳3,650 | 1 | [Price reference](https://www.startech.com.bd/power-guard-pg-650va-cs-offline-ups) |
+| Power Guard PG 650VA CS | ups | ৳3,650 | 2 | [Price reference](https://www.startech.com.bd/power-guard-pg-650va-cs-offline-ups) |
 | ARCTIC F12 120mm | case-fan | ৳900 | 2 | [Price reference](https://www.startech.com.bd/arctic-f12-casing-fan) |
-| Fantech GO K211 Bangla | keyboard | ৳400 | 1 | [Price reference](https://www.startech.com.bd/fantech-go-k211-bangla-keyboard) |
+| Fantech GO K211 Bangla | keyboard | ৳400 | 3 | [Price reference](https://www.startech.com.bd/fantech-go-k211-bangla-keyboard) |
 | Logitech G102 LIGHTSYNC Black | mouse | ৳1,875 | 3 | [Price reference](https://www.startech.com.bd/logitech-g102-lightsync-gaming-mouse) |
 | MSI PRO MP225 E12L 22-inch 120Hz | monitor | ৳10,800 | 4 | [Price reference](https://www.startech.com.bd/msi-pro-mp225-e12l-22-inch-fhd-monitor) |
 | Gigabyte RTX 3050 WINDFORCE OC V2 6GB | gpu | ৳39,000 | 4 | [Price reference](https://www.startech.com.bd/gigabyte-geforce-rtx-3050-windforce-oc-v2-6gb-graphics-card) |
 
-## Photography
+## Supplementary media
 
-Gallery captions retain source links and credits. Manufacturer/distributor media remains its owners' copyrighted material; attribution is not a Creative Commons licence claim. Previously acquired Wikimedia media retains its actual CC licence. Multiple distinct photographs are shown where available; one-photo source listings are not padded with duplicate or incorrect model images.
+- Ryzen 7600X and 7700X: alternate official AMD package views.
+- Fantech GO K211: family side view and packaging from the linked Bangla listing; captions explicitly warn regional key legends can differ.
+- Crucial P3 Plus 1TB: family installation-support image, explicitly not another hardware angle.
+- Ryzen 7900X and Power Guard PG 650VA CS: original FUTERA specification diagrams based on linked documentation, explicitly not photographs.
+- A purported UPS source photo with a different chassis was rejected. Galleries are not padded with duplicate or wrong-model photos.
 
-The Gigabyte RTX 3050's 191mm length and no-external-power-connector declaration come from [Gigabyte specifications](https://www.gigabyte.com/Graphics-Card/GV-N3050WF2OCV2-6GD/sp). The retailer's conflicting 8-pin claim was not imported; unverified board power remains unknown.
+## Rights and accuracy
+
+Credits/source links identify provenance, not a Creative Commons licence grant. Manufacturer/retailer material remains its owners' copyright. Previously acquired Wikimedia images retain their actual licence links. Original diagrams are project-authored. The Gigabyte GPU connector declaration follows [Gigabyte](https://www.gigabyte.com/Graphics-Card/GV-N3050WF2OCV2-6GD/sp); its unverified board power stays unknown.
 
 ## Archived records
 
