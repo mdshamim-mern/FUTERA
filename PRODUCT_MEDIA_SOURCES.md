@@ -1,26 +1,36 @@
-# Product media and demo pricing
+# Current catalog provenance
 
-Updated 2026-10-25. The current 20-model catalog uses real product photographs. Manufacturer/distributor images remain their owners’ copyrighted media; attribution is not a claim of a Creative Commons licence. Existing Wikimedia assets retain their stated CC licences. This is an educational demonstration, not a retail offer.
+Reviewed 25 October 2026. All 20 active model records have positive source-backed price references and real product photographs; no illustrative price is used in the active catalog. Prices are dated observations, not guaranteed retailer offers or FUTERA selling prices. Inventory and unpaid checkout remain an educational demonstration.
 
-Crucial P3 Plus 500GB, 1TB and 4TB use a clearly captioned family photograph; capacity is specified in the product specifications. RM750 photography shows the white 2021 edition. Pop Air photography shows the RGB Black TG edition.
+| Model | Category | Referenced BDT price | Photos | Price source |
+| --- | --- | ---: | ---: | --- |
+| AMD Ryzen 5 7600X | cpu | ৳17,000 | 1 | [Price reference](https://www.startech.com.bd/amd-ryzen-5-7600x-processor) |
+| AMD Ryzen 7 7700X | cpu | ৳23,000 | 1 | [Price reference](https://www.startech.com.bd/amd-ryzen-7-7700x-processor) |
+| AMD Ryzen 9 7900X | cpu | ৳36,000 | 1 | [Price reference](https://www.startech.com.bd/amd-ryzen-9-7900x-processor) |
+| AMD Ryzen 9 7950X | cpu | ৳46,900 | 3 | [Price reference](https://www.startech.com.bd/amd-ryzen-9-7950x-processor) |
+| Crucial P3 Plus 1TB | ssd | ৳6,900 | 1 | [Price reference](https://www.startech.com.bd/crucial-p3-plus-1tb-nvme-ssd) |
+| Crucial P3 Plus 2TB | ssd | ৳15,500 | 2 | [Price reference](https://www.binarylogic.com.bd/crucial-p3-plus-2tb-pcie-gen-4-x4-m2-2280-ssd-ct2000p3pssd8) |
+| MSI B650 GAMING PLUS WIFI | motherboard | ৳22,500 | 4 | [Price reference](https://www.startech.com.bd/msi-b650-gaming-plus-wifi-motherboard) |
+| MSI B650M GAMING PLUS WIFI | motherboard | ৳20,999 | 4 | [Price reference](https://www.startech.com.bd/msi-b650m-gaming-plus-wifi-motherboard) |
+| Noctua NH-U12S | cpu-cooler | ৳5,500 | 2 | [Price reference](https://vibegaming.com.bd/product/noctua-nh-u12s-premium-cpu-cooler-with-1-x-nf-f12-120mm-fan/) |
+| Noctua NH-D15S | cpu-cooler | ৳16,000 | 2 | [Price reference](https://pcbstore.com.bd/brand/noctua) |
+| Corsair CX650 650W Bronze (CP-9020278) | psu | ৳6,400 | 4 | [Price reference](https://www.startech.com.bd/corsair-cx-series-cx650-650w-80-plus-bronze-power-supply) |
+| Seagate BarraCuda 2TB ST2000DM008 | hdd | ৳19,000 | 2 | [Price reference](https://www.startech.com.bd/seagate-barracuda-2tb-7200rpm-hdd) |
+| MSI MAG FORGE 321R AIRFLOW | case | ৳7,700 | 4 | [Price reference](https://www.startech.com.bd/msi-mag-forge-321r-airflow-gaming-case) |
+| ADATA 8GB DDR5-5600 CL46 | ram | ৳16,800 | 3 | [Price reference](https://www.startech.com.bd/adata-8gb-ddr5-5600mhz-desktop-ram) |
+| Power Guard PG 650VA CS | ups | ৳3,650 | 1 | [Price reference](https://www.startech.com.bd/power-guard-pg-650va-cs-offline-ups) |
+| ARCTIC F12 120mm | case-fan | ৳900 | 2 | [Price reference](https://www.startech.com.bd/arctic-f12-casing-fan) |
+| Fantech GO K211 Bangla | keyboard | ৳400 | 1 | [Price reference](https://www.startech.com.bd/fantech-go-k211-bangla-keyboard) |
+| Logitech G102 LIGHTSYNC Black | mouse | ৳1,875 | 3 | [Price reference](https://www.startech.com.bd/logitech-g102-lightsync-gaming-mouse) |
+| MSI PRO MP225 E12L 22-inch 120Hz | monitor | ৳10,800 | 4 | [Price reference](https://www.startech.com.bd/msi-pro-mp225-e12l-22-inch-fhd-monitor) |
+| Gigabyte RTX 3050 WINDFORCE OC V2 6GB | gpu | ৳39,000 | 4 | [Price reference](https://www.startech.com.bd/gigabyte-geforce-rtx-3050-windforce-oc-v2-6gb-graphics-card) |
 
-Eight prices are inspired by linked Bangladesh retail observations; twelve are explicitly illustrative demo amounts, not verified market prices. Inventory is illustrative.
+## Photography
 
-- **msi-b650m-gaming-plus-wifi**: [source](https://www.startech.com.bd/msi-b650m-gaming-plus-wifi-motherboard); Product media via Star Tech.
-- **amd-ryzen-5-7600x**: [source](https://www.startech.com.bd/amd-ryzen-5-7600x-processor); Product media via Star Tech.
-- **amd-ryzen-7-7700x**: [source](https://www.startech.com.bd/amd-ryzen-7-7700x-processor); Product media via Star Tech.
-- **msi-b650-gaming-plus-wifi**: [source](https://www.startech.com.bd/msi-b650-gaming-plus-wifi-motherboard); Product media via Star Tech.
-- **crucial-p3-plus-500gb**: [source](https://www.startech.com.bd/crucial-p3-plus-1tb-nvme-ssd); Crucial family media via Star Tech.
-- **crucial-p3-plus-4000gb**: [source](https://www.startech.com.bd/crucial-p3-plus-1tb-nvme-ssd); Crucial family media via Star Tech.
-- **crucial-p3-plus-1000gb**: [source](https://www.startech.com.bd/crucial-p3-plus-1tb-nvme-ssd); Crucial family media via Star Tech.
-- **amd-ryzen-9-7900x**: [source](https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-9-7900x.html); AMD product media.
-- **corsair-rm850-2021**: [source](https://www.corsair.com/us/en/p/psu/cp-9020235-na/rm-series-rm850-850-watt-80-plus-gold-fully-modular-atx-psu-cp-9020235-na); Corsair product media.
-- **kf552c40bbk2-32**: [source](https://www.airdriecomputer.com/collections/desktop-memory-ram/products/kingston-fury-beast-32gb-2x16gb-ddr5-5200mt-s-desktop-memory-kf552c40bbk2-32); Kingston product media via Airdrie Computer.
-- **corsair-rm750-2021**: [source](https://www.corsair.com/us/en/p/psu/cp-9020231-na/rm-series-rm750-750-watt-80-plus-gold-fully-modular-atx-psu-cp-9020231-na); Corsair product media.
-- **corsair-rm650-2021**: [source](https://www.corsair.com/us/en/p/psu/cp-9020233-na/rm-series-rm650-650-watt-80-plus-gold-fully-modular-atx-psu-cp-9020233-na); Corsair product media.
-- **kf556c40bbk2-32**: [source](https://www.jib.co.th/web/product/readProduct/51146); Kingston product media via JIB.
-- **kvr48u40bd8-32**: [source](https://esaitech.com/products/kingston-kvr48u40bd8-32-32gb-value-ddr5-memory-module); Kingston product media via Saitech.
-- **fractal-pop-silent**: [source](https://www.fractal-design.com/products/cases/pop/pop-silent/black-solid/); Fractal Design product media.
-- **fractal-pop-air**: [source](https://www.fractal-design.com/products/cases/pop/pop-air/black-tg-clear/); Fractal Design product media.
-- **noctua-nh-d15s**: [source](https://cdn.noctua.at/media/noctua_nh_d15s_infosheet_cn.pdf?download=true); Noctua product media; cropped from information sheet.
-- **noctua-nh-u12s**: [source](https://cdn.noctua.at/media/noctua_nh_u12s_infosheet_en_web.pdf); Noctua product media; cropped from information sheet.
+Gallery captions retain source links and credits. Manufacturer/distributor media remains its owners' copyrighted material; attribution is not a Creative Commons licence claim. Previously acquired Wikimedia media retains its actual CC licence. Multiple distinct photographs are shown where available; one-photo source listings are not padded with duplicate or incorrect model images.
+
+The Gigabyte RTX 3050's 191mm length and no-external-power-connector declaration come from [Gigabyte specifications](https://www.gigabyte.com/Graphics-Card/GV-N3050WF2OCV2-6GD/sp). The retailer's conflicting 8-pin claim was not imported; unverified board power remains unknown.
+
+## Archived records
+
+The owner authorized archiving models without verified prices/images. These ten records remain stored with their stock and old order snapshots preserved: crucial-p3-plus-500gb, crucial-p3-plus-4000gb, corsair-rm650-2021, corsair-rm750-2021, corsair-rm850-2021, kf552c40bbk2-32, kf556c40bbk2-32, kvr48u40bd8-32, fractal-pop-air, fractal-pop-silent. The transactional migration creates an ignored local before-snapshot for recovery and never deletes order history. Archived parts are safely omitted with an availability warning when restoring older configurations.

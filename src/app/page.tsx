@@ -11,7 +11,7 @@ import { StorefrontSections } from "@/features/products/components/storefront-se
 export const dynamic = "force-dynamic";
 export default function Home() {
   return (
-    <main id="main-content" tabIndex={-1}>
+    <main id="main-content" tabIndex={-1} className="home-page">
       <section className="relative border-b border-border" aria-labelledby="hero-title">
         <div className="page-container grid min-h-[60svh] items-center gap-4 py-6 md:h-[65svh] md:min-h-0 md:grid-cols-[1.1fr_1fr]">
           <div className="relative z-10 min-w-0">

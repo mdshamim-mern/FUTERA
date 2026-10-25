@@ -151,3 +151,7 @@
 @media(min-width:768px){.auth-layout{grid-template-columns:1.05fr 1fr}.auth-story{border-bottom:0;border-right:1px solid var(--border)}}
 @supports(backdrop-filter:blur(16px)){.studio-panel{backdrop-filter:blur(16px)}}
 @media(prefers-reduced-motion:reduce){.social-link:hover{transform:none}}
+
+/* Skip off-screen layout work while retaining semantic content for accessibility. */
+@supports(content-visibility:auto){.home-page>section:not(:first-child){content-visibility:auto;contain-intrinsic-size:auto 620px}.catalog-card{content-visibility:auto;contain-intrinsic-size:auto 560px}}
+@media print{.home-page>section,.catalog-card{content-visibility:visible;contain-intrinsic-size:none}}
