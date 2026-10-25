@@ -386,3 +386,16 @@ Both AGENTS.md policies now authorize an isolated demo store. Ten original blog 
 - Frontend commit 406c289 and backend 3dd92c9 deployed successfully. Frontend Vercel deployment Hwre4aF1kNp9J1eu5a1Wz9hzCFaz; backend 78RDfZLgwkSWwx2svjLmhW8tP9r2. Live login DOM contains redesigned auth layout, actual form and Google login; backend health/config/enriched product requests 200.
 - Runtime activation still blocked on Vercel account verification: set GEMINI_MODEL=gemini-3.5-flash-lite, CATALOG_SOURCE=mongodb, CHECKOUT_ENABLED=true, DEMO_LOGIN_ENABLED=true only for futera_demo, then redeploy and retest. Shipping configuration was saved separately. CLI had no existing login and device-login attempt was cancelled; no new grant was accepted.
 - Catalog remains 20 models/7 categories; six price observations and correctly captioned photos on three models (7700X shares an existing credited two-processor frame). Most model-specific galleries remain missing. No claim that all buttons or all STN-7 requirements are complete. Full dashboard table pagination inventory and public restricted admin demo remain unfinished.
+
+## 25 October 2026 — active demo services and catalog completion
+
+- Vercel owner verification completed. MongoDB catalog, demo checkout and both live Gemini modes are active.
+- All current 20 product models have credited real photos, positive demo prices and illustrative stock. Eight price references are sourced observations; twelve are explicitly illustrative. Three SSD capacities use labelled family media. Existing owner edits and activated stock were preserved.
+- Demo customer and restricted admin autofill are active. Shared admin sessions cannot mutate store data and can only read demo-user/order/audit records. Every admin mutation denial was verified live.
+- Account orders/builds and every admin table have server-side filters, filtered counts and bounded pagination. Integration tests verify ownership isolation and 23-record pagination.
+- Frontend lint/typecheck/build pass; npm test: 80 passed/8 files. Backend lint/typecheck/build pass; 174 passed/14 files. Live browser tests at 360/1440: 2 passed/2.9m, including login, filters, dashboards, photos, pagination and details. All earlier activation-blocked statements are historical.
+- Live COD API created a Confirmed/unpaid demo order, retry was idempotent and anonymous access returned 404. Gemini recommendation/support returned genuine provider answers in roughly 2–3 seconds.
+- No claim that every possible link, mutation and form state across the entire application was exercised live. Historical local commerce/public-link tests remain documented separately. No current Lighthouse remeasurement.
+- Additional live mobile COD browser test: 1 passed/32.6s; actual frontend cart, checkout, unpaid order confirmation, account history and anonymous denial verified.
+- Both real Gemini forms verified in the live mobile UI: 1 passed/35.2s, catalog recommendation links and support response visible; no horizontal overflow.
+- Final isolated commerce regression: 8 passed/2.8m at 360/768/1024/1440, including owner-admin product edits, storefront updates and complete builder/cart/checkout flows.
