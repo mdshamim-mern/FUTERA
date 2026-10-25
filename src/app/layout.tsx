@@ -6,6 +6,7 @@ import { env } from "@/lib/env";
 import "./globals.css";
 import "./catalog.css";
 import "./workspace.css";
+import "./resources.css";
 import {cookies} from "next/headers";
 import {currentUser} from "@/server/guards";
 
