@@ -7,8 +7,8 @@ import "./globals.css";
 import {cookies} from "next/headers";
 import {currentUser} from "@/server/guards";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "optional", preload: false });
+const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "optional", preload: false });
 const bangla = Noto_Sans_Bengali({ subsets: ["bengali"], variable: "--font-noto-bengali", display: "swap", preload: false });
 
 export const metadata: Metadata = {
