@@ -15,7 +15,8 @@
     "db:indexes": "node scripts/backend-task.mjs indexes",
     "test:e2e:reference": "playwright test --config playwright.reference.config.ts",
     "test:e2e:links": "playwright test --config playwright.links.config.ts",
-    "test:e2e:live": "playwright test --config playwright.live.config.ts"
+    "test:e2e:live": "playwright test --config playwright.live.config.ts",
+    "test:e2e:current": "playwright test --config playwright.current.config.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
