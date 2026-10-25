@@ -1,71 +1,49 @@
-# Verification — STN-7 upgrade
+# FUTERA release verification
 
-Date: 23 October 2026 (Asia/Dhaka).
+25 October 2026, Bangladesh time. Actual observed results for the current sourced-catalog release; earlier reports are historical.
 
-| Check | Frontend | Backend |
-|---|---|---|
-| npm run lint | PASS | PASS |
-| npm run typecheck | PASS | PASS |
-| npm run test | PASS: 79 tests / 8 files | PASS: 165 tests / 12 files |
-| npm run build | PASS: Next.js production build, 24 routes | PASS: TypeScript build |
+## Acceptance checks
 
-## Browser verification
-
-- npm run test:e2e -- --workers=2: 24 passed (2.0 minutes).
-- npm run test:e2e:commerce: 8 passed (2.5 minutes).
-- npm run test:e2e:reference -- --workers=2: 3 passed (38.7 seconds).
-- Main/commerce widths: 360, 768, 1024 and 1440 pixels. Reference widths: 360, 768 and 1440.
-- Verified tested pages have no horizontal overflow, visible keyboard focus, reduced motion and theme persistence.
-- Reference flow verifies ten home sections, 12/8 pagination, CPU + AMD + AM5 filtering, public source-linked details, no purchasable zero-price offer and disabled checkout.
-- Commerce tests use an isolated temporary MongoDB replica set, not Atlas: guest merge, registration, COD unpaid order, ownership/session guards and admin edits reflected on storefront.
-- Backend tests cover compatibility rules, stock/coupon/pricing transactions, every admin mutation, OAuth state/claims, AI schema validation and reference-product order rejection.
-- Provider tests use controlled mocks; live Google and Gemini success is not claimed.
-
-## Live Lighthouse
-
-Lighthouse 13.5.0, mobile simulated throttling, Playwright-installed Chromium, single sequential runs on the public production URLs. Scores are lab measurements and can vary; they are not field Core Web Vitals or a full manual WCAG audit.
-
-| Page | Performance | Accessibility | Best Practices | SEO | LCP | TBT | CLS |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Home | 72 | 100 | 100 | 100 | 2.6 s | 1120 ms | 0.001 |
-| /products | 75 | 100 | 100 | 100 | 2.6 s | 920 ms | 0 |
-
-Earlier sample-deployment baseline: Home performance 25 (CLS 0.318), Products 59. Hero streaming, reserved loading space, optional font preload removal and first-card image preload were applied. Remaining performance work includes reducing main-thread JavaScript blocking time. Local raw reports: .artifacts/lighthouse-home.json and .artifacts/lighthouse-products.json (ignored by Git).
-
-## Production verification
-
-Frontend production revision 77c4a34 and backend revision 8fe66d6 were deployed. Backend redeployment GeBYgSKGbHGotJq45QiEa4XRQiCv is Ready and assigned to futera-server.vercel.app. CATALOG_SOURCE=reference and CHECKOUT_ENABLED=false are saved for Production. Public API returned 20 records, 12 on page one, all returned records marked reference. Live Home shows real model names, manufacturer links, no invented prices and owner contact details.
-
-Production /v1/config reports commerceEnabled=false, checkoutEnabled=false, googleEnabled=false and aiEnabled=false. Atlas login succeeds, but a fresh database-user check shows no dedicated futera_app user. Live database-dependent workflows, demo credentials, Google login and Gemini responses remain unverified. No licensed manufacturer photos or verified retail inventory were supplied. These limits are explicit in SUBMISSION.md and STN7_GAP_REPORT.md.
-
-## Current production audit — 25 October 2026
-
-This dated section supersedes the reference-only/disabled-service statements above.
-
-| Check | Actual result |
+| Check | Result |
 | --- | --- |
-| Frontend lint / typecheck | Exit 0 |
-| Frontend npm test | 80 passed, 8 files; 115.05s |
-| Frontend production build | Exit 0; 24 pages generated |
-| Backend lint / typecheck / build | Exit 0 |
-| Backend tests | 174 passed, 14 files; 66.94s |
-| Live browser audit, 360px and 1440px | 2 passed, 2.9m |
-| Live demo admin | Login and all 8 reports returned 200; all 8 mutation operations returned 403 |
-| Customer admin access | 403 |
-| Live catalog | 20 models, 2 pages, all positive demo prices and real photo paths |
-| Actual Gemini provider | Recommendation and support answers returned in 2.918s and 2.232s |
-| Live demo COD API | Confirmed/unpaid order, idempotent retry; anonymous read 404 |
+| Frontend lint/typecheck/build | Exit 0; 24 pages generated |
+| Frontend unit tests | 84 passed, 9 files |
+| Backend lint/typecheck/build | Exit 0 |
+| Backend unit/integration tests | 176 passed, 15 files |
+| Sourced-catalog browser matrix | 4 passed at 360/768/1024/1440, 2.7m |
+| Short-phone regression | 1 passed at 360x640, 30.8s; three duplicate viewport cases intentionally skipped |
+| Commerce/owner-admin regression | 8 passed at 360/768/1024/1440, 3.7m |
+| Final live mobile smoke | 3 passed, 2.1m |
+| Live linked routes | 74 destinations checked; zero failures |
+| Deployed product media | 49 image URLs checked; zero failures |
 
-The live browser audit checks both autofill buttons and successful logins, role separation, customer record filtering, all eight admin views, product filtering, read-only mutation controls, loaded images, catalog pagination, public details and enabled cart actions. The audited layouts had no horizontal overflow. An initial image assertion checked lazy images too early; scrolling each image into view and waiting for loading fixed that test. Its complete rerun passed both sizes.
+The sourced-catalog matrix exercises Home sections and hero dimensions, real-ID starter configurations, GPU selection, whole-build cart, three-field filters, sorting, product galleries, registration, account chart/table and address success feedback. Short-phone checks include hero content inside the 60–70% viewport band, visible keyboard focus, reduced motion and no horizontal overflow. Commerce tests include registration/cart merge, unpaid COD, private-order isolation, session revocation, saved-build sharing/QR/print, owner-admin product edit reflected in the storefront and protected action replay.
 
-An initial frontend test run failed to start multiple fork workers in this Windows environment. Single-worker thread mode passed and is now the default configuration. No failed run is counted as a pass.
+Live smoke exercises customer/admin autofill, role separation, all eight admin views, filters, read-only controls, loaded images, pagination, details, actual cart-to-COD order success/account history and both real Gemini forms. Orders stay unpaid; invented demo addresses only. No payment success or delivery is simulated.
 
-Current catalog pricing: eight retailer observations inspire demo amounts; twelve are labelled illustrative. Existing 7950X retains its original sourced metadata and current stock. Three SSD capacities use explicitly captioned P3 Plus family photography. This is an educational demo, not a verified retail feed or physical fulfillment service. Public admin access is read-only and excludes private customer data; owner admin mutation tests use an isolated local fixture.
+## Current catalog and data migration
 
-Vercel deployments verified successful through GitHub commit statuses: frontend d6d8f63, backend fe25dc9. Production endpoints and product assets returned 200. Service secrets were not committed. No new Lighthouse measurement was made during this audit; earlier scores above are historical.
+20 active sourced-price models cover all 14 component categories with 49 credited photographs. All active marketPrice.kind fields are observed; zero illustrative price records remain active. Ten unverified older models were archived in a transaction after every media URL was verified. Existing stock counts and order history were preserved and a local before-snapshot retained. Six model sources have one photograph; galleries are not padded with duplicate or wrong-model images. See [provenance](../PRODUCT_MEDIA_SOURCES.md).
 
-Live mobile COD browser follow-up: 1 passed (32.6s). Product add → cart → reviewed quote → confirmed unpaid demo COD order → account order history passed. Anonymous browser could not see the order confirmation. Only invented demo details were used; no payment was made.
+Home now uses current catalog records rather than fixed sample IDs. Featured plans are populated and open actual configurations; GPU links have a populated category. Starters show the actual subtotal and over-budget notices. Known conflicts and insufficient stock block whole-build cart; warnings/unknowns remain visible and are never relabelled healthy. Exact unverified GPU power remains unknown rather than copied from an inconsistent retailer field.
 
-Live mobile Gemini UI follow-up: 1 passed (35.2s). Both recommendation and support forms returned actual provider answers; recommendations linked to catalog products. Form error states were absent and no horizontal overflow was found at 360px. The initial global alert assertion included Next.js's route announcer; assertions were scoped to the actual forms and the complete rerun passed.
+## Accounts and authorization
 
-Isolated commerce regression: 8 passed (2.8m) across 360/768/1024/1440. Every size passed guest build/cart merge, registration, private unpaid COD order, session revocation, saved build sharing/QR/print, owner-admin product edit reflected on the storefront, and protected action replay. These tests use an ephemeral local fixture, not production owner data.
+Owner explicitly approved making their existing Google account an owner administrator. The transaction was audited, session version incremented and previous sessions revoked. Verification found one enabled private owner administrator and one public read-only demo administrator. The owner must sign in with Google again to use the new role; no private password or session was published or impersonated. Normal write workflows were verified with isolated owner-admin fixtures. All eight public demo admin mutations returned 403; customer admin access returned 403 and anonymous private-order access 404.
+
+## Lighthouse
+
+Lighthouse 13.5.0, headless Playwright Chromium, default simulated mobile settings, public production URLs. Each score is a lab observation and may vary; it is not field Core Web Vitals or a full manual WCAG certification. Performance was measured after the font/offscreen-layout optimizations with no competing builds/tests.
+
+| Page / dark mode | Performance | Accessibility | Best Practices | SEO | LCP | TBT | CLS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Home | 87 | 100 | 100 | 100 | 2.5 s | 370 ms | 0 |
+| /products | 90 | 100 | 100 | 100 | 2.3 s | 340 ms | 0 |
+
+Separate light-mode accessibility: Home 100, Products 100. An inactive-tab contrast issue measured 4.21:1; replacing the opacity-based color with the shared muted-text token fixed it and the light Home audit was rerun. Checked text/button token pairs exceed 4.5:1 in both themes.
+
+Earlier measured performance was Home 71 / Products 83, then 82 / 84 after offscreen layout and prefetch changes. Final font loading avoids blocking text paint. Raw reports and browser traces remain in ignored .artifacts, playwright-report and test-results directories.
+
+## Practical limits
+
+This is an educational demo with reference prices and demonstrative stock, not a real retail inventory/fulfillment business. Public demo administrator access is intentionally read-only; Google is the configured social-login provider. Every possible form state or external social-provider login wall was not exhaustively certified. The listed flows and routes are the actual tested scope. No secrets were committed; only .env.example is tracked in each repository.
