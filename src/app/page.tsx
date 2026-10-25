@@ -13,10 +13,10 @@ export default function Home() {
   return (
     <main id="main-content" tabIndex={-1}>
       <section className="relative border-b border-border" aria-labelledby="hero-title">
-        <div className="page-container grid min-h-[min(520px,70svh)] items-center gap-4 py-6 md:h-[65svh] md:min-h-[520px] md:grid-cols-[1.1fr_1fr]">
+        <div className="page-container grid min-h-[60svh] items-center gap-4 py-6 md:h-[65svh] md:min-h-0 md:grid-cols-[1.1fr_1fr]">
           <div className="relative z-10 min-w-0">
             <Badge className="mb-4 border-primary/20 text-primary"><span className="size-1.5 rounded-full bg-primary"/>THE NEXT ERA OF PC BUILDING</Badge>
-            <h1 id="hero-title" className="max-w-[690px] font-display text-[clamp(2rem,4vw,3.6rem)] leading-[1.06] font-semibold tracking-[-.055em]">Build Your<br className="hidden lg:block"/> Dream PC.{" "}<br/><span className="text-primary">Perfectly{" "}<br className="hidden lg:block"/> Compatible.</span></h1>
+            <h1 id="hero-title" className="max-w-[690px] font-display text-[clamp(1.7rem,4vw,3.6rem)] leading-[1.06] font-semibold tracking-[-.055em]">Build Your<br className="hidden lg:block"/> Dream PC.{" "}<br/><span className="text-primary">Perfectly{" "}<br className="hidden lg:block"/> Compatible.</span></h1>
             <p className="mt-4 max-w-[440px] text-sm leading-6 text-muted-foreground">Your ambition. Your components. One seamless build. Meet FUTERA — a new era of PC hardware and compatibility-first builds for Bangladesh.</p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg"><Link href="/products">Explore components <ArrowRight aria-hidden="true"/></Link></Button>

@@ -2,6 +2,7 @@
 import { displayProductPrice } from "@/features/products/format";
 
 import { useEffect, useState } from "react";
+import {createStarter} from "../starter";
 import {useRouter} from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -58,6 +59,11 @@ export function Builder({catalog,initial,shared}:{catalog:Product[];initial:Buil
   function starter(nextBudget=budget,nextUse=useCase) {
     setBudget(nextBudget);setUseCase(nextUse);
     if(catalog.some(p=>p.isReference)){setNotice("Reference catalog: choose parts manually. No verified prices are available for a budget-based starter.");return;}
+    if(catalog.some(p=>!p.isSample)){
+      const result=createStarter(catalog,nextBudget,nextUse);
+      if(result.missing){setNotice(`No available ${categoryLabels[result.missing]} can complete this starter without a known conflict. Select parts manually.`);return;}
+      change(result.refs);setNotice(`Loaded ${result.refs.length} current catalog parts for ${nextUse}. Demo subtotal ${formatPrice(result.totalMinor)}.${result.overBudget?" Available parts exceed your target; adjust the selection or budget.":""}${!result.hasGpu&&nextUse!=="Office"?" No discrete GPU is available in this catalog; graphics requirements still need review.":""} Review all warnings and unknown specifications.`);return;
+    }
     const tier=nextBudget>=120000?"07":"03";
     const categories:CategoryCode[]=[...requiredCategories,...(nextUse!=="Office"?["gpu" as const]:[])];
     const next=categories.flatMap(category=>{
@@ -86,7 +92,7 @@ export function Builder({catalog,initial,shared}:{catalog:Product[];initial:Buil
     <section className="rounded-xl border p-4"><h3 className="text-sm font-medium">Performance estimate</h3><p className="mt-2 text-xs leading-6 text-muted-foreground">FPS estimate unavailable: this catalog has no verified benchmark dataset. {quote.lines.some(l=>l.product.category==="gpu")?"Bottleneck hint (estimate): game, resolution, memory and CPU/GPU balance all affect performance. No numeric bottleneck score is claimed.":"Bottleneck hint (estimate): integrated graphics can limit demanding games and GPU rendering. A discrete GPU may help; workload matters."}</p></section>
   </div>;
   return <TooltipProvider><div className="builder-root pb-28 lg:pb-0">
-    <section className="my-8 rounded-2xl border bg-card p-5" aria-label="Quick start"><h2 className="font-display text-xl">Start with a direction</h2><p className="mt-2 text-sm text-muted-foreground">Budget targets and use cases load editable SAMPLE builds.</p><div className="mt-4 flex flex-wrap gap-2">{[50000,80000,120000,200000].map(b=><Button key={b} variant={budget===b?"default":"outline"} disabled={!ready} onClick={()=>starter(b)}>{b===200000?"৳200k+":`৳${b/1000}k`}</Button>)}</div><div className="mt-3 flex flex-wrap gap-2">{["Gaming","Editing","Office","AI/ML"].map(u=><Button key={u} variant={useCase===u?"secondary":"ghost"} disabled={!ready} onClick={()=>starter(budget,u)}>{u}</Button>)}</div></section>
+    <section className="my-8 rounded-2xl border bg-card p-5" aria-label="Quick start"><h2 className="font-display text-xl">Start with a direction</h2><p className="mt-2 text-sm text-muted-foreground">Load available catalog parts, then review the actual subtotal and compatibility checks. Budget targets are not guaranteed quotes.</p><div className="mt-4 flex flex-wrap gap-2">{[50000,80000,120000,200000].map(b=><Button key={b} variant={budget===b?"default":"outline"} disabled={!ready} onClick={()=>starter(b)}>{b===200000?"৳200k+":`৳${b/1000}k`}</Button>)}</div><div className="mt-3 flex flex-wrap gap-2">{["Gaming","Editing","Office","AI/ML"].map(u=><Button key={u} variant={useCase===u?"secondary":"ghost"} disabled={!ready} onClick={()=>starter(budget,u)}>{u}</Button>)}</div></section>
     <p role="status" className="my-4 text-sm text-primary">{notice}</p>
     {error && <div role="alert" className="mb-5 rounded-xl border border-danger p-4"><p>{error}</p><Button className="mt-3" variant="outline" onClick={()=>replace([...refs])}>Retry verification</Button></div>}
     {quote.ignored>0 && <p role="status" className="mb-4 text-warning">Unavailable or duplicate single-slot components were safely omitted.</p>}
@@ -123,5 +129,3 @@ export function Builder({catalog,initial,shared}:{catalog:Product[];initial:Buil
     <div className="builder-print-summary hidden">{summaryBody}</div>
   </div></TooltipProvider>;
 }
-
-
